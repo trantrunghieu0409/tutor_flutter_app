@@ -3,7 +3,6 @@ import 'package:tutor_flutter_app/core/common_widgets/CommonAppBar.dart';
 import 'package:tutor_flutter_app/features/login/presentation/widgets/InputFieldsWidget.dart';
 import 'package:tutor_flutter_app/features/login/presentation/widgets/PrimaryButton.dart';
 import 'package:tutor_flutter_app/features/login/presentation/widgets/RowIcons.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/TextWidgets.dart';
 
