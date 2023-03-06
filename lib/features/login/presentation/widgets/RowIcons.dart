@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RowIcons extends StatelessWidget {
@@ -8,7 +6,7 @@ class RowIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var iconWidth = 40.0;
+    var width = 40.0;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -18,18 +16,26 @@ class RowIcons extends StatelessWidget {
           SvgPicture.asset(
             "assets/images/facebook_logo.svg",
             semanticsLabel: "facebook",
-            width: iconWidth,
+            width: width,
           ),
           SvgPicture.asset(
             "assets/images/google_logo.svg",
             semanticsLabel: "google",
-            width: iconWidth,
+            width: width,
           ),
-          SvgPicture.asset(
-            "assets/images/mobile_logo.svg",
-            semanticsLabel: "mobile",
-            width: iconWidth,
-          )
+          CircleAvatar(
+            backgroundColor: Colors.blue,
+            radius: 22,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 20,
+              child: SvgPicture.asset(
+                "assets/images/mobile_logo.svg",
+                semanticsLabel: "mobile",
+                width: width - 10,
+              ),
+            ),
+          ),
         ],
       ),
     );

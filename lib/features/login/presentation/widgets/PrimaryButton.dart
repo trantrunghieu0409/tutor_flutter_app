@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({super.key, required this.text});

@@ -16,12 +16,12 @@ class LoginPage extends StatelessWidget {
       appBar: const CommonAppBar(),
       body: SizedBox(
         child: ListView(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           children: <Widget>[
             Image.asset("assets/images/main_picture_login.png",
                 semanticLabel: "Main Picture", fit: BoxFit.cover),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: const [
                   TextHeader(),
