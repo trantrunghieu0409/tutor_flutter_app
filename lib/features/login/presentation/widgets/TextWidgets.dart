@@ -9,9 +9,9 @@ class TextHeader extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Text(
-        "Say hello to your English tutors",
+        "SAY HELLO TO YOUR ENGLISH TUTORS",
         style: TextStyle(
-          fontSize: 28.0,
+          fontSize: 32.0,
           color: Color.fromRGBO(0, 113, 240, 1.0),
           fontWeight: FontWeight.w700,
         ),
@@ -74,7 +74,9 @@ class TextLink extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-              decoration: TextDecoration.underline, color: Colors.blue),
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              color: Colors.blue),
         ),
         onTap: () => _launchUrl());
   }

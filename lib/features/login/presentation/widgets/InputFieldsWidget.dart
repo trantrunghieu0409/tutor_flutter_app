@@ -20,7 +20,7 @@ class InputField extends StatelessWidget {
           child: Text(
             title,
             selectionColor: Colors.black12,
-            style: const TextStyle(fontSize: 16.0),
+            style: const TextStyle(fontSize: 12.0),
             textAlign: TextAlign.left,
           ),
         ),

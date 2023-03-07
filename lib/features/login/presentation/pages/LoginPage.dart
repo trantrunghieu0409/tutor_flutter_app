@@ -12,44 +12,39 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppBar(),
-      body: SizedBox(
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: <Widget>[
-            Image.asset("assets/images/main_picture_login.png",
-                semanticLabel: "Main Picture", fit: BoxFit.cover),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: const [
-                  TextHeader(),
-                  TextSubheader(),
-                  InputField(title: "EMAIL", placeholder: "Your email"),
-                  InputField(
-                    title: "PASSWORD",
-                    placeholder: "Your password",
-                    isObsecure: true,
-                  ),
-                  PrimaryButton(text: "LOGIN"),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  TextLink(
-                    text: "Forget Password?",
-                    link: "https://pub.dev/packages/url_launcher",
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Text("Or continue with"),
-                  RowIcons(),
-                  Footer()
-                ],
-              ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: const [
+                TextHeader(),
+                TextSubheader(),
+                InputField(title: "EMAIL", placeholder: "Your email"),
+                InputField(
+                  title: "PASSWORD",
+                  placeholder: "Your password",
+                  isObsecure: true,
+                ),
+                PrimaryButton(text: "LOGIN"),
+                SizedBox(
+                  height: 8,
+                ),
+                TextLink(
+                  text: "Forget Password?",
+                  link: "https://pub.dev/packages/url_launcher",
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+                Text("Or continue with"),
+                RowIcons(),
+                Footer()
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
