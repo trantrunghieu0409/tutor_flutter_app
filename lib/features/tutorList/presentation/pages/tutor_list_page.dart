@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:tutor_flutter_app/core/common_widgets/CommonAppBar.dart';
+import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/filter.dart';
 import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/header.dart';
+import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/schedule.dart';
 
 class TutorListPage extends StatelessWidget {
   const TutorListPage({super.key});
@@ -11,9 +12,25 @@ class TutorListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CommonAppBar(),
-      body: Column(
-        children: const [
-          Header(),
+      body: ListView(
+        children: [
+          const Header(),
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "Find a tutor",
+                  style: CommonTextStyle.h1Black,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Filter(),
+              ],
+            ),
+          ),
         ],
       ),
     );
