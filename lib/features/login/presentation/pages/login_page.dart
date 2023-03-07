@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/CommonAppBar.dart';
-import 'package:tutor_flutter_app/features/login/presentation/widgets/InputFieldsWidget.dart';
-import 'package:tutor_flutter_app/features/login/presentation/widgets/PrimaryButton.dart';
-import 'package:tutor_flutter_app/features/login/presentation/widgets/RowIcons.dart';
+import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/features/login/presentation/widgets/input_field.dart';
+import 'package:tutor_flutter_app/features/login/presentation/widgets/primary_button.dart';
+import 'package:tutor_flutter_app/features/login/presentation/widgets/row_icons.dart';
 
-import '../widgets/TextWidgets.dart';
+import '../widgets/text_widgets.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
