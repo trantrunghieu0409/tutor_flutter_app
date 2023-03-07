@@ -27,16 +27,16 @@ class LoginPage extends StatelessWidget {
                   placeholder: "Your password",
                   isObsecure: true,
                 ),
-                PrimaryButton(text: "LOGIN"),
-                SizedBox(
-                  height: 8,
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: PrimaryButton(text: "LOGIN"),
                 ),
                 TextLink(
                   text: "Forget Password?",
                   link: "https://pub.dev/packages/url_launcher",
                 ),
                 SizedBox(
-                  height: 32,
+                  height: 40,
                 ),
                 Text("Or continue with"),
                 RowIcons(),

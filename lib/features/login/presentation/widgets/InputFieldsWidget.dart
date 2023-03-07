@@ -20,7 +20,7 @@ class InputField extends StatelessWidget {
           child: Text(
             title,
             selectionColor: Colors.black12,
-            style: const TextStyle(fontSize: 12.0),
+            style: const TextStyle(fontSize: 16.0),
             textAlign: TextAlign.left,
           ),
         ),
@@ -28,11 +28,12 @@ class InputField extends StatelessWidget {
           obscureText: isObsecure,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
+            isDense: true,
             labelText: placeholder,
           ),
         ),
         const SizedBox(
-          height: 24,
+          height: 16,
         )
       ],
     );
