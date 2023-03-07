@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/pages/TutorListPage.dart';
+import 'package:tutor_flutter_app/features/tutorList/presentation/pages/tutor_list_page.dart';
 
 void main() {
   runApp(const MyApp());
