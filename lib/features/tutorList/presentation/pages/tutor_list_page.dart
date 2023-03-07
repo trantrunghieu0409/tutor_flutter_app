@@ -3,7 +3,7 @@ import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/filter.dart';
 import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/header.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/schedule.dart';
+import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/tutor_list.dart';
 
 class TutorListPage extends StatelessWidget {
   const TutorListPage({super.key});
@@ -28,6 +28,17 @@ class TutorListPage extends StatelessWidget {
                   height: 16,
                 ),
                 Filter(),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Recommended Tutors",
+                  style: CommonTextStyle.h2Black,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                TutorList()
               ],
             ),
           ),

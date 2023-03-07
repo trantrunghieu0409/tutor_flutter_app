@@ -27,6 +27,7 @@ dependencies:
   google_fonts: ^4.0.3
   url_launcher: ^6.1.10
   intl: ^0.18.0
+  country_icons: ^2.0.2
 
 dev_dependencies:
   flutter_test:
