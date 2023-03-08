@@ -45,15 +45,14 @@ class _InputChipListState extends State<InputChipList> {
                       selectedIndex = selected ? index : null;
                     });
                   },
-                  backgroundColor: Color.fromARGB(255, 236, 243, 248),
-                  selectedColor: Color.fromARGB(255, 228, 237, 244),
+                  backgroundColor: const Color.fromARGB(255, 236, 243, 248),
+                  selectedColor: const Color.fromARGB(255, 228, 237, 244),
                   labelStyle: TextStyle(
                       fontWeight: selectedIndex == index
                           ? FontWeight.w700
                           : FontWeight.normal,
-                      color: selectedIndex == index
-                          ? Color.fromARGB(255, 7, 77, 199)
-                          : Colors.black),
+                      color:
+                          selectedIndex == index ? Colors.blue : Colors.black),
                 );
               },
             ).toList(),

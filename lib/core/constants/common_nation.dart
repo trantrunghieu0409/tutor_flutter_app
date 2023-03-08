@@ -5,6 +5,7 @@ class CommonNation {
 
   static const vietnam = Nation("Vietnam", "icons/flags/svg/vn.svg");
   static const philpines = Nation("Philipines", "icons/flags/svg/fi.svg");
+  static const taiwan = Nation("Taiwan", "icons/flags/svg/eu.svg");
 }
 
 class Nation {

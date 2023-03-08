@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tutor_flutter_app/features/tutorList/data/datasources/tutor_datasource.dart';
 import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/tutor_card.dart';
 

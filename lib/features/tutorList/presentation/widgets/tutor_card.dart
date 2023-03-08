@@ -12,9 +12,32 @@ class TutorCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: NetworkImage(tutor.avatar),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(tutor.avatar),
+                ),
+              ),
+              Positioned(
+                right: 72,
+                top: 48,
+                child: TextButton.icon(
+                    onPressed: () {
+                      tutor.isFavorite = !tutor.isFavorite;
+                    },
+                    icon: tutor.isFavorite
+                        ? const Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          )
+                        : const Icon(Icons.favorite_outline, color: Colors.red),
+                    label: const Text("")),
+              ),
+            ],
           ),
           Text(
             tutor.name,
@@ -38,12 +61,40 @@ class TutorCard extends StatelessWidget {
           ),
           Wrap(
               spacing: 4,
-              children: List<Icon>.generate(
-                  tutor.stars,
-                  (index) => const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ))),
+              children: tutor.stars > 0
+                  ? List<Icon>.generate(
+                      tutor.stars,
+                      (index) => const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                          ))
+                  : [
+                      const Text("No reviews yet!",
+                          style: CommonTextStyle.bodyItalicBlack)
+                    ]),
+          const SizedBox(
+            height: 16,
+          ),
+          SizedBox(
+            child: Column(children: <Widget>[
+              Wrap(
+                spacing: 4.0,
+                children: List<Widget>.generate(
+                  tutor.categories.length,
+                  (int index) {
+                    return ChoiceChip(
+                      label: Text(tutor.categories[index]),
+                      selectedColor: const Color.fromARGB(255, 228, 237, 244),
+                      selected: true,
+                      onSelected: (bool value) => {},
+                      labelStyle: const TextStyle(
+                          fontWeight: FontWeight.w700, color: Colors.blue),
+                    );
+                  },
+                ).toList(),
+              )
+            ]),
+          ),
           const SizedBox(
             height: 16,
           ),
