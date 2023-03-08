@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,32 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LetTutor',
       theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Hello World App"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'Hello World!',
-            ),
-          ],
-        ),
-      ),
+      home: const LoginPage(),
     );
   }
 }
