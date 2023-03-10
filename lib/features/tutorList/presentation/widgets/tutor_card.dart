@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/core/common_widgets/button_icon_outline.dart';
+import 'package:tutor_flutter_app/core/common_widgets/nation_with_flag.dart';
+import 'package:tutor_flutter_app/core/common_widgets/stars_rating.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
 
@@ -43,35 +46,14 @@ class TutorCard extends StatelessWidget {
             tutor.name,
             style: CommonTextStyle.h2Black,
           ),
-          Row(
+          NationWithFlag(
+            nation: tutor.nation,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              tutor.nation.getImage(),
-              const SizedBox(
-                width: 4,
-              ),
-              Text(
-                tutor.nation.name,
-                style: CommonTextStyle.bodyBlack,
-              )
-            ],
           ),
           const SizedBox(
             height: 16,
           ),
-          Wrap(
-              spacing: 4,
-              children: tutor.stars > 0
-                  ? List<Icon>.generate(
-                      tutor.stars,
-                      (index) => const Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          ))
-                  : [
-                      const Text("No reviews yet!",
-                          style: CommonTextStyle.bodyItalicBlack)
-                    ]),
+          StarsRating(nStars: tutor.stars),
           const SizedBox(
             height: 16,
           ),
@@ -108,19 +90,9 @@ class TutorCard extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.calendar_today_outlined),
-                label: const Text("Book"),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    foregroundColor: MaterialStateProperty.all(Colors.blue),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: const BorderSide(color: Colors.blue)))),
-              ),
+            children: const [
+              ButtonIconOutline(
+                  labelText: "Book", icon: Icon(Icons.calendar_today_outlined))
             ],
           )
         ]),
