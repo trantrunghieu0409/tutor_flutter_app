@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/common_widgets/button_icon_outline.dart';
+import 'package:tutor_flutter_app/core/common_widgets/chip_list_readonly.dart';
 import 'package:tutor_flutter_app/core/common_widgets/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/common_widgets/stars_rating.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
@@ -57,26 +58,7 @@ class TutorCard extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          SizedBox(
-            child: Column(children: <Widget>[
-              Wrap(
-                spacing: 4.0,
-                children: List<Widget>.generate(
-                  tutor.categories.length,
-                  (int index) {
-                    return ChoiceChip(
-                      label: Text(tutor.categories[index]),
-                      selectedColor: const Color.fromARGB(255, 228, 237, 244),
-                      selected: true,
-                      onSelected: (bool value) => {},
-                      labelStyle: const TextStyle(
-                          fontWeight: FontWeight.w700, color: Colors.blue),
-                    );
-                  },
-                ).toList(),
-              )
-            ]),
-          ),
+          ChipListReadOnly(chipTextList: tutor.categories),
           const SizedBox(
             height: 16,
           ),
