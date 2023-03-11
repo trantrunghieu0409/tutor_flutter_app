@@ -9,7 +9,7 @@ class StarsRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-        spacing: 4,
+        spacing: 2,
         children: nStars > 0
             ? List<Icon>.generate(
                 nStars,

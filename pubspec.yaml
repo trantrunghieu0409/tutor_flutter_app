@@ -28,6 +28,7 @@ dependencies:
   url_launcher: ^6.1.10
   intl: ^0.18.0
   country_icons: ^2.0.2
+  video_player: ^2.6.0
 
 dev_dependencies:
   flutter_test:
