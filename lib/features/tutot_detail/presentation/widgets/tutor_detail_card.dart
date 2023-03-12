@@ -14,7 +14,7 @@ class TutorDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(24.0),
         child: Column(children: [
           Row(
