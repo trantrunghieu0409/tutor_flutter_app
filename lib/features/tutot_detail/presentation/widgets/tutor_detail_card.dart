@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/button_icon_outline.dart';
 import 'package:tutor_flutter_app/core/common_widgets/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/common_widgets/stars_rating.dart';
 import 'package:tutor_flutter_app/features/tutot_detail/presentation/widgets/buttons_section.dart';
@@ -19,11 +18,14 @@ class TutorDetailCard extends StatelessWidget {
         child: Column(children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CircleAvatar(
                 radius: 44,
                 backgroundImage: NetworkImage(tutor.avatar),
+              ),
+              const SizedBox(
+                width: 16,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,8 +44,6 @@ class TutorDetailCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const ButtonIconOutline(
-                  labelText: "Book", icon: Icon(Icons.calendar_today_outlined)),
             ],
           ),
           const SizedBox(

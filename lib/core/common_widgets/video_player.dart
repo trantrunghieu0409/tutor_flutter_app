@@ -35,7 +35,7 @@ class _VideoSectionState extends State<VideoSection> {
         }
       },
       child: AspectRatio(
-          aspectRatio: 1280 / 720,
+          aspectRatio: 16 / 9,
           child: Center(
             child: _controller.value.isInitialized
                 ? AspectRatio(
