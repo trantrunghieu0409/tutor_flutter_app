@@ -14,4 +14,5 @@ class CommonColor {
   );
 
   static const lightBlue = Color.fromRGBO(241, 241, 241, 1);
+  static const lightGrey = Color.fromARGB(0, 27, 115, 44);
 }

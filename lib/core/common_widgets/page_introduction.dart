@@ -18,6 +18,9 @@ class PageIntroduction extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         image,
+        const SizedBox(
+          width: 8,
+        ),
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

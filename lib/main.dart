@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_flutter_app/features/schedule/presentation/pages/schedule_page.dart';
+import 'package:tutor_flutter_app/features/courses/presentation/pages/courses_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
         primarySwatch: Colors.blue,
       ),
-      home: const SchedulePage(),
+      home: const CoursesPage(),
     );
   }
 }
