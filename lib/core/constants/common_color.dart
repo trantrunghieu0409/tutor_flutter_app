@@ -12,4 +12,6 @@ class CommonColor {
     ],
     tileMode: TileMode.mirror,
   );
+
+  static const lightBlue = Color.fromRGBO(241, 241, 241, 1);
 }

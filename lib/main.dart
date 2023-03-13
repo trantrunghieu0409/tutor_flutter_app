@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_flutter_app/features/tutot_detail/presentation/pages/tutor_detail_page.dart';
+import 'package:tutor_flutter_app/features/history/presentation/pages/history_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
         primarySwatch: Colors.blue,
       ),
-      home: const TutorDetailPage(),
+      home: const HistoryPage(),
     );
   }
 }

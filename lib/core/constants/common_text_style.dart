@@ -15,6 +15,10 @@ class CommonTextStyle {
 
   static const h2Black =
       TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w600);
+
+  static const h3Black =
+      TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400);
+
   static const bodyBlack = TextStyle(fontSize: 16, color: Colors.black);
   static const bodyItalicBlack =
       TextStyle(fontSize: 16, color: Colors.black, fontStyle: FontStyle.italic);
