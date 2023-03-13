@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
 import 'package:tutor_flutter_app/features/login/presentation/widgets/input_field.dart';
-import 'package:tutor_flutter_app/features/login/presentation/widgets/primary_button.dart';
+import 'package:tutor_flutter_app/core/common_widgets/primary_button.dart';
 import 'package:tutor_flutter_app/features/login/presentation/widgets/row_icons.dart';
 import 'package:tutor_flutter_app/features/tutorList/presentation/pages/tutor_list_page.dart';
 

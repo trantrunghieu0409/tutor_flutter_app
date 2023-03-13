@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tutor_flutter_app/core/common_widgets/avatar_info.dart';
+import 'package:tutor_flutter_app/core/common_widgets/border_container.dart';
+import 'package:tutor_flutter_app/core/common_widgets/border_outline_button.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
@@ -36,18 +38,21 @@ class HistoryCard extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          _buildCustomContainer(const Text(
+          const BorderContainer(
+              child: Text(
             "Lesson Time: 08:00 - 08:25",
             style: CommonTextStyle.h3Black,
           )),
           const SizedBox(
             height: 16,
           ),
-          _buildCustomContainer(const Text(
+          const BorderContainer(
+              child: Text(
             "No request for lesson",
             style: CommonTextStyle.bodyBlack,
           )),
-          _buildCustomContainer(const Text(
+          const BorderContainer(
+              child: Text(
             "Tutor haven't reviewed yet",
             style: CommonTextStyle.bodyBlack,
           )),
@@ -57,21 +62,7 @@ class HistoryCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                OutlinedButton.icon(
-                  style: OutlinedButton.styleFrom(
-                    // backgroundColor: Colors.white,// background
-                    foregroundColor: Colors.red,
-                    backgroundColor: Colors.white,
-                    side: const BorderSide(
-                        color: Colors.red), // foreground border
-                  ),
-                  onPressed: () => {},
-                  label: const Text(
-                    "Report",
-                    style: CommonTextStyle.bodyBlack,
-                  ),
-                  icon: const Icon(Icons.report),
-                ),
+                BorderOutlineButton(labelText: "Report", icon: Icons.report),
                 ElevatedButton.icon(
                   onPressed: () {},
                   label: const Text("Add a rating"),
@@ -82,17 +73,6 @@ class HistoryCard extends StatelessWidget {
           ),
         ]),
       ),
-    );
-  }
-
-  Widget _buildCustomContainer(Widget child) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey)),
-          color: Colors.white),
-      child: child,
     );
   }
 }

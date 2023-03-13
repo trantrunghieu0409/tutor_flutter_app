@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:tutor_flutter_app/features/login/presentation/widgets/primary_button.dart';
+import 'package:tutor_flutter_app/core/common_widgets/primary_button.dart';
 import 'package:tutor_flutter_app/features/tutot_detail/data/models/booking_time.dart';
 
 class BookingCalendar extends StatefulWidget {
