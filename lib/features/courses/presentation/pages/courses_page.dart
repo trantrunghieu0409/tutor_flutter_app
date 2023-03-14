@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
 import 'package:tutor_flutter_app/core/common_widgets/custom_dropdown_button.dart';
+import 'package:tutor_flutter_app/features/courses/data/datasources/books_data.dart';
 import 'package:tutor_flutter_app/features/courses/data/datasources/courses_data.dart';
 import 'package:tutor_flutter_app/features/courses/presentation/widgets/card_with_picture.dart';
 import 'package:tutor_flutter_app/features/courses/presentation/widgets/custome_page_introduction.dart';
@@ -55,9 +56,6 @@ class _CoursesPageState extends State<CoursesPage>
                       height: 16,
                     ),
                     _buildFilters(),
-                    const SizedBox(
-                      height: 16,
-                    ),
                   ],
                 ),
               ),
@@ -84,11 +82,30 @@ class _CoursesPageState extends State<CoursesPage>
                 child: [
                   // first tab bar view widget
                   Column(
-                    children: List<Widget>.generate(courses.length,
-                        (index) => CardWithPicture(course: courses[index])),
+                    children: List<Widget>.generate(
+                        courses.length,
+                        (index) => CardWithPicture(
+                              cover: courses[index].image,
+                              title: courses[index].title,
+                              description: courses[index].description,
+                              footer:
+                                  "${courses[index].level} - ${courses[index].nLessons} lessons",
+                            )),
                   ),
 
                   // second tab bar view widget
+                  Column(
+                    children: List<Widget>.generate(
+                        books.length,
+                        (index) => CardWithPicture(
+                              cover: books[index].image,
+                              title: books[index].title,
+                              description: books[index].description,
+                              footer: books[index].level,
+                            )),
+                  ),
+
+                  // third tab bar view widget
                   SizedBox(
                     height: 200,
                     child: Column(
@@ -104,12 +121,6 @@ class _CoursesPageState extends State<CoursesPage>
                         )
                       ],
                     ),
-                  ),
-
-                  // third tab bar view widget
-                  Column(
-                    children: List<Widget>.generate(courses.length,
-                        (index) => CardWithPicture(course: courses[index])),
                   ),
                 ][_tabController.index],
               ),

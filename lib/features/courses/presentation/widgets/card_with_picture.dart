@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/features/courses/data/models/course.dart';
 
 class CardWithPicture extends StatelessWidget {
-  const CardWithPicture({super.key, required this.course});
+  const CardWithPicture(
+      {super.key,
+      required this.cover,
+      required this.title,
+      required this.description,
+      required this.footer});
 
-  final Course course;
+  final Image cover;
+  final String title;
+  final String description;
+  final String footer;
 
   @override
   Widget build(BuildContext context) {
@@ -14,24 +21,24 @@ class CardWithPicture extends StatelessWidget {
       elevation: 4,
       child: Column(
         children: [
-          course.image,
+          cover,
           Container(
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  course.title,
+                  title,
                   style: CommonTextStyle.h2Black,
                 ),
                 Text(
-                  course.description,
+                  description,
                   style: CommonTextStyle.bodyBlack,
                 ),
                 const SizedBox(
                   height: 32,
                 ),
-                Text("${course.level} - ${course.nLessons} lessons"),
+                Text(footer),
               ],
             ),
           ),
