@@ -12,7 +12,7 @@ class CardWithPicture extends StatelessWidget {
   final Image cover;
   final String title;
   final String description;
-  final String footer;
+  final Widget footer;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class CardWithPicture extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                Text(footer),
+                footer,
               ],
             ),
           ),

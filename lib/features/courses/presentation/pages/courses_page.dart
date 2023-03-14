@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
-import 'package:tutor_flutter_app/core/common_widgets/custom_dropdown_button.dart';
 import 'package:tutor_flutter_app/features/courses/data/datasources/books_data.dart';
 import 'package:tutor_flutter_app/features/courses/data/datasources/courses_data.dart';
-import 'package:tutor_flutter_app/features/courses/presentation/widgets/card_with_picture.dart';
+import 'package:tutor_flutter_app/core/common_widgets/card_with_picture.dart';
 import 'package:tutor_flutter_app/features/courses/presentation/widgets/custome_page_introduction.dart';
+import 'package:tutor_flutter_app/features/courses/presentation/widgets/filters.dart';
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
@@ -50,12 +50,12 @@ class _CoursesPageState extends State<CoursesPage>
               Container(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  children: [
-                    const CustomPageIntroduction(),
-                    const SizedBox(
+                  children: const [
+                    CustomPageIntroduction(),
+                    SizedBox(
                       height: 16,
                     ),
-                    _buildFilters(),
+                    Filters(),
                   ],
                 ),
               ),
@@ -85,12 +85,12 @@ class _CoursesPageState extends State<CoursesPage>
                     children: List<Widget>.generate(
                         courses.length,
                         (index) => CardWithPicture(
-                              cover: courses[index].image,
-                              title: courses[index].title,
-                              description: courses[index].description,
-                              footer:
-                                  "${courses[index].level} - ${courses[index].nLessons} lessons",
-                            )),
+                            cover: courses[index].image,
+                            title: courses[index].title,
+                            description: courses[index].description,
+                            footer: Text(
+                              "${courses[index].level} - ${courses[index].nLessons} lessons",
+                            ))),
                   ),
 
                   // second tab bar view widget
@@ -101,7 +101,7 @@ class _CoursesPageState extends State<CoursesPage>
                               cover: books[index].image,
                               title: books[index].title,
                               description: books[index].description,
-                              footer: books[index].level,
+                              footer: Text(books[index].level),
                             )),
                   ),
 
@@ -128,41 +128,6 @@ class _CoursesPageState extends State<CoursesPage>
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildFilters() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            CustomDropdownButton(
-              items: ["Any level", "Beginning", "Intermediate", "Advanced"],
-              hintText: "Select level",
-            ),
-            CustomDropdownButton(
-              items: [
-                "Studying abroad",
-                "English Travel",
-                "Business English",
-                "IELTS",
-                "KET",
-                "PET"
-              ],
-              hintText: "Select category",
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        const CustomDropdownButton(
-          items: ["Increasing", "Descreasing"],
-          hintText: "Sort by level",
-        ),
-      ],
     );
   }
 }
