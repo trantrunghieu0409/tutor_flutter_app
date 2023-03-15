@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/core/common_widgets/previous_appbar.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
 import 'package:tutor_flutter_app/features/tutot_detail/presentation/widgets/tutor_info.dart';
 
 class TutorDetailPage extends StatelessWidget {
@@ -8,6 +9,13 @@ class TutorDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(appBar: CommonAppBar(), body: TutorInfo());
+    final args = ModalRoute.of(context)!.settings.arguments as Tutor;
+    onClosePage() => {Navigator.pop(context)};
+
+    return Scaffold(
+        appBar: PreviousAppBar(
+          callback: onClosePage,
+        ),
+        body: TutorInfo(tutor: args));
   }
 }

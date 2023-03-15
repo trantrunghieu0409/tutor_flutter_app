@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/core/common_widgets/common_scaffold.dart';
 import 'package:tutor_flutter_app/core/common_widgets/page_introduction.dart';
 import 'package:tutor_flutter_app/features/schedule/presentation/widgets/schedule_card.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/datasources/tutor_datasource.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/datasources/tutor_datasource.dart';
 
 class SchedulePage extends StatelessWidget {
   const SchedulePage({super.key});
@@ -11,9 +12,8 @@ class SchedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const CommonAppBar(),
-        body: ListView(
+    return CommonScaffold(
+        child: ListView(
           shrinkWrap: true,
           padding: const EdgeInsets.all(8),
           children: [

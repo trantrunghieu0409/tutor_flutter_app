@@ -4,7 +4,7 @@ import 'package:tutor_flutter_app/core/common_widgets/stars_rating.dart';
 import 'package:tutor_flutter_app/features/tutot_detail/presentation/widgets/buttons_section.dart';
 
 import '../../../../core/constants/common_text_style.dart';
-import '../../../tutorList/data/models/tutor.dart';
+import '../../../tutor_list/data/models/tutor.dart';
 
 class TutorDetailCard extends StatelessWidget {
   const TutorDetailCard({super.key, required this.tutor});

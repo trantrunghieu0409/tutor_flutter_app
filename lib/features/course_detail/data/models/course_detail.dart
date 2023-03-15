@@ -1,6 +1,6 @@
 import 'package:tutor_flutter_app/features/course_detail/data/models/topic.dart';
 import 'package:tutor_flutter_app/features/courses/data/models/course.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
 
 class CourseDetail {
   Course course;

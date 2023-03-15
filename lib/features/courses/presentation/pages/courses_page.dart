@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/core/common_widgets/common_scaffold.dart';
+import 'package:tutor_flutter_app/features/course_detail/data/datasources/course_detail_data.dart';
+import 'package:tutor_flutter_app/features/course_detail/presentation/pages/course_detail_page.dart';
 import 'package:tutor_flutter_app/features/courses/data/datasources/books_data.dart';
 import 'package:tutor_flutter_app/features/courses/data/datasources/courses_data.dart';
 import 'package:tutor_flutter_app/core/common_widgets/card_with_picture.dart';
@@ -41,9 +43,8 @@ class _CoursesPageState extends State<CoursesPage>
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      child: Scaffold(
-        appBar: const CommonAppBar(),
-        body: GestureDetector(
+      child: CommonScaffold(
+        child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: ListView(
             shrinkWrap: true,
@@ -86,12 +87,18 @@ class _CoursesPageState extends State<CoursesPage>
                     children: List<Widget>.generate(
                         courses.length,
                         (index) => CardWithPicture(
-                            cover: courses[index].image,
-                            title: courses[index].title,
-                            description: courses[index].description,
-                            footer: Text(
-                              "${courses[index].level} - ${courses[index].nLessons} lessons",
-                            ))),
+                              cover: courses[index].image,
+                              title: courses[index].title,
+                              description: courses[index].description,
+                              footer: Text(
+                                "${courses[index].level} - ${courses[index].nLessons} lessons",
+                              ),
+                              callback: () {
+                                Navigator.pushNamed(
+                                    context, CourseDetailPage.routeName,
+                                    arguments: courseDetail);
+                              },
+                            )),
                   ),
 
                   // second tab bar view widget

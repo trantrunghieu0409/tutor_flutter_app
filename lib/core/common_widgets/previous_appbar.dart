@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CommonAppBar({super.key, this.callback});
+class PreviousAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const PreviousAppBar({super.key, this.callback});
 
   final void Function()? callback;
 
@@ -11,7 +11,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: IconButton(
         icon: const Icon(
-          Icons.menu,
+          Icons.arrow_back,
           color: Colors.blue,
         ),
         onPressed: callback,

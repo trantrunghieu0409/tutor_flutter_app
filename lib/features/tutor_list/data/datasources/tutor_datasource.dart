@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_nation.dart';
 import 'package:tutor_flutter_app/features/schedule/data/models/session.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/models/category.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/category.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
 
 List<Tutor> tutors = [
   Tutor(

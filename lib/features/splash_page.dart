@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/pages/tutor_list_page.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/pages/tutor_list_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -51,7 +51,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           (route) => false);
     } else {
       print("Logging in...");
-
       Navigator.pushNamed(context, LoginPage.routeName,
           arguments: onLoginSuccessCallback);
     }

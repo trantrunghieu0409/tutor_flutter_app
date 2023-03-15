@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/round_corner_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tutor_flutter_app/core/common_widgets/button_icon_outline.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 
@@ -27,8 +28,9 @@ class Header extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
                 Schedule(),
-                RoundCornerButton(
-                    text: "Enter room", icon: Icon(Icons.meeting_room_outlined))
+                ButtonIconOutline(
+                    labelText: "Enter Meeting",
+                    icon: FaIcon(FontAwesomeIcons.youtube))
               ],
             ),
             const SizedBox(

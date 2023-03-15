@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/core/common_widgets/previous_appbar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/features/course_detail/data/datasources/course_detail_data.dart';
+import 'package:tutor_flutter_app/features/topic_detail/data/models/topic_request.dart';
 import 'package:tutor_flutter_app/features/topic_detail/presentation/widgets/pdf_holder.dart';
 import 'package:tutor_flutter_app/features/topic_detail/presentation/widgets/topic_dropdown.dart';
 
@@ -14,23 +14,25 @@ class TopicDetailPage extends StatefulWidget {
 }
 
 class _TopicDetailPageState extends State<TopicDetailPage> {
-  var newCourse = courseDetail.course;
-  var topicList = courseDetail.topics;
-  var selectedTopicIndex = 1;
+  int? selectedTopicIndex;
 
   late Widget pdfHolder;
 
   @override
-  void initState() {
-    pdfHolder =
-        PdfHolder(topicList: topicList, selectedTopicIndex: selectedTopicIndex);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as TopicRequest;
+    selectedTopicIndex = selectedTopicIndex ?? args.selectedIndex;
+    var topicList = args.topics;
+
+    pdfHolder = PdfHolder(
+        key: UniqueKey(),
+        topicList: topicList,
+        selectedTopicIndex: selectedTopicIndex);
+
+    onClosePage() => {Navigator.pop(context)};
+
     return Scaffold(
-        appBar: const CommonAppBar(),
+        appBar: PreviousAppBar(callback: onClosePage),
         body: Column(
           children: [
             Card(
@@ -42,12 +44,12 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      newCourse.title,
+                      args.title,
                       style: CommonTextStyle.h2Black,
                     ),
                     TopicDropdown(
                         topicList: topicList,
-                        selectedIndex: selectedTopicIndex,
+                        selectedIndex: selectedTopicIndex!,
                         callback: (int? index) {
                           setState(() {
                             pdfHolder = PdfHolder(

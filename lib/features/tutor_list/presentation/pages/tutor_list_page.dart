@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/core/common_widgets/common_appbar.dart';
+import 'package:tutor_flutter_app/core/common_widgets/common_scaffold.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/datasources/tutor_datasource.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/filter.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/header.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/tutor_list.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/datasources/tutor_datasource.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/widgets/filter.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/widgets/header.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/widgets/tutor_list.dart';
 
 class TutorListPage extends StatelessWidget {
   const TutorListPage({super.key});
@@ -12,9 +12,8 @@ class TutorListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CommonAppBar(),
-      body: ListView(
+    return CommonScaffold(
+      child: ListView(
         children: [
           const Header(),
           Padding(

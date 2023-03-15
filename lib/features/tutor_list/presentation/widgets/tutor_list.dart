@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/tutor_card.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/widgets/tutor_card.dart';
 
 class TutorList extends StatelessWidget {
   const TutorList({super.key, required this.tutorList});

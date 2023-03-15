@@ -4,7 +4,7 @@ class ButtonIconOutline extends StatelessWidget {
   const ButtonIconOutline(
       {super.key, required this.labelText, required this.icon});
   final String labelText;
-  final Icon icon;
+  final Widget icon;
 
   @override
   Widget build(BuildContext context) {

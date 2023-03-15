@@ -4,7 +4,7 @@ import 'package:tutor_flutter_app/features/history/presentation/pages/history_pa
 import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.dart';
 import 'package:tutor_flutter_app/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:tutor_flutter_app/features/topic_detail/presentation/pages/topic_detail_page.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/pages/tutor_list_page.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/pages/tutor_list_page.dart';
 import 'package:tutor_flutter_app/features/tutot_detail/presentation/pages/tutor_detail_page.dart';
 
 final routes = {
@@ -13,7 +13,7 @@ final routes = {
   TutorDetailPage.routeName: (context) => const TutorDetailPage(),
   SchedulePage.routeName: (context) => const SchedulePage(),
   HistoryPage.routeName: (context) => const HistoryPage(),
-  CourseInfoPage.routeName: (context) => const CourseInfoPage(),
+  CourseDetailPage.routeName: (context) => const CourseDetailPage(),
   CoursesPage.routeName: (context) => const CoursesPage(),
   TopicDetailPage.routeName: (context) => const TopicDetailPage(),
 };

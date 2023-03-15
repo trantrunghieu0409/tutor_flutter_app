@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/common_widgets/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
 
 import 'button_icon_outline.dart';
 

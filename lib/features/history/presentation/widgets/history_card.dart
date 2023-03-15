@@ -5,7 +5,7 @@ import 'package:tutor_flutter_app/core/common_widgets/border_container.dart';
 import 'package:tutor_flutter_app/core/common_widgets/border_outline_button.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/features/tutorList/data/models/tutor.dart';
+import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key, required this.tutor, required this.time});

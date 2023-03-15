@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/common_widgets/date_picker.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/input_chip_list.dart';
-import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/secondary_input_filed.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/widgets/input_chip_list.dart';
+import 'package:tutor_flutter_app/features/tutor_list/presentation/widgets/secondary_input_filed.dart';
 
 class Filter extends StatelessWidget {
   const Filter({super.key});
