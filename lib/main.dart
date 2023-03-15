@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_flutter_app/features/topic_detail/presentation/pages/topic_detail_page.dart';
+import 'package:tutor_flutter_app/features/video_call/presentation/pages/meeting_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
         primarySwatch: Colors.blue,
       ),
-      home: const TopicDetailPage(),
+      home: const MeetingPage(),
     );
   }
 }
