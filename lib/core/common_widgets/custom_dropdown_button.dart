@@ -2,10 +2,17 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdownButton extends StatefulWidget {
-  const CustomDropdownButton(
-      {super.key, required this.items, this.hintText = "Select Item"});
+  // ignore: prefer_const_constructors_in_immutables
+  CustomDropdownButton(
+      {super.key,
+      required this.items,
+      this.hintText = "Select Item",
+      this.selectedValue,
+      this.callback});
   final List<String> items;
   final String? hintText;
+  final String? selectedValue;
+  final void Function(String?)? callback;
 
   @override
   State<CustomDropdownButton> createState() => _CustomDropdownButtonState();
@@ -14,6 +21,13 @@ class CustomDropdownButton extends StatefulWidget {
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   String? selectedValue;
   final TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.selectedValue;
+    setState(() {});
+  }
 
   @override
   void dispose() {
@@ -56,6 +70,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           setState(() {
             selectedValue = value as String;
           });
+          if (widget.callback != null) widget.callback!(selectedValue);
         },
         buttonStyleData: ButtonStyleData(
             height: 40,

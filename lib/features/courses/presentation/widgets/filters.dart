@@ -11,13 +11,18 @@ class Filters extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             CustomDropdownButton(
-              items: ["Any level", "Beginning", "Intermediate", "Advanced"],
+              items: const [
+                "Any level",
+                "Beginning",
+                "Intermediate",
+                "Advanced"
+              ],
               hintText: "Select level",
             ),
             CustomDropdownButton(
-              items: [
+              items: const [
                 "Studying abroad",
                 "English Travel",
                 "Business English",
@@ -32,8 +37,8 @@ class Filters extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const CustomDropdownButton(
-          items: ["Increasing", "Descreasing"],
+        CustomDropdownButton(
+          items: const ["Increasing", "Descreasing"],
           hintText: "Sort by level",
         ),
       ],

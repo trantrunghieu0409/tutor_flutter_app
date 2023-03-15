@@ -4,11 +4,25 @@ import 'package:tutor_flutter_app/features/courses/data/datasources/courses_data
 import 'package:tutor_flutter_app/features/tutorList/data/datasources/tutor_datasource.dart';
 
 var topics = [
-  Topic(name: "Foods you love"),
-  Topic(name: "Your job"),
-  Topic(name: "Playing and Watching Sports"),
-  Topic(name: "The Best Pet"),
-  Topic(name: "Having Fun in Your Free Time"),
+  Topic(
+      name: "Foods you love",
+      pdfUrl:
+          'https://extension.tennessee.edu/publications/documents/sp732.pdf'),
+  Topic(
+      name: "Your job",
+      pdfUrl: 'https://www.africau.edu/images/default/sample.pdf'),
+  Topic(
+      name: "Playing and Watching Sports",
+      pdfUrl:
+          'https://extension.tennessee.edu/publications/documents/sp732.pdf'),
+  Topic(
+      name: "The Best Pet",
+      pdfUrl:
+          'https://extension.tennessee.edu/publications/documents/sp732.pdf'),
+  Topic(
+      name: "Having Fun in Your Free Time",
+      pdfUrl:
+          'https://extension.tennessee.edu/publications/documents/sp732.pdf'),
 ];
 
 var courseDetail = CourseDetail(

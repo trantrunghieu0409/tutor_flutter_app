@@ -4,12 +4,12 @@ import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 class CardWithPicture extends StatelessWidget {
   const CardWithPicture(
       {super.key,
-      required this.cover,
+      this.cover,
       required this.title,
       required this.description,
       required this.footer});
 
-  final Image cover;
+  final Image? cover;
   final String title;
   final String description;
   final Widget footer;
@@ -21,7 +21,7 @@ class CardWithPicture extends StatelessWidget {
       elevation: 4,
       child: Column(
         children: [
-          cover,
+          cover ?? SizedBox(),
           Container(
             padding: const EdgeInsets.all(16),
             child: Column(

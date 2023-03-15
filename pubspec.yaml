@@ -33,6 +33,8 @@ dependencies:
   table_calendar: ^3.0.9
   dropdown_button2: ^2.0.0
   font_awesome_flutter: ^10.4.0
+  collection: ^1.17.0
+  flutter_cached_pdfview: ^0.4.1
 
 dev_dependencies:
   flutter_test:
