@@ -8,6 +8,7 @@ import 'package:tutor_flutter_app/features/tutorList/presentation/widgets/tutor_
 
 class TutorListPage extends StatelessWidget {
   const TutorListPage({super.key});
+  static const routeName = '/tutor-list';
 
   @override
   Widget build(BuildContext context) {

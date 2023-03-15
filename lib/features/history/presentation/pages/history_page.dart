@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/features/tutorList/data/datasources/tutor_data
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
+  static const routeName = '/history';
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:tutor_flutter_app/features/tutot_detail/presentation/widgets/tut
 
 class TutorDetailPage extends StatelessWidget {
   const TutorDetailPage({super.key});
+  static const routeName = '/tutor-detail';
 
   @override
   Widget build(BuildContext context) {

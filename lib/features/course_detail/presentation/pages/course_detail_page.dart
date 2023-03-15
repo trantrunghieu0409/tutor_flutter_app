@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/features/course_detail/presentation/widgets/de
 
 class CourseInfoPage extends StatelessWidget {
   const CourseInfoPage({super.key});
+  static const routeName = '/course-detail';
 
   @override
   Widget build(BuildContext context) {

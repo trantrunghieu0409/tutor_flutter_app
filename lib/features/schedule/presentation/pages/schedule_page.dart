@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/features/tutorList/data/datasources/tutor_data
 
 class SchedulePage extends StatelessWidget {
   const SchedulePage({super.key});
+  static const routeName = '/schedule';
 
   @override
   Widget build(BuildContext context) {

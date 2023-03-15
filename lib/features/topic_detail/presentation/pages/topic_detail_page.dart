@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/features/topic_detail/presentation/widgets/top
 
 class TopicDetailPage extends StatefulWidget {
   const TopicDetailPage({super.key});
+  static const routeName = '/topic-detail';
 
   @override
   State<TopicDetailPage> createState() => _TopicDetailPageState();

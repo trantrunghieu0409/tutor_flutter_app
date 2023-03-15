@@ -8,6 +8,7 @@ import 'package:tutor_flutter_app/features/courses/presentation/widgets/filters.
 
 class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
+  static const routeName = '/courses';
 
   @override
   State<CoursesPage> createState() => _CoursesPageState();
