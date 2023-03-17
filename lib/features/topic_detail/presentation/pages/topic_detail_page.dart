@@ -16,7 +16,7 @@ class TopicDetailPage extends StatefulWidget {
 class _TopicDetailPageState extends State<TopicDetailPage> {
   int? selectedTopicIndex;
 
-  late Widget pdfHolder;
+  Widget? pdfHolder;
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                         selectedIndex: selectedTopicIndex!,
                         callback: (int? index) {
                           setState(() {
-                            pdfHolder = PdfHolder(
-                                key: UniqueKey(),
-                                topicList: topicList,
-                                selectedTopicIndex: index);
+                            selectedTopicIndex = index!;
                           });
                         }),
                   ],
