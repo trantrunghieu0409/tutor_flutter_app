@@ -7,7 +7,7 @@ import 'package:tutor_flutter_app/core/common_widgets/primary_button.dart';
 import 'package:tutor_flutter_app/core/utils/meeting_utils.dart';
 import 'package:tutor_flutter_app/features/schedule/presentation/widgets/session_list.dart';
 import 'package:tutor_flutter_app/features/tutor_list/data/models/tutor.dart';
-import 'package:tutor_flutter_app/features/video_call/presentation/widgets/meeting_webview.dart';
+import 'package:tutor_flutter_app/features/video_call/presentation/pages/meeting_page.dart';
 
 class ScheduleCard extends StatelessWidget {
   const ScheduleCard({super.key, required this.tutor, required this.time});
@@ -51,7 +51,7 @@ class ScheduleCard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => MeetingWebView(
+                              builder: (_) => MeetingPage(
                                   meetingUrl:
                                       fetchInstantMeetingUrl(tutor.name))))
                     },
