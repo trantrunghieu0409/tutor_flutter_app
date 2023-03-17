@@ -8,7 +8,7 @@ class RowIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = 40.0;
 
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

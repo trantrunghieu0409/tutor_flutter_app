@@ -11,8 +11,6 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tutor = tutors[0];
-
     return CommonScaffold(
         child: ListView(
       shrinkWrap: true,

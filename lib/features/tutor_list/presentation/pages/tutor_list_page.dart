@@ -16,7 +16,7 @@ class TutorListPage extends StatelessWidget {
       child: ListView(
         children: [
           const Header(),
-          Padding(
+          Container(
             padding: const EdgeInsets.all(32.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

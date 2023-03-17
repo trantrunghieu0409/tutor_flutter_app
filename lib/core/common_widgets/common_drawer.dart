@@ -4,7 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/features/courses/presentation/pages/courses_page.dart';
 import 'package:tutor_flutter_app/features/history/presentation/pages/history_page.dart';
+import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.dart';
 import 'package:tutor_flutter_app/features/schedule/presentation/pages/schedule_page.dart';
+import 'package:tutor_flutter_app/features/splash/presentation/pages/splash_page.dart';
 import 'package:tutor_flutter_app/features/tutor_list/presentation/pages/tutor_list_page.dart';
 
 class CommonDrawer extends StatelessWidget {
@@ -63,6 +65,17 @@ class CommonDrawer extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (_) => const CoursesPage()),
+                  (route) => false);
+            },
+          ),
+          ListTile(
+            title: _buildTextRow(
+                text: 'Sign out',
+                icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket)),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SplashPage()),
                   (route) => false);
             },
           ),

@@ -22,38 +22,33 @@ class LoginPage extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         body: ListView(
-          // mainAxisAlignment: MainAxisAlignment.center,
           padding: const EdgeInsets.all(40),
           children: [
-            Column(
-              children: [
-                const TextHeader(),
-                const TextSubheader(),
-                const InputField(title: "EMAIL", placeholder: "Your email"),
-                const InputField(
-                  title: "PASSWORD",
-                  placeholder: "Your password",
-                  isObsecure: true,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: PrimaryButton(
-                    text: "LOGIN",
-                    onPressed: onLoginSuccessCallback,
-                  ),
-                ),
-                const TextLink(
-                  text: "Forget Password?",
-                  link: "https://pub.dev/packages/url_launcher",
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                const Text("Or continue with"),
-                const RowIcons(),
-                const Footer()
-              ],
+            const TextHeader(),
+            const TextSubheader(),
+            const InputField(title: "EMAIL", placeholder: "Your email"),
+            const InputField(
+              title: "PASSWORD",
+              placeholder: "Your password",
+              isObsecure: true,
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: PrimaryButton(
+                text: "LOGIN",
+                onPressed: onLoginSuccessCallback,
+              ),
+            ),
+            const TextLink(
+              text: "Forget Password?",
+              link: "https://pub.dev/packages/url_launcher",
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            const Text("Or continue with"),
+            const RowIcons(),
+            const Footer(),
           ],
         ),
       ),

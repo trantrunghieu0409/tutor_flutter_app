@@ -19,7 +19,7 @@ class TutorCard extends StatelessWidget {
           Navigator.pushNamed(context, TutorDetailPage.routeName,
               arguments: tutor);
         },
-        child: Padding(
+        child: Container(
           padding: const EdgeInsets.all(24.0),
           child: Column(children: [
             Stack(

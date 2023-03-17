@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/core/common_widgets/previous_appbar.dart';
 import 'package:tutor_flutter_app/core/utils/meeting_utils.dart';
-import 'package:tutor_flutter_app/core/utils/string_utils.dart';
 import 'package:tutor_flutter_app/features/video_call/presentation/widgets/meeting_webview.dart';
 
 class MeetingPage extends StatefulWidget {
@@ -14,7 +14,11 @@ class _MeetingPageState extends State<MeetingPage> {
   @override
   Widget build(BuildContext context) {
     var url = fetchInstantMeetingUrl("testroom");
+
+    onClosePage() => {Navigator.pop(context)};
+
     return Scaffold(
+      appBar: PreviousAppBar(callback: onClosePage),
       body: Center(
         child: OutlinedButton(
           onPressed: () {

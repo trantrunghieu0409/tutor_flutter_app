@@ -3,14 +3,16 @@ import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.d
 import 'package:tutor_flutter_app/features/tutor_list/presentation/pages/tutor_list_page.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+  const SplashPage({super.key, this.isAuthenticated = false});
+
+  final bool isAuthenticated;
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-  bool isAuthenicated = false;
+  late bool _isAuthenicated;
   late AnimationController controller;
   @override
   void initState() {
@@ -25,6 +27,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     controller.repeat(reverse: false);
 
     super.initState();
+    _isAuthenicated = widget.isAuthenticated;
     Future.delayed(const Duration(milliseconds: 500), initialize);
   }
 
@@ -37,13 +40,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   void initialize() async {
     onLoginSuccessCallback() => {
           setState(() {
-            isAuthenicated = true;
+            _isAuthenicated = true;
             Navigator.pop(context);
             initialize();
           })
         };
 
-    if (isAuthenicated) {
+    if (_isAuthenicated) {
       print("Logging success...");
       Navigator.pushAndRemoveUntil(
           context,
