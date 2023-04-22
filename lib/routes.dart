@@ -1,11 +1,11 @@
-import 'package:tutor_flutter_app/features/course_detail/presentation/pages/course_detail_page.dart';
-import 'package:tutor_flutter_app/features/courses/presentation/pages/courses_page.dart';
-import 'package:tutor_flutter_app/features/history/presentation/pages/history_page.dart';
-import 'package:tutor_flutter_app/features/login/presentation/pages/login_page.dart';
-import 'package:tutor_flutter_app/features/schedule/presentation/pages/schedule_page.dart';
-import 'package:tutor_flutter_app/features/topic_detail/presentation/pages/topic_detail_page.dart';
-import 'package:tutor_flutter_app/features/tutor_list/presentation/pages/tutor_list_page.dart';
-import 'package:tutor_flutter_app/features/tutot_detail/presentation/pages/tutor_detail_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/course_detail_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/courses_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/history_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/login_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/schedule_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/topic_detail_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
 
 final routes = {
   LoginPage.routeName: (context) => const LoginPage(),

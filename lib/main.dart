@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tutor_flutter_app/features/splash/presentation/pages/splash_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/splash_page.dart';
 import 'package:tutor_flutter_app/routes.dart';
 
 void main() {
