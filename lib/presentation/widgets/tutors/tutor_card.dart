@@ -3,9 +3,9 @@ import 'package:tutor_flutter_app/domain/entities/tutor.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_icon_outline.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/chip_list_readonly.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
-import 'package:tutor_flutter_app/presentation/widgets/stars_rating.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
+import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
 
 class TutorCard extends StatelessWidget {
   const TutorCard({super.key, required this.tutor});

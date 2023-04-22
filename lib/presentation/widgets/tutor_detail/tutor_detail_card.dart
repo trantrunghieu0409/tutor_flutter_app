@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
-import 'package:tutor_flutter_app/presentation/widgets/stars_rating.dart';
+import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/buttons_section.dart';
 
 class TutorDetailCard extends StatelessWidget {
