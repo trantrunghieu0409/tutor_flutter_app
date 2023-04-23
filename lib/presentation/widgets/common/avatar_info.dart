@@ -22,7 +22,7 @@ class AvatarInfo extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 40,
-                backgroundImage: NetworkImage(tutor.avatar),
+                backgroundImage: tutor.getAvatar().image,
               ),
               const SizedBox(
                 width: 16,
@@ -38,7 +38,7 @@ class AvatarInfo extends StatelessWidget {
                     width: 8,
                   ),
                   NationWithFlag(
-                    nation: tutor.country,
+                    nation: tutor.country ?? "",
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ],

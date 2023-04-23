@@ -29,7 +29,7 @@ class TutorCard extends StatelessWidget {
                   alignment: Alignment.center,
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage(tutor.avatar!),
+                    backgroundImage: tutor.getAvatar().image,
                   ),
                 ),
                 Positioned(
@@ -51,11 +51,11 @@ class TutorCard extends StatelessWidget {
               ],
             ),
             Text(
-              tutor.name!,
+              tutor.name,
               style: CommonTextStyle.h2Black,
             ),
             NationWithFlag(
-              nation: tutor.country!,
+              nation: tutor.getCountry(),
               mainAxisAlignment: MainAxisAlignment.center,
             ),
             const SizedBox(
@@ -70,7 +70,7 @@ class TutorCard extends StatelessWidget {
               height: 16,
             ),
             Text(
-              tutor.bio!,
+              tutor.bio,
               maxLines: 7,
               overflow: TextOverflow.ellipsis,
             ),

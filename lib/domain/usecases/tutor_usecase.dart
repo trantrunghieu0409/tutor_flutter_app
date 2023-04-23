@@ -18,7 +18,7 @@ class TutorUsecase {
     try {
       var resp = await _tutorRepository.getAll();
 
-      return right(resp.tutors!.rows!
+      return right(resp.tutors.rows
           .map((event) => _tutorMapper.fromModel(event))
           .toList());
       //return right(_userMapper.fromUser(resp.user));

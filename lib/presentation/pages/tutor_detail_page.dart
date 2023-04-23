@@ -22,7 +22,7 @@ class TutorDetailPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         children: [
-          VideoSection(link: tutor.video!),
+          VideoSection(link: tutor.video),
           TutorDetailCard(tutor: tutor),
           const Padding(
             padding: EdgeInsets.all(16.0),

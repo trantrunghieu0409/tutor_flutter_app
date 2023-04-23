@@ -53,7 +53,7 @@ class ScheduleCard extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (_) => MeetingPage(
                                   meetingUrl:
-                                      fetchInstantMeetingUrl(tutor.name!))))
+                                      fetchInstantMeetingUrl(tutor.name))))
                     },
           )
         ]),
