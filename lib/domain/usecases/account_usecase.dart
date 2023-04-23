@@ -20,7 +20,7 @@ class AccountUsecase {
     try {
       LoginResp resp =
           await _accountRepository.login(email: email, password: password);
-
+      
       return right(_userMapper.fromUser(resp.user));
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));

@@ -1,8 +1,12 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
+import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/account_remote_datasource.dart';
+import 'package:tutor_flutter_app/data/datasources/remote/tutor_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/repositories/account_repository.dart';
+import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
 import 'package:tutor_flutter_app/domain/usecases/account_usecase.dart';
+import 'package:tutor_flutter_app/domain/usecases/tutor_usecase.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 
 part 'injector_config.g.dart';
@@ -23,7 +27,7 @@ abstract class InjectorConfig {
     _configureUsecases();
     _configureRepositories();
     _configureRemoteDataSources();
-    // _configureLocalDataSources();
+    _configureLocalDataSources();
     _configureCommon();
   }
 
@@ -33,19 +37,22 @@ abstract class InjectorConfig {
 
   // ============ USECASES ============
   @Register.singleton(AccountUsecase)
+  @Register.singleton(TutorUsecase)
   void _configureUsecases();
 
   // ============ REPOSITORIES ============
   @Register.singleton(AccountRepository)
+  @Register.singleton(TutorRepository)
   void _configureRepositories();
 
   // ============ REMOTE DATASOURCES ============
   @Register.singleton(AccountRemoteDatasource)
+  @Register.singleton(TutorRemoteDatasource)
   void _configureRemoteDataSources();
 
   // ============ LOCAL DATASOURCES ============
-  // @Register.singleton(AccountDatasource)
-  // void _configureLocalDataSources();
+  @Register.singleton(AccountLocalDatasource)
+  void _configureLocalDataSources();
 
   // ============ COMMON ============
   @Register.singleton(HttpClient, constructorName: 'setLetTutorHost')

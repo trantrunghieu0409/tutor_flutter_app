@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
@@ -12,7 +12,7 @@ import 'package:tutor_flutter_app/presentation/widgets/schedule/session_list.dar
 class ScheduleCard extends StatelessWidget {
   const ScheduleCard({super.key, required this.tutor, required this.time});
 
-  final Tutor tutor;
+  final TutorEntity tutor;
   final DateTime time;
 
   @override
@@ -53,7 +53,7 @@ class ScheduleCard extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (_) => MeetingPage(
                                   meetingUrl:
-                                      fetchInstantMeetingUrl(tutor.name))))
+                                      fetchInstantMeetingUrl(tutor.name!))))
                     },
           )
         ]),

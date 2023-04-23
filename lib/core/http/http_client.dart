@@ -23,21 +23,21 @@ class HttpClient {
     return Uri.parse('$host$path');
   }
 
-  Map<String, String> _generateAuthorizationHeader() => {
-        HttpConstants.authorization: LettutorConfig.token,
+  Map<String, String> _generateAuthorizationHeader(token) => {
+        HttpConstants.authorization: "Bearer $token",
       };
 
-  Map<String, String> _generateRequestHeader(auth, [
+  Map<String, String> _generateRequestHeader(auth, token, [
     Map<String, String> overrideHeader = const {},
   ]) =>
       {
-        if (auth) ..._generateAuthorizationHeader(),
+        if (auth) ..._generateAuthorizationHeader(token),
         HttpConstants.contentType: HttpConstants.jsonContentType,
         ...overrideHeader,
       };
 
-  dynamic get({required String path, bool auth = false}) async {
-    final requestHeader = _generateRequestHeader(auth);
+  dynamic get({required String path, bool auth = false, String? token}) async {
+    final requestHeader = _generateRequestHeader(auth, token);
 
     final Response response = await client.get(
       _getParsedUrl(path),
@@ -49,8 +49,8 @@ class HttpClient {
     );
   }
 
-  dynamic post({required String path, dynamic body, bool auth = false}) async {
-    final requestHeader = _generateRequestHeader(auth);
+  dynamic post({required String path, dynamic body, bool auth = false, String? token}) async {
+    final requestHeader = _generateRequestHeader(auth, token);
 
     log("path: $host$path");
     log("header: $requestHeader");

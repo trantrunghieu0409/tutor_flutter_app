@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_icon_outline.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/chip_list_readonly.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
@@ -9,7 +9,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart'
 
 class TutorCard extends StatelessWidget {
   const TutorCard({super.key, required this.tutor});
-  final Tutor tutor;
+  final TutorEntity tutor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class TutorCard extends StatelessWidget {
                   alignment: Alignment.center,
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage(tutor.avatar),
+                    backgroundImage: NetworkImage(tutor.avatar!),
                   ),
                 ),
                 Positioned(
@@ -51,11 +51,11 @@ class TutorCard extends StatelessWidget {
               ],
             ),
             Text(
-              tutor.name,
+              tutor.name!,
               style: CommonTextStyle.h2Black,
             ),
             NationWithFlag(
-              nation: tutor.nation,
+              nation: tutor.country!,
               mainAxisAlignment: MainAxisAlignment.center,
             ),
             const SizedBox(
@@ -65,12 +65,12 @@ class TutorCard extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            ChipListReadOnly(chipTextList: tutor.categories),
+            ChipListReadOnly(chipTextList: tutor.specialtyList),
             const SizedBox(
               height: 16,
             ),
             Text(
-              tutor.description,
+              tutor.bio!,
               maxLines: 7,
               overflow: TextOverflow.ellipsis,
             ),

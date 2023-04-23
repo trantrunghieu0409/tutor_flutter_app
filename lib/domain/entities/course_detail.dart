@@ -1,13 +1,13 @@
 import 'package:tutor_flutter_app/domain/entities/course.dart';
 import 'package:tutor_flutter_app/domain/entities/topic.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 
 class CourseDetail {
   Course course;
   String reason;
   String purpose;
   List<Topic> topics;
-  List<Tutor> suggestedTutors;
+  List<TutorEntity> suggestedTutors;
 
   CourseDetail(
       {required this.course,

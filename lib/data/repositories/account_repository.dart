@@ -1,13 +1,25 @@
-
+import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/account_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
+import 'package:tutor_flutter_app/domain/mapper/token_mapper.dart';
 
 class AccountRepository {
   final AccountRemoteDatasource _accountRemoteDatasource;
+  final AccountLocalDatasource _accountLocalDatasource;
 
-  AccountRepository(this._accountRemoteDatasource);
+  final TokenMapper _mapper = TokenMapperImpl();
 
-  Future<LoginResp> login({required String email, required String password}) async {
-    return await _accountRemoteDatasource.login(email: email, password: password);
+  AccountRepository(
+      this._accountRemoteDatasource, this._accountLocalDatasource);
+
+  Future<LoginResp> login(
+      {required String email, required String password}) async {
+    var resp =
+        await _accountRemoteDatasource.login(email: email, password: password);
+
+    _accountLocalDatasource
+        .saveToken(_mapper.fromAccessModel(resp.tokens.access));
+
+    return resp;
   }
 }

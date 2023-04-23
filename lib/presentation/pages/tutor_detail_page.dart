@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/video_player.dart';
@@ -12,7 +12,7 @@ class TutorDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tutor = ModalRoute.of(context)!.settings.arguments as Tutor;
+    final tutor = ModalRoute.of(context)!.settings.arguments as TutorEntity;
     onClosePage() => {Navigator.pop(context)};
 
     return Scaffold(
@@ -22,11 +22,7 @@ class TutorDetailPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         children: [
-          tutor.videoLink == null
-              ? const SizedBox(
-                  height: 20,
-                )
-              : VideoSection(link: tutor.videoLink!),
+          VideoSection(link: tutor.video!),
           TutorDetailCard(tutor: tutor),
           const Padding(
             padding: EdgeInsets.all(16.0),

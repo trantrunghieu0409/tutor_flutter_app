@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
@@ -10,7 +10,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_but
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key, required this.tutor, required this.time});
 
-  final Tutor tutor;
+  final TutorEntity tutor;
   final DateTime time;
 
   @override

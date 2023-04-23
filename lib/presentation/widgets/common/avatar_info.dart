@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 
@@ -8,7 +8,7 @@ import 'button_icon_outline.dart';
 class AvatarInfo extends StatelessWidget {
   const AvatarInfo({super.key, required this.tutor});
 
-  final Tutor tutor;
+  final TutorEntity tutor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class AvatarInfo extends StatelessWidget {
                     width: 8,
                   ),
                   NationWithFlag(
-                    nation: tutor.nation,
+                    nation: tutor.country,
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ],

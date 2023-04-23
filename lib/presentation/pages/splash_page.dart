@@ -7,9 +7,7 @@ import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key, this.isAuthenticated = false});
-
-  final bool isAuthenticated;
+  const SplashPage({super.key});
 
   @override
   State<SplashPage> createState() => _SplashPageState();

@@ -1,5 +1,4 @@
 import 'package:tutor_flutter_app/data/datasources/courses_data.dart';
-import 'package:tutor_flutter_app/data/datasources/tutor_datasource.dart';
 import 'package:tutor_flutter_app/domain/entities/course_detail.dart';
 import 'package:tutor_flutter_app/domain/entities/topic.dart';
 
@@ -29,6 +28,7 @@ var courseDetail = CourseDetail(
     course: courses.first,
     reason:
         "It can be intimidating to speak with a foreigner, no matter how much grammar and vocabulary you've mastered. If you have basic knowledge of English but have not spent much time speaking, this course will help you ease into your first English conversations.",
-    purpose: "This course covers vocabulary at the CEFR A2 level. You will build confidence while learning to speak about a variety of common, everyday topics. In addition, you will build implicit grammar knowledge as your tutor models correct answers and corrects your mistakes.",
+    purpose:
+        "This course covers vocabulary at the CEFR A2 level. You will build confidence while learning to speak about a variety of common, everyday topics. In addition, you will build implicit grammar knowledge as your tutor models correct answers and corrects your mistakes.",
     topics: topics,
-    suggestedTutors: [tutors.first]);
+    suggestedTutors: []);

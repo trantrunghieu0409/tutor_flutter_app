@@ -4,11 +4,11 @@ class LoginResp {
     required this.tokens,
   });
   late final User user;
-  late final Tokens tokens;
+  late final Token tokens;
   
   LoginResp.fromJson(Map<String, dynamic> json){
     user = User.fromJson(json['user']);
-    tokens = Tokens.fromJson(json['tokens']);
+    tokens = Token.fromJson(json['tokens']);
   }
 
   Map<String, dynamic> toJson() {
@@ -179,15 +179,15 @@ class LearnTopic {
   }
 }
 
-class Tokens {
-  Tokens({
+class Token {
+  Token({
     required this.access,
     required this.refresh,
   });
   late final Access access;
   late final Refresh refresh;
   
-  Tokens.fromJson(Map<String, dynamic> json){
+  Token.fromJson(Map<String, dynamic> json){
     access = Access.fromJson(json['access']);
     refresh = Refresh.fromJson(json['refresh']);
   }

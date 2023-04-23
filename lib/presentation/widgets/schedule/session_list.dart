@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
@@ -7,7 +7,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_but
 
 class SessionList extends StatefulWidget {
   const SessionList({super.key, required this.tutor});
-  final Tutor tutor;
+  final TutorEntity tutor;
 
   @override
   State<SessionList> createState() => _SessionListState();

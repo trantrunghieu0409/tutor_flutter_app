@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/tutor_card.dart';
 
 class TutorList extends StatelessWidget {
   const TutorList({super.key, required this.tutorList});
-  final List<Tutor> tutorList;
+  final List<TutorEntity> tutorList;
 
   @override
   Widget build(BuildContext context) {

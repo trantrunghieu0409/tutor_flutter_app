@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/buttons_section.dart';
 
 class TutorDetailCard extends StatelessWidget {
   const TutorDetailCard({super.key, required this.tutor});
-  final Tutor tutor;
+  final TutorEntity tutor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class TutorDetailCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 44,
-                backgroundImage: NetworkImage(tutor.avatar),
+                backgroundImage: NetworkImage(tutor.avatar!),
               ),
               const SizedBox(
                 width: 16,
@@ -30,7 +30,7 @@ class TutorDetailCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    tutor.name,
+                    tutor.name!,
                     style: CommonTextStyle.h2Black,
                   ),
                   StarsRating(nStars: tutor.stars),
@@ -38,7 +38,7 @@ class TutorDetailCard extends StatelessWidget {
                     height: 8,
                   ),
                   NationWithFlag(
-                    nation: tutor.nation,
+                    nation: tutor.country!,
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ],
@@ -49,7 +49,7 @@ class TutorDetailCard extends StatelessWidget {
             height: 16,
           ),
           Text(
-            tutor.description,
+            tutor.bio!,
             maxLines: 7,
             overflow: TextOverflow.ellipsis,
           ),

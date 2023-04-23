@@ -19,4 +19,8 @@ class AutheticationValidator {
   }
 
   bool get isAuthenticated => _isAuthenticated;
+
+  void logOut() {
+    _isAuthenticated = false;
+  }
 }

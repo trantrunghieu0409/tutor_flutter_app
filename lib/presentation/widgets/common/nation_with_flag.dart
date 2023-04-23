@@ -7,7 +7,7 @@ class NationWithFlag extends StatelessWidget {
       {super.key,
       required this.nation,
       this.mainAxisAlignment = MainAxisAlignment.start});
-  final Nation nation;
+  final String nation;
   final MainAxisAlignment mainAxisAlignment;
 
   @override
@@ -15,12 +15,12 @@ class NationWithFlag extends StatelessWidget {
     return Row(
       mainAxisAlignment: mainAxisAlignment,
       children: [
-        nation.getImage(),
+        CommonNation.vietnam.getImage(),
         const SizedBox(
           width: 4,
         ),
         Text(
-          nation.name,
+          nation,
           style: CommonTextStyle.bodyBlack,
         )
       ],
