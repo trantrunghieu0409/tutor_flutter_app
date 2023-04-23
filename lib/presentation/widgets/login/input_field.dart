@@ -5,10 +5,13 @@ class InputField extends StatelessWidget {
       {super.key,
       required this.title,
       required this.placeholder,
-      this.isObsecure = false});
+      this.isObsecure = false,
+      required this.textController});
   final String title;
   final String placeholder;
   final bool isObsecure;
+
+  final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class InputField extends StatelessWidget {
         ),
         TextField(
           obscureText: isObsecure,
+          controller: textController,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             isDense: true,

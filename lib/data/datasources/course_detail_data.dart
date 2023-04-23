@@ -1,7 +1,7 @@
 import 'package:tutor_flutter_app/data/datasources/courses_data.dart';
+import 'package:tutor_flutter_app/data/datasources/tutor_datasource.dart';
 import 'package:tutor_flutter_app/domain/entities/course_detail.dart';
 import 'package:tutor_flutter_app/domain/entities/topic.dart';
-import 'package:tutor_flutter_app/data/datasources/tutor_datasource.dart';
 
 var topics = [
   Topic(

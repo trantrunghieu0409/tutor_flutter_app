@@ -8,7 +8,7 @@ import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
 
 final routes = {
-  LoginPage.routeName: (context) => const LoginPage(),
+  LoginPage.routeName: (context) => LoginPage(),
   TutorListPage.routeName: (context) => const TutorListPage(),
   TutorDetailPage.routeName: (context) => const TutorDetailPage(),
   SchedulePage.routeName: (context) => const SchedulePage(),

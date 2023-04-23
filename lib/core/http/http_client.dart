@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:http/http.dart';
-import 'package:tutor_flutter_app/core/config/tutor_api_config.dart';
+import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/constants/http_constants.dart';
 import 'package:tutor_flutter_app/core/utils/http_utils.dart';
 
@@ -16,28 +16,28 @@ class HttpClient {
     client = Client();
   }
 
-  factory HttpClient.setChatgptAPIhost() =>
-      HttpClient(host: TutorApiConfig.endpoint);
+  factory HttpClient.setLetTutorHost() =>
+      HttpClient(host: LettutorConfig.endpoint);
 
   Uri _getParsedUrl(String path) {
     return Uri.parse('$host$path');
   }
 
   Map<String, String> _generateAuthorizationHeader() => {
-        HttpConstants.authorization: TutorApiConfig.token,
-        HttpConstants.contentType: HttpConstants.jsonContentType
+        HttpConstants.authorization: LettutorConfig.token,
       };
 
-  Map<String, String> _generateRequestHeader([
+  Map<String, String> _generateRequestHeader(auth, [
     Map<String, String> overrideHeader = const {},
   ]) =>
       {
-        ..._generateAuthorizationHeader(),
+        if (auth) ..._generateAuthorizationHeader(),
+        HttpConstants.contentType: HttpConstants.jsonContentType,
         ...overrideHeader,
       };
 
-  dynamic get(String path) async {
-    final requestHeader = _generateRequestHeader();
+  dynamic get({required String path, bool auth = false}) async {
+    final requestHeader = _generateRequestHeader(auth);
 
     final Response response = await client.get(
       _getParsedUrl(path),
@@ -49,8 +49,8 @@ class HttpClient {
     );
   }
 
-  dynamic post({required String path, dynamic body}) async {
-    final requestHeader = _generateRequestHeader();
+  dynamic post({required String path, dynamic body, bool auth = false}) async {
+    final requestHeader = _generateRequestHeader(auth);
 
     log("path: $host$path");
     log("header: $requestHeader");

@@ -39,12 +39,19 @@ dependencies:
   webview_flutter_android: ^3.4.2
   http: ^0.13.5
   riverpod: ^2.3.5
+  injectable: ^2.1.1
+  kiwi: ^4.1.0
+  smartstruct: ^1.4.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   
+  smartstruct_generator: ^1.4.0
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
+  kiwi_generator: ^4.1.0
 
 flutter:
   uses-material-design: true
