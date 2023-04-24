@@ -1,29 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/domain/entities/specility_enum.dart';
 
 class InputChipList extends StatefulWidget {
-  const InputChipList({super.key});
-
+  const InputChipList({super.key, this.callback});
+  final void Function(List<String>?)? callback;
   @override
   State<InputChipList> createState() => _InputChipListState();
 }
 
 class _InputChipListState extends State<InputChipList> {
-  var inputs = [
-    "All",
-    "English for kids",
-    "English for Business",
-    "Conversational",
-    "STARTERES",
-    "MOVERS",
-    "FLYERS",
-    "KET",
-    "PET",
-    "IELTS",
-    "TOELF",
-    "TOIEC"
-  ];
+  var inputs = SpecialityEnum.values;
 
-  int? selectedIndex;
+  List<int> selectedIndices = List.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +26,31 @@ class _InputChipListState extends State<InputChipList> {
               inputs.length,
               (int index) {
                 return ChoiceChip(
-                  label: Text(inputs[index]),
-                  selected: selectedIndex == index,
+                  label: Text(inputs[index].value),
+                  selected: selectedIndices.contains(index),
                   onSelected: (bool selected) {
                     setState(() {
-                      selectedIndex = selected ? index : null;
+                      if (selected) {
+                        selectedIndices.add(index);
+                      } else {
+                        selectedIndices.remove(index);
+                      }
+                      if (widget.callback != null) {
+                        widget.callback!(selectedIndices
+                            .map((e) => inputs[e].filterKey)
+                            .toList());
+                      }
                     });
                   },
                   backgroundColor: const Color.fromARGB(255, 236, 243, 248),
                   selectedColor: const Color.fromARGB(255, 228, 237, 244),
                   labelStyle: TextStyle(
-                      fontWeight: selectedIndex == index
+                      fontWeight: selectedIndices.contains(index)
                           ? FontWeight.w700
                           : FontWeight.normal,
-                      color:
-                          selectedIndex == index ? Colors.blue : Colors.black),
+                      color: selectedIndices.contains(index)
+                          ? Colors.blue
+                          : Colors.black),
                 );
               },
             ).toList(),
@@ -61,7 +59,7 @@ class _InputChipListState extends State<InputChipList> {
           ElevatedButton(
             onPressed: () {
               setState(() {
-                selectedIndex = null;
+                selectedIndices.clear();
               });
             },
             child: const Text('Reset'),

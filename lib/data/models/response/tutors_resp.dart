@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class TutorsResp {
   TutorsResp({
     required this.tutors,
@@ -91,9 +93,9 @@ class Rows {
   });
   late final String? level;
   late final String email;
-  late final Null google;
-  late final Null facebook;
-  late final Null apple;
+  late final String? google;
+  late final String? facebook;
+  late final String? apple;
   late final String? avatar;
   late final String name;
   late final String? country;
@@ -102,20 +104,20 @@ class Rows {
   late final String? birthday;
   late final bool requestPassword;
   late final bool isActivated;
-  late final Null isPhoneActivated;
-  late final Null requireNote;
+  late final bool? isPhoneActivated;
+  late final String? requireNote;
   late final int? timezone;
-  late final Null phoneAuth;
+  late final String? phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String? studySchedule;
   late final bool canSendMessage;
   late final bool isPublicRecord;
-  late final Null caredByStaffId;
+  late final String? caredByStaffId;
   late final String createdAt;
   late final String updatedAt;
-  late final Null deletedAt;
-  late final Null studentGroupId;
-  late final List<Feedbacks> feedbacks;
+  late final String? deletedAt;
+  late final String? studentGroupId;
+  late final List<Feedbacks>? feedbacks;
   late final String id;
   late final String userId;
   late final String video;
@@ -130,9 +132,9 @@ class Rows {
   late final String specialties;
   late final String? resume;
   late final double? rating;
-  late final Null isNative;
-  late final int price;
-  late final bool isOnline;
+  late final bool? isNative;
+  late final int? price;
+  late final bool? isOnline;
 
   Rows.fromJson(Map<String, dynamic> json) {
     level = null;
@@ -161,8 +163,12 @@ class Rows {
     updatedAt = json['updatedAt'];
     deletedAt = null;
     studentGroupId = null;
-    feedbacks =
-        List.from(json['feedbacks']).map((e) => Feedbacks.fromJson(e)).toList();
+
+    log(json['feedbacks'] ?? '');
+    feedbacks = List.from(json['feedbacks'] ?? [])
+        .map((e) => Feedbacks.fromJson(e))
+        .toList();
+
     id = json['id'];
     userId = json['userId'];
     video = json['video'];
@@ -210,7 +216,8 @@ class Rows {
     data['updatedAt'] = updatedAt;
     data['deletedAt'] = deletedAt;
     data['studentGroupId'] = studentGroupId;
-    data['feedbacks'] = feedbacks.map((e) => e.toJson()).toList();
+    data['feedbacks'] =
+        feedbacks != null ? feedbacks!.map((e) => e.toJson()).toList() : [];
     data['id'] = id;
     data['userId'] = userId;
     data['video'] = video;
@@ -314,7 +321,7 @@ class FirstInfo {
   late final String email;
   late final String? google;
   late final String? facebook;
-  late final Null apple;
+  late final String? apple;
   late final String avatar;
   late final String name;
   late final String? country;
@@ -326,16 +333,16 @@ class FirstInfo {
   late final bool? isPhoneActivated;
   late final String? requireNote;
   late final int timezone;
-  late final Null phoneAuth;
+  late final String? phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String? studySchedule;
   late final bool canSendMessage;
   late final bool isPublicRecord;
-  late final Null caredByStaffId;
+  late final String? caredByStaffId;
   late final String createdAt;
   late final String updatedAt;
-  late final Null deletedAt;
-  late final Null studentGroupId;
+  late final String? deletedAt;
+  late final String? studentGroupId;
 
   FirstInfo.fromJson(Map<String, dynamic> json) {
     level = null;
@@ -469,9 +476,9 @@ class SecondInfo {
   late final String id;
   late final String level;
   late final String email;
-  late final Null google;
-  late final Null facebook;
-  late final Null apple;
+  late final String? google;
+  late final String? facebook;
+  late final String? apple;
   late final String avatar;
   late final String name;
   late final String country;
@@ -480,19 +487,19 @@ class SecondInfo {
   late final String birthday;
   late final bool requestPassword;
   late final bool isActivated;
-  late final Null isPhoneActivated;
-  late final Null requireNote;
+  late final bool? isPhoneActivated;
+  late final String? requireNote;
   late final int timezone;
-  late final Null phoneAuth;
+  late final String? phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String? studySchedule;
   late final bool canSendMessage;
   late final bool isPublicRecord;
-  late final Null caredByStaffId;
+  late final String? caredByStaffId;
   late final String createdAt;
   late final String updatedAt;
-  late final Null deletedAt;
-  late final Null studentGroupId;
+  late final String? deletedAt;
+  late final String? studentGroupId;
   late final TutorInfo tutorInfo;
 
   SecondInfo.fromJson(Map<String, dynamic> json) {
@@ -588,15 +595,15 @@ class TutorInfo {
   late final String education;
   late final String experience;
   late final String profession;
-  late final Null accent;
+  late final String? accent;
   late final String targetStudent;
   late final String interests;
   late final String languages;
   late final String specialties;
-  late final Null resume;
+  late final String? resume;
   late final double? rating;
   late final bool isActivated;
-  late final Null isNative;
+  late final bool? isNative;
   late final String createdAt;
   late final String updatedAt;
 

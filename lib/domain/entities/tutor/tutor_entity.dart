@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/session.dart';
+import 'package:tutor_flutter_app/domain/entities/specility_enum.dart';
 
 class TutorEntity {
   TutorEntity({
@@ -80,7 +81,8 @@ class TutorEntity {
 
   int get stars => rating != null ? rating!.round() : 0;
 
-  List<String> get specialtyList => specialties.split(',');
+  List<String> get specialtyList =>
+      specialties.split(',').map((e) => SpecialityEnum.getValue(e)).toList();
 
   String getCountry() => country ?? "";
 }

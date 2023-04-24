@@ -15,9 +15,11 @@ class TutorRepository {
     return resp;
   }
 
-  Future<TutorsResp> search() async {
+  Future<Tutors> search(
+      List<String> specialities, String name, bool? isVietnamese) async {
     var token = await _accountLocalDatasource.getToken();
-    var resp = await _tutorRemoteDatasource.getAll(token.token);
+    var resp = await _tutorRemoteDatasource.search(
+        token.token, specialities, name, isVietnamese);
 
     return resp;
   }

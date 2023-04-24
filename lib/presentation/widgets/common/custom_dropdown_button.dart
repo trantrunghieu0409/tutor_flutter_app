@@ -74,7 +74,6 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
         },
         buttonStyleData: ButtonStyleData(
             height: 40,
-            width: 170,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(color: Colors.black12),
