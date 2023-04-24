@@ -20,7 +20,12 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
     state = resp.fold((l) {
       log(l.error);
       return state;
-    }, (r) => r.sorted((a, b) => b.stars.compareTo(a.stars)));
+    },
+        (r) => r.sorted((a, b) {
+              if (a.isFavorite && !b.isFavorite) return -1;
+              if (!a.isFavorite && b.isFavorite) return 1;
+              return b.stars.compareTo(a.stars);
+            }));
   }
 }
 

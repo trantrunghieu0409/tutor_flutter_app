@@ -17,10 +17,20 @@ class TutorUsecase {
   Future<Either<FailureEntity, List<TutorEntity>>> getAll() async {
     try {
       var resp = await _tutorRepository.getAll();
-
-      return right(resp.tutors.rows
+      var favoriteTutorIds = resp.favoriteTutor.map((e) => e.secondId).toList();
+      var tutors = resp.tutors.rows
           .map((event) => _tutorMapper.fromModel(event))
-          .toList());
+          .toList();
+
+      for (var element in tutors) {
+        if (favoriteTutorIds.contains(element.id)) {
+          element.isFavorite = true;
+        }
+      }
+      for (var element in tutors) {
+        if (element.isFavorite) log(element.name);
+      }
+      return right(tutors);
       //return right(_userMapper.fromUser(resp.user));
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));
