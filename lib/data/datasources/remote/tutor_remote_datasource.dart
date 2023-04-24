@@ -13,4 +13,11 @@ class TutorRemoteDatasource {
 
     return TutorsResp.fromJson(data);
   }
+
+  Future<TutorsResp> search(String token) async {
+    final Map<String, dynamic> data = await _httpClient.get(
+        path: LettutorConfig.getAllTutors, auth: true, token: token);
+
+    return TutorsResp.fromJson(data);
+  }
 }

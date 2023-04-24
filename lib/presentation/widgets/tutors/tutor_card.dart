@@ -6,6 +6,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.d
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class TutorCard extends StatelessWidget {
   const TutorCard({super.key, required this.tutor});
@@ -29,7 +30,10 @@ class TutorCard extends StatelessWidget {
                   alignment: Alignment.center,
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage: tutor.getAvatar().image,
+                    backgroundImage: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: tutor.avatar ?? "")
+                        .image,
                   ),
                 ),
                 Positioned(

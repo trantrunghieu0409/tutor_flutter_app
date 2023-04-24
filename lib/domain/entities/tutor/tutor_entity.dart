@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/session.dart';
@@ -64,6 +66,7 @@ class TutorEntity {
   bool isFavorite = false;
 
   Image getAvatar() {
+    log(avatar ?? "...");
     return avatar != null
         ? Image.network(avatar!)
         : Image.asset(ImageUtils.defaultImagePath);
@@ -75,7 +78,7 @@ class TutorEntity {
     }
   }
 
-  int get stars => rating == null ? 0 : rating!.round();
+  int get stars => rating != null ? rating!.round() : 0;
 
   List<String> get specialtyList => specialties.split(',');
 

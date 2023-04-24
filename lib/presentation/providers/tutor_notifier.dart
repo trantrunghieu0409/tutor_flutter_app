@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:riverpod/riverpod.dart';
@@ -19,7 +20,7 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
     state = resp.fold((l) {
       log(l.error);
       return state;
-    }, (r) => r);
+    }, (r) => r.sorted((a, b) => b.stars.compareTo(a.stars)));
   }
 }
 

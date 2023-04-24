@@ -5,17 +5,19 @@ class TutorsResp {
   });
   late final Tutors tutors;
   late final List<FavoriteTutor> favoriteTutor;
-  
-  TutorsResp.fromJson(Map<String, dynamic> json){
+
+  TutorsResp.fromJson(Map<String, dynamic> json) {
     tutors = Tutors.fromJson(json['tutors']);
-    favoriteTutor = List.from(json['favoriteTutor']).map((e)=>FavoriteTutor.fromJson(e)).toList();
+    favoriteTutor = List.from(json['favoriteTutor'])
+        .map((e) => FavoriteTutor.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['tutors'] = tutors.toJson();
-    _data['favoriteTutor'] = favoriteTutor.map((e)=>e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['tutors'] = tutors.toJson();
+    data['favoriteTutor'] = favoriteTutor.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -26,48 +28,48 @@ class Tutors {
   });
   late final int count;
   late final List<Rows> rows;
-  
-  Tutors.fromJson(Map<String, dynamic> json){
+
+  Tutors.fromJson(Map<String, dynamic> json) {
     count = json['count'];
-    rows = List.from(json['rows']).map((e)=>Rows.fromJson(e)).toList();
+    rows = List.from(json['rows']).map((e) => Rows.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['count'] = count;
-    _data['rows'] = rows.map((e)=>e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['count'] = count;
+    data['rows'] = rows.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
 class Rows {
   Rows({
-     this.level,
+    this.level,
     required this.email,
-     this.google,
-     this.facebook,
-     this.apple,
-     this.avatar,
+    this.google,
+    this.facebook,
+    this.apple,
+    this.avatar,
     required this.name,
-     this.country,
-     this.phone,
-     this.language,
-     this.birthday,
+    this.country,
+    this.phone,
+    this.language,
+    this.birthday,
     required this.requestPassword,
     required this.isActivated,
-     this.isPhoneActivated,
-     this.requireNote,
-     this.timezone,
-     this.phoneAuth,
+    this.isPhoneActivated,
+    this.requireNote,
+    this.timezone,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
-     this.studySchedule,
+    this.studySchedule,
     required this.canSendMessage,
     required this.isPublicRecord,
-     this.caredByStaffId,
+    this.caredByStaffId,
     required this.createdAt,
     required this.updatedAt,
-     this.deletedAt,
-     this.studentGroupId,
+    this.deletedAt,
+    this.studentGroupId,
     required this.feedbacks,
     required this.id,
     required this.userId,
@@ -76,14 +78,14 @@ class Rows {
     required this.education,
     required this.experience,
     required this.profession,
-     this.accent,
+    this.accent,
     required this.targetStudent,
     required this.interests,
     required this.languages,
     required this.specialties,
-     this.resume,
-     this.rating,
-     this.isNative,
+    this.resume,
+    this.rating,
+    this.isNative,
     required this.price,
     required this.isOnline,
   });
@@ -131,16 +133,16 @@ class Rows {
   late final Null isNative;
   late final int price;
   late final bool isOnline;
-  
-  Rows.fromJson(Map<String, dynamic> json){
+
+  Rows.fromJson(Map<String, dynamic> json) {
     level = null;
     email = json['email'];
     google = null;
     facebook = null;
     apple = null;
-    avatar = null;
+    avatar = json['avatar'];
     name = json['name'];
-    country = null;
+    country = json['country'];
     phone = null;
     language = null;
     birthday = null;
@@ -159,7 +161,8 @@ class Rows {
     updatedAt = json['updatedAt'];
     deletedAt = null;
     studentGroupId = null;
-    feedbacks = List.from(json['feedbacks']).map((e)=>Feedbacks.fromJson(e)).toList();
+    feedbacks =
+        List.from(json['feedbacks']).map((e) => Feedbacks.fromJson(e)).toList();
     id = json['id'];
     userId = json['userId'];
     video = json['video'];
@@ -173,66 +176,66 @@ class Rows {
     languages = json['languages'];
     specialties = json['specialties'];
     resume = null;
-    rating = null;
+    rating = json['rating'];
     isNative = null;
     price = json['price'];
     isOnline = json['isOnline'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['level'] = level;
-    _data['email'] = email;
-    _data['google'] = google;
-    _data['facebook'] = facebook;
-    _data['apple'] = apple;
-    _data['avatar'] = avatar;
-    _data['name'] = name;
-    _data['country'] = country;
-    _data['phone'] = phone;
-    _data['language'] = language;
-    _data['birthday'] = birthday;
-    _data['requestPassword'] = requestPassword;
-    _data['isActivated'] = isActivated;
-    _data['isPhoneActivated'] = isPhoneActivated;
-    _data['requireNote'] = requireNote;
-    _data['timezone'] = timezone;
-    _data['phoneAuth'] = phoneAuth;
-    _data['isPhoneAuthActivated'] = isPhoneAuthActivated;
-    _data['studySchedule'] = studySchedule;
-    _data['canSendMessage'] = canSendMessage;
-    _data['isPublicRecord'] = isPublicRecord;
-    _data['caredByStaffId'] = caredByStaffId;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['deletedAt'] = deletedAt;
-    _data['studentGroupId'] = studentGroupId;
-    _data['feedbacks'] = feedbacks.map((e)=>e.toJson()).toList();
-    _data['id'] = id;
-    _data['userId'] = userId;
-    _data['video'] = video;
-    _data['bio'] = bio;
-    _data['education'] = education;
-    _data['experience'] = experience;
-    _data['profession'] = profession;
-    _data['accent'] = accent;
-    _data['targetStudent'] = targetStudent;
-    _data['interests'] = interests;
-    _data['languages'] = languages;
-    _data['specialties'] = specialties;
-    _data['resume'] = resume;
-    _data['rating'] = rating;
-    _data['isNative'] = isNative;
-    _data['price'] = price;
-    _data['isOnline'] = isOnline;
-    return _data;
+    final data = <String, dynamic>{};
+    data['level'] = level;
+    data['email'] = email;
+    data['google'] = google;
+    data['facebook'] = facebook;
+    data['apple'] = apple;
+    data['avatar'] = avatar;
+    data['name'] = name;
+    data['country'] = country;
+    data['phone'] = phone;
+    data['language'] = language;
+    data['birthday'] = birthday;
+    data['requestPassword'] = requestPassword;
+    data['isActivated'] = isActivated;
+    data['isPhoneActivated'] = isPhoneActivated;
+    data['requireNote'] = requireNote;
+    data['timezone'] = timezone;
+    data['phoneAuth'] = phoneAuth;
+    data['isPhoneAuthActivated'] = isPhoneAuthActivated;
+    data['studySchedule'] = studySchedule;
+    data['canSendMessage'] = canSendMessage;
+    data['isPublicRecord'] = isPublicRecord;
+    data['caredByStaffId'] = caredByStaffId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    data['studentGroupId'] = studentGroupId;
+    data['feedbacks'] = feedbacks.map((e) => e.toJson()).toList();
+    data['id'] = id;
+    data['userId'] = userId;
+    data['video'] = video;
+    data['bio'] = bio;
+    data['education'] = education;
+    data['experience'] = experience;
+    data['profession'] = profession;
+    data['accent'] = accent;
+    data['targetStudent'] = targetStudent;
+    data['interests'] = interests;
+    data['languages'] = languages;
+    data['specialties'] = specialties;
+    data['resume'] = resume;
+    data['rating'] = rating;
+    data['isNative'] = isNative;
+    data['price'] = price;
+    data['isOnline'] = isOnline;
+    return data;
   }
 }
 
 class Feedbacks {
   Feedbacks({
     required this.id,
-     this.bookingId,
+    this.bookingId,
     required this.firstId,
     required this.secondId,
     required this.rating,
@@ -250,8 +253,8 @@ class Feedbacks {
   late final String createdAt;
   late final String updatedAt;
   late final FirstInfo firstInfo;
-  
-  Feedbacks.fromJson(Map<String, dynamic> json){
+
+  Feedbacks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     bookingId = null;
     firstId = json['firstId'];
@@ -264,48 +267,48 @@ class Feedbacks {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['bookingId'] = bookingId;
-    _data['firstId'] = firstId;
-    _data['secondId'] = secondId;
-    _data['rating'] = rating;
-    _data['content'] = content;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['firstInfo'] = firstInfo.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['bookingId'] = bookingId;
+    data['firstId'] = firstId;
+    data['secondId'] = secondId;
+    data['rating'] = rating;
+    data['content'] = content;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['firstInfo'] = firstInfo.toJson();
+    return data;
   }
 }
 
 class FirstInfo {
   FirstInfo({
-     this.level,
+    this.level,
     required this.email,
-     this.google,
-     this.facebook,
-     this.apple,
+    this.google,
+    this.facebook,
+    this.apple,
     required this.avatar,
     required this.name,
-     this.country,
-     this.phone,
-     this.language,
-     this.birthday,
+    this.country,
+    this.phone,
+    this.language,
+    this.birthday,
     required this.requestPassword,
     required this.isActivated,
-     this.isPhoneActivated,
-     this.requireNote,
+    this.isPhoneActivated,
+    this.requireNote,
     required this.timezone,
-     this.phoneAuth,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
-     this.studySchedule,
+    this.studySchedule,
     required this.canSendMessage,
     required this.isPublicRecord,
-     this.caredByStaffId,
+    this.caredByStaffId,
     required this.createdAt,
     required this.updatedAt,
-     this.deletedAt,
-     this.studentGroupId,
+    this.deletedAt,
+    this.studentGroupId,
   });
   late final String? level;
   late final String email;
@@ -333,8 +336,8 @@ class FirstInfo {
   late final String updatedAt;
   late final Null deletedAt;
   late final Null studentGroupId;
-  
-  FirstInfo.fromJson(Map<String, dynamic> json){
+
+  FirstInfo.fromJson(Map<String, dynamic> json) {
     level = null;
     email = json['email'];
     google = null;
@@ -364,34 +367,34 @@ class FirstInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['level'] = level;
-    _data['email'] = email;
-    _data['google'] = google;
-    _data['facebook'] = facebook;
-    _data['apple'] = apple;
-    _data['avatar'] = avatar;
-    _data['name'] = name;
-    _data['country'] = country;
-    _data['phone'] = phone;
-    _data['language'] = language;
-    _data['birthday'] = birthday;
-    _data['requestPassword'] = requestPassword;
-    _data['isActivated'] = isActivated;
-    _data['isPhoneActivated'] = isPhoneActivated;
-    _data['requireNote'] = requireNote;
-    _data['timezone'] = timezone;
-    _data['phoneAuth'] = phoneAuth;
-    _data['isPhoneAuthActivated'] = isPhoneAuthActivated;
-    _data['studySchedule'] = studySchedule;
-    _data['canSendMessage'] = canSendMessage;
-    _data['isPublicRecord'] = isPublicRecord;
-    _data['caredByStaffId'] = caredByStaffId;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['deletedAt'] = deletedAt;
-    _data['studentGroupId'] = studentGroupId;
-    return _data;
+    final data = <String, dynamic>{};
+    data['level'] = level;
+    data['email'] = email;
+    data['google'] = google;
+    data['facebook'] = facebook;
+    data['apple'] = apple;
+    data['avatar'] = avatar;
+    data['name'] = name;
+    data['country'] = country;
+    data['phone'] = phone;
+    data['language'] = language;
+    data['birthday'] = birthday;
+    data['requestPassword'] = requestPassword;
+    data['isActivated'] = isActivated;
+    data['isPhoneActivated'] = isPhoneActivated;
+    data['requireNote'] = requireNote;
+    data['timezone'] = timezone;
+    data['phoneAuth'] = phoneAuth;
+    data['isPhoneAuthActivated'] = isPhoneAuthActivated;
+    data['studySchedule'] = studySchedule;
+    data['canSendMessage'] = canSendMessage;
+    data['isPublicRecord'] = isPublicRecord;
+    data['caredByStaffId'] = caredByStaffId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    data['studentGroupId'] = studentGroupId;
+    return data;
   }
 }
 
@@ -402,7 +405,7 @@ class FavoriteTutor {
     required this.secondId,
     required this.createdAt,
     required this.updatedAt,
-     this.secondInfo,
+    this.secondInfo,
   });
   late final String id;
   late final String firstId;
@@ -410,8 +413,8 @@ class FavoriteTutor {
   late final String createdAt;
   late final String updatedAt;
   late final SecondInfo? secondInfo;
-  
-  FavoriteTutor.fromJson(Map<String, dynamic> json){
+
+  FavoriteTutor.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     firstId = json['firstId'];
     secondId = json['secondId'];
@@ -421,14 +424,14 @@ class FavoriteTutor {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['firstId'] = firstId;
-    _data['secondId'] = secondId;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['secondInfo'] = secondInfo;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['firstId'] = firstId;
+    data['secondId'] = secondId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['secondInfo'] = secondInfo;
+    return data;
   }
 }
 
@@ -437,30 +440,30 @@ class SecondInfo {
     required this.id,
     required this.level,
     required this.email,
-     this.google,
-     this.facebook,
-     this.apple,
+    this.google,
+    this.facebook,
+    this.apple,
     required this.avatar,
     required this.name,
     required this.country,
     required this.phone,
-     this.language,
+    this.language,
     required this.birthday,
     required this.requestPassword,
     required this.isActivated,
-     this.isPhoneActivated,
-     this.requireNote,
+    this.isPhoneActivated,
+    this.requireNote,
     required this.timezone,
-     this.phoneAuth,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
-     this.studySchedule,
+    this.studySchedule,
     required this.canSendMessage,
     required this.isPublicRecord,
-     this.caredByStaffId,
+    this.caredByStaffId,
     required this.createdAt,
     required this.updatedAt,
-     this.deletedAt,
-     this.studentGroupId,
+    this.deletedAt,
+    this.studentGroupId,
     required this.tutorInfo,
   });
   late final String id;
@@ -491,8 +494,8 @@ class SecondInfo {
   late final Null deletedAt;
   late final Null studentGroupId;
   late final TutorInfo tutorInfo;
-  
-  SecondInfo.fromJson(Map<String, dynamic> json){
+
+  SecondInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     level = json['level'];
     email = json['email'];
@@ -524,36 +527,36 @@ class SecondInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['level'] = level;
-    _data['email'] = email;
-    _data['google'] = google;
-    _data['facebook'] = facebook;
-    _data['apple'] = apple;
-    _data['avatar'] = avatar;
-    _data['name'] = name;
-    _data['country'] = country;
-    _data['phone'] = phone;
-    _data['language'] = language;
-    _data['birthday'] = birthday;
-    _data['requestPassword'] = requestPassword;
-    _data['isActivated'] = isActivated;
-    _data['isPhoneActivated'] = isPhoneActivated;
-    _data['requireNote'] = requireNote;
-    _data['timezone'] = timezone;
-    _data['phoneAuth'] = phoneAuth;
-    _data['isPhoneAuthActivated'] = isPhoneAuthActivated;
-    _data['studySchedule'] = studySchedule;
-    _data['canSendMessage'] = canSendMessage;
-    _data['isPublicRecord'] = isPublicRecord;
-    _data['caredByStaffId'] = caredByStaffId;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['deletedAt'] = deletedAt;
-    _data['studentGroupId'] = studentGroupId;
-    _data['tutorInfo'] = tutorInfo.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['level'] = level;
+    data['email'] = email;
+    data['google'] = google;
+    data['facebook'] = facebook;
+    data['apple'] = apple;
+    data['avatar'] = avatar;
+    data['name'] = name;
+    data['country'] = country;
+    data['phone'] = phone;
+    data['language'] = language;
+    data['birthday'] = birthday;
+    data['requestPassword'] = requestPassword;
+    data['isActivated'] = isActivated;
+    data['isPhoneActivated'] = isPhoneActivated;
+    data['requireNote'] = requireNote;
+    data['timezone'] = timezone;
+    data['phoneAuth'] = phoneAuth;
+    data['isPhoneAuthActivated'] = isPhoneAuthActivated;
+    data['studySchedule'] = studySchedule;
+    data['canSendMessage'] = canSendMessage;
+    data['isPublicRecord'] = isPublicRecord;
+    data['caredByStaffId'] = caredByStaffId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    data['studentGroupId'] = studentGroupId;
+    data['tutorInfo'] = tutorInfo.toJson();
+    return data;
   }
 }
 
@@ -566,15 +569,15 @@ class TutorInfo {
     required this.education,
     required this.experience,
     required this.profession,
-     this.accent,
+    this.accent,
     required this.targetStudent,
     required this.interests,
     required this.languages,
     required this.specialties,
-     this.resume,
-     this.rating,
+    this.resume,
+    this.rating,
     required this.isActivated,
-     this.isNative,
+    this.isNative,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -596,8 +599,8 @@ class TutorInfo {
   late final Null isNative;
   late final String createdAt;
   late final String updatedAt;
-  
-  TutorInfo.fromJson(Map<String, dynamic> json){
+
+  TutorInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['userId'];
     video = json['video'];
@@ -619,25 +622,25 @@ class TutorInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['userId'] = userId;
-    _data['video'] = video;
-    _data['bio'] = bio;
-    _data['education'] = education;
-    _data['experience'] = experience;
-    _data['profession'] = profession;
-    _data['accent'] = accent;
-    _data['targetStudent'] = targetStudent;
-    _data['interests'] = interests;
-    _data['languages'] = languages;
-    _data['specialties'] = specialties;
-    _data['resume'] = resume;
-    _data['rating'] = rating;
-    _data['isActivated'] = isActivated;
-    _data['isNative'] = isNative;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['video'] = video;
+    data['bio'] = bio;
+    data['education'] = education;
+    data['experience'] = experience;
+    data['profession'] = profession;
+    data['accent'] = accent;
+    data['targetStudent'] = targetStudent;
+    data['interests'] = interests;
+    data['languages'] = languages;
+    data['specialties'] = specialties;
+    data['resume'] = resume;
+    data['rating'] = rating;
+    data['isActivated'] = isActivated;
+    data['isNative'] = isNative;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    return data;
   }
 }

@@ -14,4 +14,11 @@ class TutorRepository {
 
     return resp;
   }
+
+  Future<TutorsResp> search() async {
+    var token = await _accountLocalDatasource.getToken();
+    var resp = await _tutorRemoteDatasource.getAll(token.token);
+
+    return resp;
+  }
 }
