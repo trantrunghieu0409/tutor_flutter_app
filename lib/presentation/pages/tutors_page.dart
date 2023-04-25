@@ -47,6 +47,7 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                   ),
                   Consumer(builder: (contex, ref, child) {
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Found ${ref.watch(tutorsProvider.notifier).total} result(s)",

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class SecondaryInputField extends StatelessWidget {
   const SecondaryInputField(
-      {super.key, required this.placeholder, this.isObsecure = false, this.callback});
+      {super.key,
+      required this.placeholder,
+      this.isObsecure = false,
+      this.callback});
   final String placeholder;
   final bool isObsecure;
   final void Function(String?)? callback;
@@ -11,7 +14,7 @@ class SecondaryInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextField(
-        onSubmitted: callback,
+        onChanged: callback,
         obscureText: isObsecure,
         decoration: InputDecoration(
           fillColor: Colors.white,

@@ -164,7 +164,6 @@ class Rows {
     deletedAt = null;
     studentGroupId = null;
 
-    log(json['feedbacks'] ?? '');
     feedbacks = List.from(json['feedbacks'] ?? [])
         .map((e) => Feedbacks.fromJson(e))
         .toList();
