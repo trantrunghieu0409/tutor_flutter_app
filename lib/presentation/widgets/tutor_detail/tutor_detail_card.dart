@@ -14,7 +14,7 @@ class TutorDetailCard extends StatelessWidget {
     return Card(
       child: Container(
         padding: const EdgeInsets.all(24.0),
-        child: Column(children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -49,6 +49,22 @@ class TutorDetailCard extends StatelessWidget {
             height: 16,
           ),
           Text(tutor.bio),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Text(
+              "Interests",
+              style: CommonTextStyle.bodyItalicBlack,
+            ),
+          ),
+          Text(tutor.interests),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Text(
+              "Teaching experience",
+              style: CommonTextStyle.bodyItalicBlack,
+            ),
+          ),
+          Text(tutor.experience),
           const SizedBox(
             height: 16,
           ),

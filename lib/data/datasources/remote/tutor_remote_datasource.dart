@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
+import 'package:tutor_flutter_app/data/models/response/schedule_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
 
 class TutorRemoteDatasource {
@@ -17,8 +17,8 @@ class TutorRemoteDatasource {
     return TutorsResp.fromJson(data);
   }
 
-  Future<Tutors> search(String token, List<String> specialities,
-      String name, bool? isVietnamese) async {
+  Future<Tutors> search(String token, List<String> specialities, String name,
+      bool? isVietnamese) async {
     final Map<String, dynamic> data = await _httpClient.post(
         path: LettutorConfig.searchTutors,
         body: jsonEncode({
@@ -37,5 +37,16 @@ class TutorRemoteDatasource {
         token: token);
 
     return Tutors.fromJson(data);
+  }
+
+  Future<ScheduleResp> getScheduleByTutorId(String token, String tutorId,
+      int startTimestamp, int endTimestamp) async {
+    final Map<String, dynamic> data = await _httpClient.get(
+        path:
+            "${LettutorConfig.scheduleByTutorIdPath}?tutorId=$tutorId&startTimestamp=$startTimestamp&endTimestamp=$endTimestamp",
+        auth: true,
+        token: token);
+
+    return ScheduleResp.fromJson(data);
   }
 }

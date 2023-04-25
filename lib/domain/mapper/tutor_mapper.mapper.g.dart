@@ -37,8 +37,8 @@ class TutorMapperImpl extends TutorMapper {
       specialties: model.specialties,
       resume: model.resume,
       rating: model.rating,
-      price: model.price ?? 0,
-      isOnline: model.isOnline ?? false,
+      price: model.price,
+      isOnline: model.isOnline,
     );
     return tutorentity;
   }

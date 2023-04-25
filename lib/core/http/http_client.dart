@@ -27,7 +27,9 @@ class HttpClient {
         HttpConstants.authorization: "Bearer $token",
       };
 
-  Map<String, String> _generateRequestHeader(auth, token, [
+  Map<String, String> _generateRequestHeader(
+    auth,
+    token, [
     Map<String, String> overrideHeader = const {},
   ]) =>
       {
@@ -39,6 +41,9 @@ class HttpClient {
   dynamic get({required String path, bool auth = false, String? token}) async {
     final requestHeader = _generateRequestHeader(auth, token);
 
+    log("path: $host$path");
+    log("header: $requestHeader");
+
     final Response response = await client.get(
       _getParsedUrl(path),
       headers: requestHeader,
@@ -49,7 +54,11 @@ class HttpClient {
     );
   }
 
-  dynamic post({required String path, dynamic body, bool auth = false, String? token}) async {
+  dynamic post(
+      {required String path,
+      dynamic body,
+      bool auth = false,
+      String? token}) async {
     final requestHeader = _generateRequestHeader(auth, token);
 
     log("path: $host$path");

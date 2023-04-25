@@ -4,8 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
 import 'package:tutor_flutter_app/domain/entities/failure_entity.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutors_result.dart';
+import 'package:tutor_flutter_app/domain/mapper/schedule_mapper.dart';
 import 'package:tutor_flutter_app/domain/mapper/tutor_mapper.dart';
 
 class TutorUsecase {
@@ -14,6 +15,7 @@ class TutorUsecase {
   TutorUsecase(this._tutorRepository);
 
   final TutorMapper _tutorMapper = TutorMapperImpl();
+  final ScheduleMapper _scheduleMapper = ScheduleMapperImpl();
 
   Future<Either<FailureEntity, TutorsResult>> getAll() async {
     try {
@@ -23,7 +25,10 @@ class TutorUsecase {
           .map((event) => _tutorMapper.fromModel(event))
           .toList();
 
-      return right(TutorsResult(total: resp.tutors.count, tutors:tutors, favoriteIds: favoriteTutorIds));
+      return right(TutorsResult(
+          total: resp.tutors.count,
+          tutors: tutors,
+          favoriteIds: favoriteTutorIds));
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));
     } catch (e) {
@@ -38,11 +43,29 @@ class TutorUsecase {
       var resp =
           await _tutorRepository.search(specialities, name, isVietnamese);
 
-      var tutors = resp.rows
-          .map((event) => _tutorMapper.fromModel(event))
-          .toList();
+      var tutors =
+          resp.rows.map((event) => _tutorMapper.fromModel(event)).toList();
 
       return right(TutorsResult(total: resp.count, tutors: tutors));
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, List<ScheduleEntity>>> getScheduleByTutorId(
+      String tutorId, int startTimestamp, int endTimestamp) async {
+    try {
+      var resp = await _tutorRepository.getScheduleByTutorId(
+          tutorId, startTimestamp, endTimestamp);
+
+      var schedules = resp.scheduleOfTutor
+          .map((event) => _scheduleMapper.fromModel(event))
+          .toList();
+
+      return right(schedules);
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));
     } catch (e) {

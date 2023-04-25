@@ -1,5 +1,6 @@
 import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/tutor_remote_datasource.dart';
+import 'package:tutor_flutter_app/data/models/response/schedule_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
 
 class TutorRepository {
@@ -20,6 +21,15 @@ class TutorRepository {
     var token = await _accountLocalDatasource.getToken();
     var resp = await _tutorRemoteDatasource.search(
         token.token, specialities, name, isVietnamese);
+
+    return resp;
+  }
+
+  Future<ScheduleResp> getScheduleByTutorId(
+      String tutorId, int startTimestamp, int endTimestamp) async {
+    var token = await _accountLocalDatasource.getToken();
+    var resp = await _tutorRemoteDatasource.getScheduleByTutorId(
+        token.token, tutorId, startTimestamp, endTimestamp);
 
     return resp;
   }

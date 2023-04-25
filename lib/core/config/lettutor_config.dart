@@ -8,7 +8,9 @@ class LettutorConfig {
   // tutor - path
   static String getAllTutors = 'tutor/more?perPage=10&page=1';
   static String searchTutors = 'tutor/search';
-  
+
+  static String scheduleByTutorIdPath = 'schedule';
+
   // hard-coded value for authorization
   static String token =
       '''Bearer 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''';

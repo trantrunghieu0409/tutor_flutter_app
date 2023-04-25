@@ -31,7 +31,9 @@ class TutorDetailPage extends StatelessWidget {
               style: CommonTextStyle.h2Black,
             ),
           ),
-          const BookingCalendar(),
+          BookingCalendar(
+            tutorId: tutor.userId,
+          ),
           const SizedBox(
             height: 16,
           )

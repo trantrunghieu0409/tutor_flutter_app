@@ -60,8 +60,8 @@ class TutorEntity {
   late final String specialties;
   late final String? resume;
   late final double? rating;
-  late final int price;
-  late final bool isOnline;
+  late final int? price;
+  late final bool? isOnline;
   // todo: remove
   late List<Session> sessions;
   bool isFavorite = false;
