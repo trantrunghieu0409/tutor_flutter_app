@@ -48,15 +48,13 @@ class TutorDetailCard extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Text(
-            tutor.bio,
-            maxLines: 7,
-            overflow: TextOverflow.ellipsis,
-          ),
+          Text(tutor.bio),
           const SizedBox(
             height: 16,
           ),
-          const ButtonSection(),
+          ButtonSection(
+            tutor: tutor,
+          ),
         ]),
       ),
     );
