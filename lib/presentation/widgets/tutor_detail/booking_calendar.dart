@@ -21,33 +21,35 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.month;
-
   String? bookingId;
 
   @override
   void initState() {
-    super.initState();
-
     _selectedDay = _focusedDay;
-    _onDaySelected(_selectedDay!, _focusedDay);
+    _getScheduleListInDay(_selectedDay!);
+    super.initState();
   }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     if (!isSameDay(_selectedDay, selectedDay)) {
-      var startDay = selectedDay.subtract(const Duration(hours: 7));
-      var endDay =
-          startDay.add(const Duration(hours: 23, minutes: 59, seconds: 59));
-      log('start + end');
+      _getScheduleListInDay(selectedDay);
 
-      ref.read(schedulesProvider.notifier).getScheduleByTutorId(
-          widget.tutorId,
-          (startDay.toUtc().microsecondsSinceEpoch / 1000).round(),
-          (endDay.toUtc().microsecondsSinceEpoch / 1000).round());
       setState(() {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
       });
     }
+  }
+
+  void _getScheduleListInDay(DateTime selectedDay) {
+    var startTime = selectedDay.subtract(const Duration(hours: 7));
+    var endTime =
+        startTime.add(const Duration(hours: 23, minutes: 59, seconds: 59));
+    log("GETTING SCHEDULES ...");
+    ref.read(schedulesProvider.notifier).getScheduleByTutorId(
+        widget.tutorId,
+        (startTime.toUtc().microsecondsSinceEpoch / 1000).round(),
+        (endTime.toUtc().microsecondsSinceEpoch / 1000).round());
   }
 
   @override
@@ -94,11 +96,12 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                       setState(() {
                         if (!_isPast(schedules[index].startTimestamp) &&
                             !schedules[index].isBooked) {
-                          if (bookingId == schedules[index].id) {
-                            bookingId = null;
-                          } else {
-                            bookingId = schedules[index].id;
-                          }
+                          bookingId = bookingId ==
+                                  schedules[index].scheduleDetails[0].scheduleId
+                              ? null
+                              : bookingId = schedules[index]
+                                  .scheduleDetails[0]
+                                  .scheduleId;
                         }
                       });
                     },
@@ -145,8 +148,6 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
 
   bool _isPast(int time) {
     var day = DateTime.fromMicrosecondsSinceEpoch(time * 1000, isUtc: true);
-    log(day.toString());
-    log(DateTime.now().toUtc().toString());
     return day.toLocal().compareTo(DateTime.now()) <= 0;
   }
 
@@ -185,7 +186,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
               Icons.circle,
               color: Colors.amber,
             ),
-            Text("Seleted"),
+            Text("Selected"),
           ],
         ),
         Wrap(

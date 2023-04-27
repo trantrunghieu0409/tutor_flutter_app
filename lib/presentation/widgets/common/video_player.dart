@@ -49,7 +49,7 @@ class _VideoSectionState extends State<VideoSection> {
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 }
