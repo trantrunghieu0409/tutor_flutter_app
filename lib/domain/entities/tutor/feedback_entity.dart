@@ -1,9 +1,9 @@
-import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/first_info_entity.dart';
 
 class FeedbackEntity {
   FeedbackEntity({
     required this.id,
-     this.bookingId,
+    this.bookingId,
     required this.firstId,
     required this.secondId,
     required this.rating,
@@ -20,5 +20,5 @@ class FeedbackEntity {
   late final String content;
   late final String createdAt;
   late final String updatedAt;
-  late final FirstInfo firstInfo;
+  late final FirstInfoEntity firstInfo;
 }

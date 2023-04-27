@@ -17,7 +17,7 @@ class StarsRating extends StatelessWidget {
                       color: Colors.yellow,
                     ))
             : [
-                const Text("No reviews yet!",
+                const Text("No ratings yet!",
                     style: CommonTextStyle.bodyItalicBlack)
               ]);
   }

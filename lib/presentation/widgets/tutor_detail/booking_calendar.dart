@@ -45,7 +45,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
     var startTime = selectedDay.subtract(const Duration(hours: 7));
     var endTime =
         startTime.add(const Duration(hours: 23, minutes: 59, seconds: 59));
-    log("GETTING SCHEDULES ...");
+
     ref.read(schedulesProvider.notifier).getScheduleByTutorId(
         widget.tutorId,
         (startTime.toUtc().microsecondsSinceEpoch / 1000).round(),

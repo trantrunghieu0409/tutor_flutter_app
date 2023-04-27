@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/core/utils/image_utils.dart';
+
 class FirstInfoEntity {
   FirstInfoEntity({
     this.level,
@@ -53,4 +56,13 @@ class FirstInfoEntity {
   late final String updatedAt;
   late final String? deletedAt;
   late final String? studentGroupId;
+
+  Image getAvatar() {
+    return avatar != null
+        ? Image.network(avatar)
+        : Image.asset(ImageUtils.defaultImagePath);
+  }
+
+  String getCountry() => country ?? "Unknown";
+
 }

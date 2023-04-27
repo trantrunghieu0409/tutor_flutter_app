@@ -39,7 +39,57 @@ class TutorMapperImpl extends TutorMapper {
       rating: model.rating,
       price: model.price,
       isOnline: model.isOnline,
+      feedbacks: model.feedbacks.map((x) => fromFeedback(x)).toList(),
     );
     return tutorentity;
+  }
+
+  @override
+  FeedbackEntity fromFeedback(Feedbacks feedback) {
+    final feedbackentity = FeedbackEntity(
+      id: feedback.id,
+      bookingId: feedback.bookingId,
+      firstId: feedback.firstId,
+      secondId: feedback.secondId,
+      rating: feedback.rating,
+      content: feedback.content,
+      createdAt: feedback.createdAt,
+      updatedAt: feedback.updatedAt,
+      firstInfo: fromFirstInfo(feedback.firstInfo),
+    );
+    return feedbackentity;
+  }
+
+  @override
+  FirstInfoEntity fromFirstInfo(FirstInfo firstInfo) {
+    final firstinfoentity = FirstInfoEntity(
+      level: firstInfo.level,
+      email: firstInfo.email,
+      google: firstInfo.google,
+      facebook: firstInfo.facebook,
+      apple: firstInfo.apple,
+      avatar: firstInfo.avatar,
+      name: firstInfo.name,
+      country: firstInfo.country,
+      phone: firstInfo.phone,
+      language: firstInfo.language,
+      birthday: firstInfo.birthday,
+      requestPassword: firstInfo.requestPassword,
+      isActivated: firstInfo.isActivated,
+      isPhoneActivated: firstInfo.isPhoneActivated,
+      requireNote: firstInfo.requireNote,
+      timezone: firstInfo.timezone,
+      phoneAuth: firstInfo.phoneAuth,
+      isPhoneAuthActivated: firstInfo.isPhoneAuthActivated,
+      studySchedule: firstInfo.studySchedule,
+      canSendMessage: firstInfo.canSendMessage,
+      isPublicRecord: firstInfo.isPublicRecord,
+      caredByStaffId: firstInfo.caredByStaffId,
+      createdAt: firstInfo.createdAt,
+      updatedAt: firstInfo.updatedAt,
+      deletedAt: firstInfo.deletedAt,
+      studentGroupId: firstInfo.studentGroupId,
+    );
+    return firstinfoentity;
   }
 }

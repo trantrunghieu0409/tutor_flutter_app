@@ -115,7 +115,7 @@ class Rows {
   late final String updatedAt;
   late final String? deletedAt;
   late final String? studentGroupId;
-  late final List<Feedbacks>? feedbacks;
+  late final List<Feedbacks> feedbacks;
   late final String id;
   late final String userId;
   late final String video;
@@ -213,8 +213,7 @@ class Rows {
     data['updatedAt'] = updatedAt;
     data['deletedAt'] = deletedAt;
     data['studentGroupId'] = studentGroupId;
-    data['feedbacks'] =
-        feedbacks != null ? feedbacks!.map((e) => e.toJson()).toList() : [];
+    data['feedbacks'] = feedbacks = feedbacks.map((e) => e.toJson()).cast<Feedbacks>().toList();
     data['id'] = id;
     data['userId'] = userId;
     data['video'] = video;
