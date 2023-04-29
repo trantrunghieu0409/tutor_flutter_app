@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tutor_flutter_app/data/datasources/tutor_datasource.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/common_scaffold.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/page_introduction.dart';
 import 'package:tutor_flutter_app/presentation/widgets/history/history_card.dart';
@@ -31,6 +30,8 @@ class HistoryPage extends StatelessWidget {
   }
 
   List<Widget> _buidHistoryCardList() {
+    var tutors = [];
+
     return List<Widget>.generate(tutors.length,
         (index) => HistoryCard(tutor: tutors[index], time: DateTime.now()));
   }

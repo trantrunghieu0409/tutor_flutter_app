@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/providers/schedule_notifier.dart';
@@ -122,7 +123,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                               isBooked: schedules[index].isBooked,
                               time: schedules[index].startTimestamp)),
                       child: Text(
-                        "${_formatScheduleTime(schedules[index].startTimestamp)} - ${_formatScheduleTime(schedules[index].endTimestamp)}",
+                        "${DateTimeUtils.formatScheduleTime(schedules[index].startTimestamp)} - ${DateTimeUtils.formatScheduleTime(schedules[index].endTimestamp)}",
                         style: CommonTextStyle.body,
                       ),
                     ),
@@ -168,7 +169,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                   style: CommonTextStyle.h2Black,
                 ),
                 Text(
-                  "${_formatScheduleTime(startTimestamp)} - ${_formatScheduleTime(endTimestamp)}",
+                  "${DateTimeUtils.formatScheduleTime(startTimestamp)} - ${DateTimeUtils.formatScheduleTime(endTimestamp)}",
                   style: CommonTextStyle.bodyBlack,
                 ),
                 const SizedBox(
@@ -292,16 +293,6 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                 }),
           );
         });
-  }
-
-  String _formatTimeOfDate(TimeOfDay pickedTime) {
-    return '${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}';
-  }
-
-  String _formatScheduleTime(int time) {
-    return _formatTimeOfDate(TimeOfDay.fromDateTime(
-        DateTime.fromMicrosecondsSinceEpoch(time * 1000, isUtc: true)
-            .toLocal()));
   }
 
   bool _isPast(int time) {

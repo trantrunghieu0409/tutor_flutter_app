@@ -19,7 +19,8 @@ class _$InjectorConfig extends InjectorConfig {
     final KiwiContainer container = KiwiContainer();
     container
       ..registerSingleton((c) => AccountUsecase(c<AccountRepository>()))
-      ..registerSingleton((c) => TutorUsecase(c<TutorRepository>()));
+      ..registerSingleton((c) => TutorUsecase(c<TutorRepository>()))
+      ..registerSingleton((c) => HistoryUsecase(c<HistoryRepository>()));
   }
 
   @override
@@ -29,7 +30,9 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => AccountRepository(
           c<AccountRemoteDatasource>(), c<AccountLocalDatasource>()))
       ..registerSingleton((c) => TutorRepository(
-          c<TutorRemoteDatasource>(), c<AccountLocalDatasource>()));
+          c<TutorRemoteDatasource>(), c<AccountLocalDatasource>()))
+      ..registerSingleton((c) => HistoryRepository(
+          c<HistoryRemoteDatasource>(), c<AccountLocalDatasource>()));
   }
 
   @override
@@ -37,7 +40,8 @@ class _$InjectorConfig extends InjectorConfig {
     final KiwiContainer container = KiwiContainer();
     container
       ..registerSingleton((c) => AccountRemoteDatasource(c<HttpClient>()))
-      ..registerSingleton((c) => TutorRemoteDatasource(c<HttpClient>()));
+      ..registerSingleton((c) => TutorRemoteDatasource(c<HttpClient>()))
+      ..registerSingleton((c) => HistoryRemoteDatasource(c<HttpClient>()));
   }
 
   @override
