@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
+import 'package:tutor_flutter_app/data/models/response/booking_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/schedule_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
 
@@ -48,5 +49,19 @@ class TutorRemoteDatasource {
         token: token);
 
     return ScheduleResp.fromJson(data);
+  }
+
+  Future<BookingResp> bookSchedule(
+      String token, String scheduleDetailId, String note) async {
+    final Map<String, dynamic> data = await _httpClient.post(
+        path: LettutorConfig.bookSchedule,
+        body: jsonEncode({
+          "scheduleDetailIds": [scheduleDetailId],
+          "note": note
+        }),
+        auth: true,
+        token: token);
+
+    return BookingResp.fromJson(data);
   }
 }

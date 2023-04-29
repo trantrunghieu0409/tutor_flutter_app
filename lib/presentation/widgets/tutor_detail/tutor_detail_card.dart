@@ -33,7 +33,15 @@ class TutorDetailCard extends StatelessWidget {
                     tutor.name,
                     style: CommonTextStyle.h2Black,
                   ),
-                  StarsRating(nStars: tutor.stars),
+                  Row(
+                    children: [
+                      StarsRating(nStars: tutor.stars),
+                      Text(
+                        "(${tutor.feedbacks.length} reviews)",
+                        style: CommonTextStyle.bodyItalicBlack,
+                      )
+                    ],
+                  ),
                   const SizedBox(
                     height: 8,
                   ),

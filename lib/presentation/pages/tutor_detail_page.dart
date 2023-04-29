@@ -32,12 +32,18 @@ class TutorDetailPage extends StatelessWidget {
             ),
           ),
           BookingCalendar(
-            tutorId: tutor.userId,
+            tutor: tutor,
           ),
           const SizedBox(
             height: 16,
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        backgroundColor: Colors.lightBlue,
+        label: const Text("Chat with me!"),
+        icon: const Icon(Icons.message_outlined),
       ),
     );
   }

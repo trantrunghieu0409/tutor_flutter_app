@@ -51,6 +51,7 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
       return _sortByFavoriteAndRating(r.tutors);
     });
   }
+
 }
 
 List<TutorEntity> _sortByFavoriteAndRating(List<TutorEntity> tutors) {

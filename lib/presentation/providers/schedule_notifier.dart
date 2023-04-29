@@ -24,9 +24,9 @@ class ScheduleNotifier extends StateNotifier<List<ScheduleEntity>> {
     }, (r) => r.sorted((a, b) => a.startTimestamp.compareTo(b.startTimestamp)));
   }
 
-  Future<void> book(String bookingId) async {
-    // call to book all selected
-    log("Booking all");
+  Future<bool> bookSchedule(String scheduleDetailId, String note) async {
+    var resp = await _tutorUsecase.bookSchedule(scheduleDetailId, note);
+    return resp.isRight();
   }
 }
 

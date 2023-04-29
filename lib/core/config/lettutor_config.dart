@@ -9,7 +9,9 @@ class LettutorConfig {
   static String getAllTutors = 'tutor/more?perPage=10&page=1';
   static String searchTutors = 'tutor/search';
 
+  // schedule - patj
   static String scheduleByTutorIdPath = 'schedule';
+  static String bookSchedule = 'booking';
 
   // hard-coded value for authorization
   static String token =

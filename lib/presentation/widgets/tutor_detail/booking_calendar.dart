@@ -1,17 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/providers/schedule_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 
 class BookingCalendar extends ConsumerStatefulWidget {
-  const BookingCalendar({super.key, required this.tutorId});
+  const BookingCalendar({super.key, required this.tutor});
 
-  final String tutorId;
+  final TutorEntity tutor;
 
   @override
   ConsumerState<BookingCalendar> createState() => _BookingCalendarState();
@@ -21,7 +21,9 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.month;
+  ScheduleEntity? scheduleEntity;
   String? bookingId;
+  String note = "";
 
   @override
   void initState() {
@@ -37,6 +39,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
       setState(() {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
+        bookingId = null;
       });
     }
   }
@@ -47,7 +50,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
         startTime.add(const Duration(hours: 23, minutes: 59, seconds: 59));
 
     ref.read(schedulesProvider.notifier).getScheduleByTutorId(
-        widget.tutorId,
+        widget.tutor.userId,
         (startTime.toUtc().microsecondsSinceEpoch / 1000).round(),
         (endTime.toUtc().microsecondsSinceEpoch / 1000).round());
   }
@@ -96,12 +99,14 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                       setState(() {
                         if (!_isPast(schedules[index].startTimestamp) &&
                             !schedules[index].isBooked) {
-                          bookingId = bookingId ==
-                                  schedules[index].scheduleDetails[0].scheduleId
-                              ? null
-                              : bookingId = schedules[index]
-                                  .scheduleDetails[0]
-                                  .scheduleId;
+                          if (bookingId ==
+                              schedules[index].scheduleDetails[0].id) {
+                            bookingId = null;
+                            scheduleEntity = null;
+                          } else {
+                            bookingId = schedules[index].scheduleDetails[0].id;
+                            scheduleEntity = schedules[index];
+                          }
                         }
                       });
                     },
@@ -112,7 +117,8 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                               const BorderRadius.all(Radius.circular(16.0)),
                           color: _getColor(
                               isSelected: bookingId != null &&
-                                  bookingId == schedules[index].id,
+                                  bookingId ==
+                                      schedules[index].scheduleDetails[0].id,
                               isBooked: schedules[index].isBooked,
                               time: schedules[index].startTimestamp)),
                       child: Text(
@@ -122,18 +128,170 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                     ),
                   )),
         ),
-        const SizedBox(
-          height: 16,
-        ),
-        PrimaryButton(
-            text: "Book",
-            onPressed: () {
-              if (bookingId != null) {
-                ref.read(schedulesProvider.notifier).book(bookingId!);
-              }
-            }),
+        if (schedules.isNotEmpty)
+          const SizedBox(
+            height: 16,
+          ),
+        if (schedules.isNotEmpty)
+          PrimaryButton(
+              text: "Book",
+              onPressed: () {
+                if (bookingId != null && scheduleEntity != null) {
+                  _showBookingDialog(bookingId!, scheduleEntity!.startTimestamp,
+                      scheduleEntity!.endTimestamp);
+                }
+              }),
+        if (schedules.isNotEmpty)
+          const SizedBox(
+            height: 64,
+          ),
       ],
     );
+  }
+
+  Future<void> _showBookingDialog(
+      String bookingId, int startTimestamp, int endTimestamp) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            "Booking Details",
+            style: CommonTextStyle.h1Black,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                const Text(
+                  "Booking time",
+                  style: CommonTextStyle.h2Black,
+                ),
+                Text(
+                  "${_formatScheduleTime(startTimestamp)} - ${_formatScheduleTime(endTimestamp)}",
+                  style: CommonTextStyle.bodyBlack,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Price",
+                      style: CommonTextStyle.h2Black,
+                    ),
+                    Text(
+                      "${widget.tutor.price} lesson(s)",
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  'Notes',
+                  style: CommonTextStyle.h2Black,
+                ),
+                GestureDetector(
+                  onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                  child: const TextField(
+                    keyboardType: TextInputType.text,
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(width: 2, color: Colors.blueAccent),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Cancel")),
+            ElevatedButton(
+              child: const Text('Book'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _showBookingResult();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showBookingResult() async {
+    if (bookingId == null) return;
+
+    Future<bool> isSuccess =
+        ref.read(schedulesProvider.notifier).bookSchedule(bookingId!, note);
+
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: FutureBuilder(
+                future: isSuccess,
+                builder: (ctx, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    bool isSuccess = snapshot.data!;
+
+                    String displayText = isSuccess
+                        ? "Booked this time successully"
+                        : "This booking time is unavaliable";
+
+                    if (isSuccess) {
+                      _getScheduleListInDay(_selectedDay ?? DateTime.now());
+                    }
+                    return SingleChildScrollView(
+                      child: ListBody(
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              snapshot.data!
+                                  ? const Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                      size: 64,
+                                    )
+                                  : const FaIcon(
+                                      FontAwesomeIcons.cancel,
+                                      color: Colors.red,
+                                      size: 64,
+                                    ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                displayText,
+                                style: CommonTextStyle.bodyBlack,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Column(
+                      children: const [
+                        SizedBox(width: 24, child: CircularProgressIndicator()),
+                      ],
+                    );
+                  }
+                }),
+          );
+        });
   }
 
   String _formatTimeOfDate(TimeOfDay pickedTime) {

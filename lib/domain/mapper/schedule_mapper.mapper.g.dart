@@ -39,4 +39,15 @@ class ScheduleMapperImpl extends ScheduleMapper {
     );
     return scheduledetailentity;
   }
+
+  @override
+  BookingEntity fromBooking(Data data) {
+    final bookingentity = BookingEntity(
+      id: data.id,
+      isDeleted: data.isDeleted,
+      userId: data.userId,
+      scheduleDetailId: data.scheduleDetailId,
+    );
+    return bookingentity;
+  }
 }

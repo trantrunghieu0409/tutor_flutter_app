@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
 import 'package:tutor_flutter_app/domain/entities/failure_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/schedule/booking_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutors_result.dart';
 import 'package:tutor_flutter_app/domain/mapper/schedule_mapper.dart';
@@ -66,6 +67,23 @@ class TutorUsecase {
           .toList();
 
       return right(schedules);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, List<BookingEntity>>> bookSchedule(
+      String scheduleDetailId, String note) async {
+    try {
+      var resp = await _tutorRepository.bookSchedule(scheduleDetailId, note);
+
+      var bookings =
+          resp.data.map((event) => _scheduleMapper.fromBooking(event)).toList();
+
+      return right(bookings);
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));
     } catch (e) {
