@@ -22,4 +22,9 @@ class TutorHistoryEntity {
     if (index == -1) return "";
     return histories[index].studentMeetingLink;
   }
+
+  int get startTimestamp =>
+      scheduleHitories.isEmpty ? 0 : scheduleHitories.first.startTimestamp;
+  int get endTimestamp =>
+      scheduleHitories.isEmpty ? 0 : scheduleHitories.last.endTimestamp;
 }

@@ -33,9 +33,15 @@ class HistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
     for (var history in histories) {
       var tutorId = history.tutorId;
 
-      int index = res.indexWhere((element) =>
-          element.tutorInfo.id == tutorId &&
-          element.date.compareTo(history.date) == 0);
+      int index = res.indexWhere((element) {
+        Duration duration = DateTime.fromMillisecondsSinceEpoch(
+                history.scheduleDetailInfo.startPeriodTimestamp)
+            .difference(
+                DateTime.fromMillisecondsSinceEpoch(element.endTimestamp));
+
+        return element.tutorInfo.id == tutorId &&
+            duration.compareTo(const Duration(minutes: 5)) <= 0;
+      });
       if (index == -1) {
         res.add(TutorHistoryEntity(
             tutorInfo: history.tutorInfo,
