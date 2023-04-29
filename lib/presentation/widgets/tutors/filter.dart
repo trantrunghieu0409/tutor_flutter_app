@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/custom_dropdown_button.dart';
-import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/presentation/widgets/common/date_picker.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/input_chip_list.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/secondary_input_filed.dart';
 
-class Filter extends ConsumerWidget {
-  Filter({super.key});
+class Filter extends ConsumerStatefulWidget {
+  const Filter({super.key});
 
+  @override
+  ConsumerState<Filter> createState() => _FilterState();
+}
+
+class _FilterState extends ConsumerState<Filter> {
   final List<String> _nationalities = [
     "Vietnamese Tutor",
     "Native English Tutor"
@@ -21,17 +24,26 @@ class Filter extends ConsumerWidget {
   List<String> _specialities = [];
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    _handleFilter();
+    super.initState();
+  }
+
+  TextEditingController controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             SecondaryInputField(
+              textEditingController: controller,
               placeholder: "Enter tutor name",
               callback: (p0) {
                 _name = p0!;
-                _handleFilter(ref);
+                _handleFilter();
               },
             ),
           ],
@@ -44,29 +56,41 @@ class Filter extends ConsumerWidget {
             hintText: 'Select tutor nationality',
             callback: (p0) {
               _nationality = _nationalities.indexOf(p0!);
-              _handleFilter(ref);
+              _handleFilter();
             }),
-        const SizedBox(
-          height: 8,
-        ),
-        const Text(
-          "Select available tutoring time:",
-          style: CommonTextStyle.bodyBlack,
-          textAlign: TextAlign.start,
-        ),
-        const SizedBox(width: 160, child: DatePicker()),
         const SizedBox(
           height: 16,
         ),
-        InputChipList(callback: (list) {
-          _specialities = list!;
-          _handleFilter(ref);
-        })
+        InputChipList(
+          callback: (list) {
+            _specialities = list!;
+            _handleFilter();
+          },
+        ),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () {
+            _handleClear();
+          },
+          child: const Text('Reset filters'),
+        )
       ],
     );
   }
 
-  void _handleFilter(WidgetRef ref) {
+  _handleClear() {
+    if (_name != '' || _specialities.isNotEmpty || _nationality != -1) {
+      setState(() {
+        controller.clear();
+        _name = '';
+        _specialities = [];
+        _nationality = -1;
+      });
+      _handleFilter();
+    }
+  }
+
+  void _handleFilter() {
     ref.read(tutorsProvider.notifier).search(
         _specialities, _name, _nationality == -1 ? null : _nationality == 0);
   }

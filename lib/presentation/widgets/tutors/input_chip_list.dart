@@ -4,6 +4,7 @@ import 'package:tutor_flutter_app/domain/entities/specility_enum.dart';
 class InputChipList extends StatefulWidget {
   const InputChipList({super.key, this.callback});
   final void Function(List<String>?)? callback;
+
   @override
   State<InputChipList> createState() => _InputChipListState();
 }
@@ -54,16 +55,13 @@ class _InputChipListState extends State<InputChipList> {
                 );
               },
             ).toList(),
-          ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                selectedIndices.clear();
-              });
-            },
-            child: const Text('Reset'),
           )
         ]);
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    selectedIndices.clear();
   }
 }

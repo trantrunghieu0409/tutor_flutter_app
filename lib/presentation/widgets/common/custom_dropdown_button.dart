@@ -36,6 +36,12 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   }
 
   @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    selectedValue = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
@@ -44,10 +50,6 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
             widget.hintText!,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.black54,
-            ),
           ),
         ),
         items: widget.items
@@ -57,10 +59,6 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       item,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
                     ),
                   ),
                 ))
@@ -76,7 +74,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             height: 40,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.black12),
+                border: Border.all(color: Colors.black38),
                 color: Colors.white)),
         dropdownStyleData: const DropdownStyleData(
           maxHeight: 200,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
@@ -266,8 +265,8 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                                       color: Colors.green,
                                       size: 64,
                                     )
-                                  : const FaIcon(
-                                      FontAwesomeIcons.cancel,
+                                  : const Icon(
+                                      Icons.cancel_outlined,
                                       color: Colors.red,
                                       size: 64,
                                     ),
