@@ -10,7 +10,7 @@ class TutorEntity {
   TutorEntity(
       {this.level,
       required this.email,
-      this.avatar,
+      required this.avatar,
       required this.name,
       this.country,
       this.phone,

@@ -15,6 +15,7 @@ class LettutorConfig {
 
   // history - path
   static String getHistory = 'booking/list/student';
+  static String getTotalLessonTime = 'call/total';
 
   // hard-coded value for authorization
   static String token =

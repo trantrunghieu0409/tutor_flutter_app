@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 class ButtonIconOutline extends StatelessWidget {
   const ButtonIconOutline(
-      {super.key, required this.labelText, required this.icon});
+      {super.key, required this.labelText, required this.icon, this.callback});
   final String labelText;
   final Widget icon;
+  final void Function()? callback;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: () {},
+      onPressed: callback,
       icon: icon,
       label: Text(labelText),
       style: ButtonStyle(

@@ -17,4 +17,12 @@ class HistoryRepository {
 
     return resp;
   }
+
+  Future<int> getTotalLessonTime() async {
+    var token = await _accountLocalDatasource.getToken();
+    var resp =
+        await _historyRemoteDatasource.getTotalLessonTime(token.token);
+
+    return resp;
+  }
 }

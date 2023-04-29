@@ -32,8 +32,6 @@ class HistoryMapperImpl extends HistoryMapper {
       isDeleted: model.isDeleted,
       scheduleDetailInfo: fromScheduleDetailInfo(model.scheduleDetailInfo),
       classReview: model.classReview,
-      showRecordUrl: model.showRecordUrl,
-      studentMaterials: model.studentMaterials.map((e) => e).toList(),
       feedbacks: model.feedbacks.map((e) => e).toList(),
     );
     return historyentity;

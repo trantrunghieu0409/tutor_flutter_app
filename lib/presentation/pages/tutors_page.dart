@@ -4,7 +4,7 @@ import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/common_scaffold.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/filter.dart';
-import 'package:tutor_flutter_app/presentation/widgets/tutors/header.dart';
+import 'package:tutor_flutter_app/presentation/widgets/tutors/upcoming_lesson.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/tutor_list.dart';
 
 class TutorListPage extends ConsumerStatefulWidget {
@@ -24,7 +24,7 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
       child: CommonScaffold(
         child: ListView(
           children: [
-            const Header(),
+            const UpcommingLesson(),
             Container(
               padding: const EdgeInsets.all(32.0),
               child: Column(
@@ -37,7 +37,7 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                   const SizedBox(
                     height: 16,
                   ),
-                  Filter(),
+                  const Filter(),
                   const SizedBox(
                     height: 16,
                   ),

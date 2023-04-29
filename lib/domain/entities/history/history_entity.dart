@@ -23,8 +23,6 @@ class HistoryEntity {
     required this.isDeleted,
     required this.scheduleDetailInfo,
     this.classReview,
-    required this.showRecordUrl,
-    required this.studentMaterials,
     required this.feedbacks,
   });
   late final int createdAtTimeStamp;
@@ -47,13 +45,11 @@ class HistoryEntity {
   late final bool isDeleted;
   late final ScheduleDetailInfoEntity scheduleDetailInfo;
   late final void classReview;
-  late final bool showRecordUrl;
-  late final List<dynamic> studentMaterials;
   late final List<dynamic> feedbacks;
 
   String get tutorId => scheduleDetailInfo.scheduleInfo.tutorId;
 
   TutorInfoEntity get tutorInfo => scheduleDetailInfo.scheduleInfo.tutorInfo;
 
-  DateTime get date => DateTime.parse(scheduleDetailInfo.scheduleInfo.date); 
+  DateTime get date => DateTime.parse(scheduleDetailInfo.scheduleInfo.date);
 }

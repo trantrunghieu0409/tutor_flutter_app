@@ -18,4 +18,11 @@ class HistoryRemoteDatasource {
 
     return HistoryResp.fromJson(data);
   }
+
+  Future<int> getTotalLessonTime(String token) async {
+    final Map<String, dynamic> data = await _httpClient.get(
+        path: LettutorConfig.getTotalLessonTime, auth: true, token: token);
+
+    return data['total'] ?? 0;
+  }
 }

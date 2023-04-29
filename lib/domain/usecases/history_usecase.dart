@@ -29,4 +29,17 @@ class HistoryUsecase {
       return left(FailureEntity(e.toString()));
     }
   }
+
+  Future<Either<FailureEntity, int>> getTotalLessonTime() async {
+    try {
+      var resp = await _historyRepository.getTotalLessonTime();
+
+      return right(resp);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
 }

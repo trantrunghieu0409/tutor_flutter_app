@@ -86,7 +86,7 @@ class Rows {
   late final bool isDeleted;
   late final ScheduleDetailInfo scheduleDetailInfo;
   late final Null classReview;
-  late final bool showRecordUrl;
+  late final bool? showRecordUrl;
   late final List<dynamic> studentMaterials;
   late final List<dynamic> feedbacks;
   
@@ -112,8 +112,8 @@ class Rows {
     scheduleDetailInfo = ScheduleDetailInfo.fromJson(json['scheduleDetailInfo']);
     classReview = null;
     showRecordUrl = json['showRecordUrl'];
-    studentMaterials = List.castFrom<dynamic, dynamic>(json['studentMaterials']);
-    feedbacks = List.castFrom<dynamic, dynamic>(json['feedbacks']);
+    studentMaterials = List.castFrom<dynamic, dynamic>(json['studentMaterials'] ?? []);
+    feedbacks = List.castFrom<dynamic, dynamic>(json['feedbacks'] ?? []);
   }
 
   Map<String, dynamic> toJson() {
