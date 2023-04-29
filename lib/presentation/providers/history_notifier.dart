@@ -18,7 +18,7 @@ class HistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
 
   Future<void> getHistory() async {
     var resp = await _historyUsecase.getHistory(HistoryReq(
-        dateTimeGte: DateTimeUtils.getTimestamp(DateTime.now().toUtc())));
+        dateTimeGte: DateTimeUtils.getTimestamp(DateTime.now())));
 
     state = resp.fold((l) {
       log(l.error);

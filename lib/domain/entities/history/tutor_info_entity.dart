@@ -16,6 +16,7 @@ class TutorInfoEntity {
     required this.isPhoneAuthActivated,
     required this.canSendMessage,
     required this.isPublicRecord,
+    this.studentRequest
   });
   late final String id;
   late final String level;
@@ -31,6 +32,8 @@ class TutorInfoEntity {
   late final bool isPhoneAuthActivated;
   late final bool canSendMessage;
   late final bool isPublicRecord;
+  final String? studentRequest;
+
 
   Image getAvatar() {
     return Image.network(avatar);

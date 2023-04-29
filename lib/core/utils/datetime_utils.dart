@@ -18,7 +18,7 @@ class DateTimeUtils {
   }
 
   static int getTimestamp(DateTime dateTime) {
-    return (dateTime.microsecondsSinceEpoch / 1000).round();
+    return (dateTime.toUtc().microsecondsSinceEpoch / 1000).round();
   }
 
   static String formatTimeRange(int startTimestamp, int endTimestamp) {

@@ -17,7 +17,8 @@ class TutorHistoryEntity {
 
   String getCurrentMeeting() {
     int index = scheduleHitories.indexWhere((element) =>
-        element.startTimestamp < DateTimeUtils.getTimestamp(DateTime.now()));
+        element.startTimestamp <= DateTimeUtils.getTimestamp(DateTime.now()) &&
+        element.endTimestamp >= DateTimeUtils.getTimestamp(DateTime.now()));
 
     if (index == -1) return "";
     return histories[index].studentMeetingLink;

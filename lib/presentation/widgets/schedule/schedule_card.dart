@@ -4,22 +4,17 @@ import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.d
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
+import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 import 'package:tutor_flutter_app/core/utils/meeting_utils.dart';
 import 'package:tutor_flutter_app/presentation/pages/meeting_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/schedule/session_list.dart';
 
 class ScheduleCard extends StatelessWidget {
-  const ScheduleCard(
-      {super.key,
-      required this.tutor,
-      required this.time,
-      this.showMeetingLink = false});
+  const ScheduleCard({super.key, required this.tutor, required this.time});
 
   final TutorHistoryEntity tutor;
   final DateTime time;
-
-  final bool showMeetingLink;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +31,7 @@ class ScheduleCard extends StatelessWidget {
             style: CommonTextStyle.h2Black,
           ),
           Text(
-            "${tutor.scheduleHitories.length} consecutives lesson",
+            "${tutor.scheduleHitories.length} consecutive(s) lesson",
             style: CommonTextStyle.bodyBlack,
           ),
           const SizedBox(
@@ -49,18 +44,37 @@ class ScheduleCard extends StatelessWidget {
           SessionList(
             tutor: tutor,
           ),
-          if (tutor.scheduleHitories.isNotEmpty && showMeetingLink)
-            PrimaryButton(
-              text: "Go to meeting",
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => MeetingPage(
-                            meetingUrl: fetchInstantMeetingUrl(
-                                tutor.getCurrentMeeting()))))
-              },
-            )
+          const SizedBox(
+            height: 16,
+          ),
+          BorderContainer(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Request for lesson",
+                style: CommonTextStyle.h3Black,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                tutor.tutorInfo.studentRequest ?? "No request yet!",
+                style: CommonTextStyle.bodyItalicBlack,
+              )
+            ],
+          )),
+          PrimaryButton(
+            text: "Join meeting",
+            onPressed: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => MeetingPage(
+                          meetingUrl: fetchInstantMeetingUrl(
+                              tutor.getCurrentMeeting()))))
+            },
+          ),
         ]),
       ),
     );

@@ -73,7 +73,7 @@ class Rows {
   late final String scheduleDetailId;
   late final String tutorMeetingLink;
   late final String studentMeetingLink;
-  late final Null studentRequest;
+  late final String? studentRequest;
   late final Null tutorReview;
   late final Null scoreByTutor;
   late final String createdAt;
@@ -98,7 +98,7 @@ class Rows {
     scheduleDetailId = json['scheduleDetailId'];
     tutorMeetingLink = json['tutorMeetingLink'];
     studentMeetingLink = json['studentMeetingLink'];
-    studentRequest = null;
+    studentRequest = json['studentMeetingLink'];
     tutorReview = null;
     scoreByTutor = null;
     createdAt = json['createdAt'];
