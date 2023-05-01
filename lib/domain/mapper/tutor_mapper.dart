@@ -10,5 +10,6 @@ part 'tutor_mapper.mapper.g.dart';
 abstract class TutorMapper {
   TutorEntity fromModel(Rows model);
   FeedbackEntity fromFeedback(Feedbacks feedback);
-  FirstInfoEntity fromFirstInfo(FirstInfo firstInfo);
+  InfoEntity fromFirstInfo(FirstInfo firstInfo);
+  InfoEntity fromSecondInfo(SecondInfo secondInfo);
 }

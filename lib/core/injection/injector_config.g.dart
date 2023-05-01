@@ -20,7 +20,9 @@ class _$InjectorConfig extends InjectorConfig {
     container
       ..registerSingleton((c) => AccountUsecase(c<AccountRepository>()))
       ..registerSingleton((c) => TutorUsecase(c<TutorRepository>()))
-      ..registerSingleton((c) => HistoryUsecase(c<HistoryRepository>()));
+      ..registerSingleton((c) => HistoryUsecase(c<HistoryRepository>()))
+      ..registerSingleton(
+          (c) => PastHistoryUsecase(c<PastHistoryRepository>()));
   }
 
   @override
@@ -32,7 +34,9 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => TutorRepository(
           c<TutorRemoteDatasource>(), c<AccountLocalDatasource>()))
       ..registerSingleton((c) => HistoryRepository(
-          c<HistoryRemoteDatasource>(), c<AccountLocalDatasource>()));
+          c<HistoryRemoteDatasource>(), c<AccountLocalDatasource>()))
+      ..registerSingleton((c) => PastHistoryRepository(
+          c<PastHistoryRemoteDatasource>(), c<AccountLocalDatasource>()));
   }
 
   @override
@@ -41,7 +45,8 @@ class _$InjectorConfig extends InjectorConfig {
     container
       ..registerSingleton((c) => AccountRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => TutorRemoteDatasource(c<HttpClient>()))
-      ..registerSingleton((c) => HistoryRemoteDatasource(c<HttpClient>()));
+      ..registerSingleton((c) => HistoryRemoteDatasource(c<HttpClient>()))
+      ..registerSingleton((c) => PastHistoryRemoteDatasource(c<HttpClient>()));
   }
 
   @override

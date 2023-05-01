@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart';
+import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
+import 'package:tutor_flutter_app/domain/entities/history/past_history_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
@@ -10,7 +11,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_but
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key, required this.tutor, required this.time});
 
-  final TutorInfoEntity tutor;
+  final PastHistoryEntity tutor;
   final DateTime time;
 
   @override
@@ -27,34 +28,58 @@ class HistoryCard extends StatelessWidget {
             dateFormatted,
             style: CommonTextStyle.h2Black,
           ),
-          const Text(
-            "13 hours ago",
+          Text(
+            DateTimeUtils.formatTimeAgo(time: DateTime.parse(tutor.startTime)),
             style: CommonTextStyle.bodyBlack,
           ),
           const SizedBox(
             height: 16,
           ),
-          AvatarInfo(tutor: tutor),
+          AvatarInfo(tutor: tutor.tutorInfo),
           const SizedBox(
             height: 16,
           ),
-          const BorderContainer(
+          BorderContainer(
               child: Text(
-            "Lesson Time: 08:00 - 08:25",
+            "Lesson Time: ${DateTimeUtils.formatTimeRangeDateTime(DateTime.parse(tutor.startTime), DateTime.parse(tutor.endTime))}",
             style: CommonTextStyle.h3Black,
           )),
           const SizedBox(
             height: 16,
           ),
-          const BorderContainer(
-              child: Text(
-            "No request for lesson",
-            style: CommonTextStyle.bodyBlack,
+          BorderContainer(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Request for lesson",
+                style: CommonTextStyle.h3Black,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                tutor.tutorInfo.studentRequest ?? "No request yet!",
+                style: CommonTextStyle.bodyItalicBlack,
+              )
+            ],
           )),
-          const BorderContainer(
-              child: Text(
-            "Tutor haven't reviewed yet",
-            style: CommonTextStyle.bodyBlack,
+          BorderContainer(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "Reviews",
+                style: CommonTextStyle.h3Black,
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "Tutor haven't reviewed yet",
+                style: CommonTextStyle.bodyItalicBlack,
+              )
+            ],
           )),
           Padding(
             padding:

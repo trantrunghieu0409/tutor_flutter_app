@@ -33,7 +33,6 @@ class TutorMapperImpl extends TutorMapper {
       accent: model.accent,
       targetStudent: model.targetStudent,
       interests: model.interests,
-      languages: model.languages,
       specialties: model.specialties,
       resume: model.resume,
       rating: model.rating,
@@ -61,8 +60,8 @@ class TutorMapperImpl extends TutorMapper {
   }
 
   @override
-  FirstInfoEntity fromFirstInfo(FirstInfo firstInfo) {
-    final firstinfoentity = FirstInfoEntity(
+  InfoEntity fromFirstInfo(FirstInfo firstInfo) {
+    final infoentity = InfoEntity(
       level: firstInfo.level,
       email: firstInfo.email,
       google: firstInfo.google,
@@ -90,6 +89,39 @@ class TutorMapperImpl extends TutorMapper {
       deletedAt: firstInfo.deletedAt,
       studentGroupId: firstInfo.studentGroupId,
     );
-    return firstinfoentity;
+    return infoentity;
+  }
+
+  @override
+  InfoEntity fromSecondInfo(SecondInfo secondInfo) {
+    final infoentity = InfoEntity(
+      level: secondInfo.level,
+      email: secondInfo.email,
+      google: secondInfo.google,
+      facebook: secondInfo.facebook,
+      apple: secondInfo.apple,
+      avatar: secondInfo.avatar,
+      name: secondInfo.name,
+      country: secondInfo.country,
+      phone: secondInfo.phone,
+      language: secondInfo.language,
+      birthday: secondInfo.birthday,
+      requestPassword: secondInfo.requestPassword,
+      isActivated: secondInfo.isActivated,
+      isPhoneActivated: secondInfo.isPhoneActivated,
+      requireNote: secondInfo.requireNote,
+      timezone: secondInfo.timezone,
+      phoneAuth: secondInfo.phoneAuth,
+      isPhoneAuthActivated: secondInfo.isPhoneAuthActivated,
+      studySchedule: secondInfo.studySchedule,
+      canSendMessage: secondInfo.canSendMessage,
+      isPublicRecord: secondInfo.isPublicRecord,
+      caredByStaffId: secondInfo.caredByStaffId,
+      createdAt: secondInfo.createdAt,
+      updatedAt: secondInfo.updatedAt,
+      deletedAt: secondInfo.deletedAt,
+      studentGroupId: secondInfo.studentGroupId,
+    );
+    return infoentity;
   }
 }

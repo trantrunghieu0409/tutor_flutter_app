@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FirstInfoEntity {
-  FirstInfoEntity({
+class InfoEntity {
+  InfoEntity({
     this.level,
     required this.email,
     this.google,

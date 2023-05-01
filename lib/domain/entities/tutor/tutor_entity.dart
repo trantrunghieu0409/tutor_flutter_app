@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/session.dart';
@@ -20,21 +18,20 @@ class TutorEntity {
       required this.isActivated,
       this.timezone,
       required this.id,
-      required this.userId,
-      required this.video,
-      required this.bio,
-      required this.education,
-      required this.experience,
-      required this.profession,
+      this.userId = "",
+      this.video = "",
+      this.bio = "",
+      this.education = "",
+      this.experience = "",
+      this.profession = "",
       this.accent,
-      required this.targetStudent,
-      required this.interests,
-      required this.languages,
-      required this.specialties,
+      this.targetStudent = "",
+      this.interests = "",
+      this.specialties = "",
       this.resume,
       this.rating,
-      required this.price,
-      required this.isOnline,
+      this.price = 0,
+      this.isOnline = false,
       required this.feedbacks});
   late final String? level;
   late final String email;
@@ -69,7 +66,6 @@ class TutorEntity {
   bool isFavorite = false;
 
   Image getAvatar() {
-    log(avatar ?? "...");
     return avatar != null
         ? Image.network(avatar!)
         : Image.asset(ImageUtils.defaultImagePath);

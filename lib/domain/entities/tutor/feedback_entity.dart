@@ -10,7 +10,7 @@ class FeedbackEntity {
     required this.content,
     required this.createdAt,
     required this.updatedAt,
-    required this.firstInfo,
+    this.firstInfo,
   });
   late final String id;
   late final String? bookingId;
@@ -20,5 +20,5 @@ class FeedbackEntity {
   late final String content;
   late final String createdAt;
   late final String updatedAt;
-  late final FirstInfoEntity firstInfo;
+  late final InfoEntity? firstInfo;
 }

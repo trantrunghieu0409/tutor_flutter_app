@@ -11,7 +11,7 @@ class FeedbackRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirstInfoEntity firstInfo = feedback.firstInfo;
+    final InfoEntity firstInfo = feedback.firstInfo!;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
