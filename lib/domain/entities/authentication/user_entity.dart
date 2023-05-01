@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/learn_topic_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/wallet_info_entity.dart';
 
 class UserEntity {
-  UserEntity ({
+  UserEntity({
     required this.id,
     required this.email,
     required this.name,
@@ -10,7 +12,7 @@ class UserEntity {
     required this.country,
     required this.phone,
     required this.roles,
-     this.language,
+    this.language,
     required this.birthday,
     required this.isActivated,
     required this.walletInfo,
@@ -21,7 +23,7 @@ class UserEntity {
     required this.testPreparations,
     required this.isPhoneActivated,
     required this.timezone,
-     this.studySchedule,
+    this.studySchedule,
     required this.canSendMessage,
   });
   late final String id;
@@ -44,6 +46,12 @@ class UserEntity {
   late final int timezone;
   late final String? studySchedule;
   late final bool canSendMessage;
-  
 
+  Image getAvatar() {
+    try {
+      return Image.network(avatar);
+    } catch (e) {
+      return Image.asset(ImageUtils.defaultImagePath);
+    }
+  }
 }

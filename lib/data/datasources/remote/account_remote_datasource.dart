@@ -19,9 +19,9 @@ class AccountRemoteDatasource {
     return LoginResp.fromJson(data);
   }
 
-  Future<UserInfoResp> getUserInfo() async {
+  Future<UserInfoResp> getUserInfo(String token) async {
     final Map<String, dynamic> data = await _httpClient.get(
-        path: LettutorConfig.getUserInfo);
+        path: LettutorConfig.getUserInfo, auth: true, token: token);
 
     return UserInfoResp.fromJson(data);
   }

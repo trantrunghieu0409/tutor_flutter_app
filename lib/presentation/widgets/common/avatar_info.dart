@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/chatgpt/src/presentation/pages/main_chat_page.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
@@ -45,8 +46,13 @@ class AvatarInfo extends StatelessWidget {
               ),
             ],
           ),
-          const ButtonIconOutline(
-              labelText: "Inbox", icon: Icon(Icons.message)),
+          ButtonIconOutline(
+            labelText: "Inbox",
+            icon: const Icon(Icons.message),
+            callback: () {
+              Navigator.pushNamed(context, MainChatPage.routeName);
+            },
+          ),
         ],
       ),
     );

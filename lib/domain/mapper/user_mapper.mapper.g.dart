@@ -49,12 +49,8 @@ class UserMapperImpl extends UserMapper {
   @override
   WalletInfoEntity fromWalletInfo(WalletInfo model) {
     final walletinfoentity = WalletInfoEntity(
-      id: model.id,
-      userId: model.userId,
       amount: model.amount,
       isBlocked: model.isBlocked,
-      createdAt: model.createdAt,
-      updatedAt: model.updatedAt,
       bonus: model.bonus,
     );
     return walletinfoentity;

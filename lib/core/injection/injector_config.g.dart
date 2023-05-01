@@ -8,6 +8,13 @@ part of 'injector_config.dart';
 
 class _$InjectorConfig extends InjectorConfig {
   @override
+  void _configureSettingsController() {
+    final KiwiContainer container = KiwiContainer();
+    container
+        .registerSingleton((c) => SettingsController(c<SettingsRepository>()));
+  }
+
+  @override
   void _configureValidators() {
     final KiwiContainer container = KiwiContainer();
     container
@@ -22,7 +29,9 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => TutorUsecase(c<TutorRepository>()))
       ..registerSingleton((c) => HistoryUsecase(c<HistoryRepository>()))
       ..registerSingleton((c) => PastHistoryUsecase(c<PastHistoryRepository>()))
-      ..registerSingleton((c) => CourseUsecase(c<CourseRepository>()));
+      ..registerSingleton((c) => CourseUsecase(c<CourseRepository>()))
+      ..registerSingleton(
+          (c) => ChatgptUsecase(chatgptRepository: c<ChatgptRepository>()));
   }
 
   @override
@@ -38,7 +47,12 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => PastHistoryRepository(
           c<PastHistoryRemoteDatasource>(), c<AccountLocalDatasource>()))
       ..registerSingleton((c) => CourseRepository(
-          c<CourseRemoteDatasource>(), c<AccountLocalDatasource>()));
+          c<CourseRemoteDatasource>(), c<AccountLocalDatasource>()))
+      ..registerSingleton((c) => SettingsRepository(
+          settingsLocalDatasource: c<SettingLocalDatasource>()))
+      ..registerSingleton((c) => ChatgptRepository(
+          chatgptRemoteDatasource: c<ChatgptRemoteDatasource>(),
+          chatgptLocalDatasource: c<ChatgptLocalDatasource>()));
   }
 
   @override
@@ -49,18 +63,25 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => TutorRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => HistoryRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => PastHistoryRemoteDatasource(c<HttpClient>()))
-      ..registerSingleton((c) => CourseRemoteDatasource(c<HttpClient>()));
+      ..registerSingleton((c) => CourseRemoteDatasource(c<HttpClient>()))
+      ..registerSingleton(
+          (c) => ChatgptRemoteDatasource(httpClient: c<ChatGptHttpClient>()));
   }
 
   @override
   void _configureLocalDataSources() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton((c) => AccountLocalDatasource());
+    container
+      ..registerSingleton((c) => AccountLocalDatasource())
+      ..registerSingleton((c) => SettingLocalDatasource())
+      ..registerSingleton((c) => ChatgptLocalDatasource());
   }
 
   @override
   void _configureCommon() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton((c) => HttpClient.setLetTutorHost());
+    container
+      ..registerSingleton((c) => HttpClient.setLetTutorHost())
+      ..registerSingleton((c) => ChatGptHttpClient.setChatgptAPIhost());
   }
 }

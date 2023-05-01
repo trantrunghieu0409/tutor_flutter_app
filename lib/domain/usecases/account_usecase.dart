@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
+import 'package:tutor_flutter_app/data/models/response/user_info_resp.dart';
 import 'package:tutor_flutter_app/data/repositories/account_repository.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
@@ -20,7 +21,20 @@ class AccountUsecase {
     try {
       LoginResp resp =
           await _accountRepository.login(email: email, password: password);
-      
+
+      return right(_userMapper.fromUser(resp.user));
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, UserEntity>> getUserInfo() async {
+    try {
+      UserInfoResp resp = await _accountRepository.getUserInfo();
+
       return right(_userMapper.fromUser(resp.user));
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));

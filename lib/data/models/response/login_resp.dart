@@ -75,7 +75,7 @@ class User {
     birthday = json['birthday'];
     isActivated = json['isActivated'];
     walletInfo = WalletInfo.fromJson(json['walletInfo']);
-    courses = List.castFrom<dynamic, dynamic>(json['courses']);
+    courses = List.castFrom<dynamic, dynamic>(json['courses'] ?? []);
     requireNote = json['requireNote'];
     level = json['level'];
     learnTopics = List.from(json['learnTopics']).map((e)=>LearnTopic.fromJson(e)).toList();
@@ -115,40 +115,24 @@ class User {
 
 class WalletInfo {
   WalletInfo({
-    required this.id,
-    required this.userId,
     required this.amount,
     required this.isBlocked,
-    required this.createdAt,
-    required this.updatedAt,
     required this.bonus,
   });
-  late final String id;
-  late final String userId;
   late final String amount;
   late final bool isBlocked;
-  late final String createdAt;
-  late final String updatedAt;
   late final int bonus;
   
   WalletInfo.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    userId = json['userId'];
     amount = json['amount'];
     isBlocked = json['isBlocked'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
     bonus = json['bonus'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['userId'] = userId;
     _data['amount'] = amount;
     _data['isBlocked'] = isBlocked;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
     _data['bonus'] = bonus;
     return _data;
   }

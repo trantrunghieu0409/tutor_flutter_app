@@ -25,9 +25,9 @@ class AccountRepository {
   }
 
   Future<UserInfoResp> getUserInfo() async {
-    var resp = await _accountRemoteDatasource.getUserInfo();
+    var token = await _accountLocalDatasource.getToken();
+    var resp = await _accountRemoteDatasource.getUserInfo(token.token);
 
-    _accountLocalDatasource.getToken();
     return resp;
   }
 }

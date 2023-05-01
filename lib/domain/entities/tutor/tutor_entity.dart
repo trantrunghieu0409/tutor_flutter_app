@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
-import 'package:tutor_flutter_app/domain/entities/session.dart';
 import 'package:tutor_flutter_app/domain/entities/specility_enum.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/feedback_entity.dart';
 
@@ -61,19 +60,15 @@ class TutorEntity {
   late final int? price;
   late final bool? isOnline;
   late final List<FeedbackEntity> feedbacks;
-  // todo: remove
-  late List<Session> sessions;
   bool isFavorite = false;
 
   Image getAvatar() {
-    return avatar != null
-        ? Image.network(avatar!)
-        : Image.asset(ImageUtils.defaultImagePath);
-  }
-
-  removeSession(index) {
-    if (index >= 0 && index < sessions.length) {
-      sessions.removeAt(index);
+    try {
+      return avatar != null
+          ? Image.network(avatar!)
+          : Image.asset(ImageUtils.defaultImagePath);
+    } catch (e) {
+      return Image.asset(ImageUtils.defaultImagePath);
     }
   }
 
