@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/domain/entities/course/topic_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/topic_request.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
@@ -18,21 +19,44 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
 
   Widget? pdfHolder;
 
+  late List<TopicEntity> topics;
+
+  late String courseName;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  bool isHorizontal = true;
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as TopicRequest;
     selectedTopicIndex = selectedTopicIndex ?? args.selectedIndex;
-    var topicList = args.topics;
-
+    topics = args.topics.cast<TopicEntity>();
+    courseName = args.title;
     pdfHolder = PdfHolder(
-        key: UniqueKey(),
-        topicList: topicList,
-        selectedTopicIndex: selectedTopicIndex);
+      key: UniqueKey(),
+      topicList: topics,
+      selectedTopicIndex: selectedTopicIndex,
+      isSwipeHorizontal: isHorizontal,
+    );
 
     onClosePage() => {Navigator.pop(context)};
 
     return Scaffold(
         appBar: PreviousAppBar(callback: onClosePage),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            setState(() {
+              isHorizontal = !isHorizontal;
+            });
+          },
+          backgroundColor: Colors.lightBlue,
+          label: Text(isHorizontal ? "Vertical swipe" : "Horizontal swipe"),
+          icon:
+              Icon(isHorizontal ? Icons.arrow_downward : Icons.compare_arrows),
+        ),
         body: Column(
           children: [
             Card(
@@ -44,11 +68,11 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      args.title,
+                      courseName,
                       style: CommonTextStyle.h2Black,
                     ),
                     TopicDropdown(
-                        topicList: topicList,
+                        topicList: topics,
                         selectedIndex: selectedTopicIndex!,
                         callback: (int? index) {
                           setState(() {

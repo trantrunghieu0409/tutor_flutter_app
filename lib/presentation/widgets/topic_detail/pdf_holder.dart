@@ -2,12 +2,17 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:tutor_flutter_app/domain/entities/topic.dart';
+import 'package:tutor_flutter_app/domain/entities/course/topic_entity.dart';
 
 class PdfHolder extends StatefulWidget {
-  const PdfHolder({super.key, required this.topicList, this.selectedTopicIndex});
-  final List<Topic> topicList;
+  const PdfHolder(
+      {super.key,
+      required this.topicList,
+      this.selectedTopicIndex,
+      this.isSwipeHorizontal = true});
+  final List<TopicEntity> topicList;
   final int? selectedTopicIndex;
+  final bool isSwipeHorizontal;
 
   @override
   State<PdfHolder> createState() => _PdfHolderState();
@@ -15,7 +20,7 @@ class PdfHolder extends StatefulWidget {
 
 class _PdfHolderState extends State<PdfHolder> {
   late int selectedIndex;
-  late List<Topic> topicList;
+  late List<TopicEntity> topicList;
 
   @override
   void initState() {
@@ -28,7 +33,7 @@ class _PdfHolderState extends State<PdfHolder> {
   Widget build(BuildContext context) {
     return PDF(
       enableSwipe: true,
-      swipeHorizontal: true,
+      swipeHorizontal: widget.isSwipeHorizontal,
       autoSpacing: true,
       pageFling: true,
       onError: (error) {
@@ -41,7 +46,7 @@ class _PdfHolderState extends State<PdfHolder> {
         log('page change: $page/$total');
       },
     ).cachedFromUrl(
-      topicList[selectedIndex].pdfUrl,
+      topicList[selectedIndex].nameFile,
       placeholder: (progress) => Center(child: Text('$progress %')),
       errorWidget: (error) => Center(child: Text(error.toString())),
     );

@@ -21,8 +21,8 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => AccountUsecase(c<AccountRepository>()))
       ..registerSingleton((c) => TutorUsecase(c<TutorRepository>()))
       ..registerSingleton((c) => HistoryUsecase(c<HistoryRepository>()))
-      ..registerSingleton(
-          (c) => PastHistoryUsecase(c<PastHistoryRepository>()));
+      ..registerSingleton((c) => PastHistoryUsecase(c<PastHistoryRepository>()))
+      ..registerSingleton((c) => CourseUsecase(c<CourseRepository>()));
   }
 
   @override
@@ -36,7 +36,9 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => HistoryRepository(
           c<HistoryRemoteDatasource>(), c<AccountLocalDatasource>()))
       ..registerSingleton((c) => PastHistoryRepository(
-          c<PastHistoryRemoteDatasource>(), c<AccountLocalDatasource>()));
+          c<PastHistoryRemoteDatasource>(), c<AccountLocalDatasource>()))
+      ..registerSingleton((c) => CourseRepository(
+          c<CourseRemoteDatasource>(), c<AccountLocalDatasource>()));
   }
 
   @override
@@ -46,7 +48,8 @@ class _$InjectorConfig extends InjectorConfig {
       ..registerSingleton((c) => AccountRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => TutorRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => HistoryRemoteDatasource(c<HttpClient>()))
-      ..registerSingleton((c) => PastHistoryRemoteDatasource(c<HttpClient>()));
+      ..registerSingleton((c) => PastHistoryRemoteDatasource(c<HttpClient>()))
+      ..registerSingleton((c) => CourseRemoteDatasource(c<HttpClient>()));
   }
 
   @override

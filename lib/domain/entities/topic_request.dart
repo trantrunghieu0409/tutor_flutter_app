@@ -1,8 +1,8 @@
-import 'package:tutor_flutter_app/domain/entities/topic.dart';
+import 'package:tutor_flutter_app/domain/entities/course/topic_entity.dart';
 
 class TopicRequest {
   String title;
-  List<Topic> topics;
+  List<TopicEntity> topics;
   int selectedIndex;
 
   TopicRequest(

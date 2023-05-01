@@ -7,6 +7,9 @@ class LettutorConfig {
   // authen - path
   static String login = "auth/login";
 
+  // user -path
+  static String getUserInfo = "user/info";
+
   // tutor - path
   static String getAllTutors = 'tutor/more?perPage=10&page=1';
   static String searchTutors = 'tutor/search';
@@ -21,6 +24,10 @@ class LettutorConfig {
 
   // past history - path
   static String getPastHistory = 'call/history';
+
+  // course - path
+  static String getCourses = 'course';
+  static String getEBooks = 'e-book';
 
   // hard-coded value for authorization
   static String token =

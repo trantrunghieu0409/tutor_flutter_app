@@ -2,14 +2,17 @@ import 'package:kiwi/kiwi.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
 import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/account_remote_datasource.dart';
+import 'package:tutor_flutter_app/data/datasources/remote/course_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/history_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/past_history_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/tutor_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/repositories/account_repository.dart';
+import 'package:tutor_flutter_app/data/repositories/course_repository.dart';
 import 'package:tutor_flutter_app/data/repositories/history_repository.dart';
 import 'package:tutor_flutter_app/data/repositories/past_history_repository.dart';
 import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
 import 'package:tutor_flutter_app/domain/usecases/account_usecase.dart';
+import 'package:tutor_flutter_app/domain/usecases/course_usecase.dart';
 import 'package:tutor_flutter_app/domain/usecases/history_usecase.dart';
 import 'package:tutor_flutter_app/domain/usecases/past_history_usecase.dart';
 import 'package:tutor_flutter_app/domain/usecases/tutor_usecase.dart';
@@ -46,6 +49,7 @@ abstract class InjectorConfig {
   @Register.singleton(TutorUsecase)
   @Register.singleton(HistoryUsecase)
   @Register.singleton(PastHistoryUsecase)
+  @Register.singleton(CourseUsecase)
   void _configureUsecases();
 
   // ============ REPOSITORIES ============
@@ -53,6 +57,7 @@ abstract class InjectorConfig {
   @Register.singleton(TutorRepository)
   @Register.singleton(HistoryRepository)
   @Register.singleton(PastHistoryRepository)
+  @Register.singleton(CourseRepository)
   void _configureRepositories();
 
   // ============ REMOTE DATASOURCES ============
@@ -60,6 +65,7 @@ abstract class InjectorConfig {
   @Register.singleton(TutorRemoteDatasource)
   @Register.singleton(HistoryRemoteDatasource)
   @Register.singleton(PastHistoryRemoteDatasource)
+  @Register.singleton(CourseRemoteDatasource)
   void _configureRemoteDataSources();
 
   // ============ LOCAL DATASOURCES ============

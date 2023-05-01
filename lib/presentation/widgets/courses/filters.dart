@@ -7,32 +7,24 @@ class Filters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomDropdownButton(
-              items: const [
-                "Any level",
-                "Beginning",
-                "Intermediate",
-                "Advanced"
-              ],
-              hintText: "Select level",
-            ),
-            CustomDropdownButton(
-              items: const [
-                "Studying abroad",
-                "English Travel",
-                "Business English",
-                "IELTS",
-                "KET",
-                "PET"
-              ],
-              hintText: "Select category",
-            ),
+        CustomDropdownButton(
+          items: const ["Any level", "Beginning", "Intermediate", "Advanced"],
+          hintText: "Select level",
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        CustomDropdownButton(
+          items: const [
+            "Studying abroad",
+            "English Travel",
+            "Business English",
+            "IELTS",
+            "KET",
+            "PET"
           ],
+          hintText: "Select category",
         ),
         const SizedBox(
           height: 16,

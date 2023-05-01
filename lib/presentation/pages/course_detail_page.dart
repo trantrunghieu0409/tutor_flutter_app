@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/course.dart';
-import 'package:tutor_flutter_app/domain/entities/course_detail.dart';
+import 'package:tutor_flutter_app/core/utils/image_utils.dart';
+import 'package:tutor_flutter_app/domain/entities/course/course_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/topic_request.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/card_with_picture.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.dart';
@@ -14,10 +14,8 @@ class CourseDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as CourseDetail;
+    final course = ModalRoute.of(context)!.settings.arguments as CourseEntity;
     onClosePage() => {Navigator.pop(context)};
-
-    Course course = args.course;
 
     return Scaffold(
         appBar: PreviousAppBar(
@@ -28,8 +26,8 @@ class CourseDetailPage extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           children: [
             CardWithPicture(
-                cover: course.image,
-                title: course.title,
+                cover: ImageUtils.getImage(course.imageUrl),
+                title: course.name,
                 description: course.description,
                 footer: PrimaryButton(
                     text: "Discover",
@@ -37,11 +35,11 @@ class CourseDetailPage extends StatelessWidget {
                           Navigator.pushNamed(
                               context, TopicDetailPage.routeName,
                               arguments: TopicRequest(
-                                  title: args.course.title,
-                                  topics: args.topics,
+                                  title: course.name,
+                                  topics: course.topics,
                                   selectedIndex: 0))
                         })),
-            DetailSection(courseDetail: args),
+            DetailSection(course: course),
           ],
         ));
   }

@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/domain/entities/course_detail.dart';
+import 'package:tutor_flutter_app/domain/entities/course/course_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/topic_request.dart';
 import 'package:tutor_flutter_app/presentation/pages/topic_detail_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/course_detail/section.dart';
 import 'package:tutor_flutter_app/presentation/widgets/course_detail/text_section.dart';
-import 'package:tutor_flutter_app/presentation/widgets/tutors/tutor_list.dart';
 
 class DetailSection extends StatelessWidget {
-  const DetailSection({super.key, required this.courseDetail});
+  const DetailSection({super.key, required this.course});
 
-  final CourseDetail courseDetail;
+  final CourseEntity course;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class DetailSection extends StatelessWidget {
                 color: Colors.red,
               ),
               title: "Why take this course",
-              description: courseDetail.reason),
+              description: course.reason),
           const SizedBox(
             height: 8,
           ),
@@ -35,7 +34,7 @@ class DetailSection extends StatelessWidget {
                 color: Colors.red,
               ),
               title: "What will you able to do",
-              description: courseDetail.purpose),
+              description: course.purpose),
         ]),
         Section(
           header: "Experience level",
@@ -45,7 +44,7 @@ class DetailSection extends StatelessWidget {
                   FontAwesomeIcons.userGraduate,
                   color: Colors.blue,
                 ),
-                title: courseDetail.course.level)
+                title: course.getLevel())
           ],
         ),
         Section(
@@ -56,20 +55,20 @@ class DetailSection extends StatelessWidget {
                   FontAwesomeIcons.book,
                   color: Colors.blue,
                 ),
-                title: "${courseDetail.topics.length} topics"),
+                title: "${course.topics.length} topics"),
           ],
         ),
         Section(header: "List Topics", children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: List<Widget>.generate(
-                courseDetail.topics.length,
+                course.topics.length,
                 (index) => InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, TopicDetailPage.routeName,
                             arguments: TopicRequest(
-                                title: courseDetail.course.title,
-                                topics: courseDetail.topics,
+                                title: course.name,
+                                topics: course.topics,
                                 selectedIndex: index));
                       },
                       child: Container(
@@ -79,21 +78,21 @@ class DetailSection extends StatelessWidget {
                             color: CommonColor.lightBlue,
                             borderRadius: BorderRadius.all(Radius.circular(8))),
                         child: Text(
-                          "${index + 1}. ${courseDetail.topics[index].name}",
+                          "${index + 1}. ${course.topics[index].name}",
                           style: CommonTextStyle.h3Black,
                         ),
                       ),
                     )),
           )
         ]),
-        Section(
-          header: "Suggested Tutors",
-          children: [
-            TutorList(
-              tutorList: courseDetail.suggestedTutors,
-            )
-          ],
-        ),
+        // Section(
+        //   header: "Suggested Tutors",
+        //   children: [
+        //     TutorList(
+        //       tutorList: course.suggestedTutors,
+        //     )
+        //   ],
+        // ),
       ],
     );
   }

@@ -1,5 +1,5 @@
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
-import 'package:tutor_flutter_app/domain/entities/failure_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/usecases/account_usecase.dart';
 
 class AutheticationValidator {

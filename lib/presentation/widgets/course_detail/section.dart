@@ -14,7 +14,7 @@ class Section extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
               header,
               style: CommonTextStyle.h1Black,

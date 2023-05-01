@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
-import 'package:tutor_flutter_app/domain/entities/failure_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/booking_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutors_result.dart';

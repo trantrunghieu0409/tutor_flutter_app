@@ -4,7 +4,7 @@ import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
 import 'package:tutor_flutter_app/data/repositories/account_repository.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
-import 'package:tutor_flutter_app/domain/entities/failure_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/mapper/user_mapper.dart';
 import 'package:dartz/dartz.dart';
 

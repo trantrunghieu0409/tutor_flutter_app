@@ -1,6 +1,7 @@
 import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/account_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
+import 'package:tutor_flutter_app/data/models/response/user_info_resp.dart';
 import 'package:tutor_flutter_app/domain/mapper/token_mapper.dart';
 
 class AccountRepository {
@@ -20,6 +21,13 @@ class AccountRepository {
     _accountLocalDatasource
         .saveToken(_mapper.fromAccessModel(resp.tokens.access));
 
+    return resp;
+  }
+
+  Future<UserInfoResp> getUserInfo() async {
+    var resp = await _accountRemoteDatasource.getUserInfo();
+
+    _accountLocalDatasource.getToken();
     return resp;
   }
 }
