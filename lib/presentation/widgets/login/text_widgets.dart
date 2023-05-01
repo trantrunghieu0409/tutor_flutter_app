@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 
 class TextHeader extends StatelessWidget {
   const TextHeader({super.key});
@@ -60,11 +60,12 @@ class TextLink extends StatelessWidget {
   final String link;
   final String text;
 
-  Future<void> _launchUrl() async {
-    Uri url = Uri.parse(link);
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
+  Future<void> _launchUrl(BuildContext context) async {
+    Navigator.pushNamed(context, RegisterPage.routeName);
+    // Uri url = Uri.parse(link);
+    // if (!await launchUrl(url)) {
+    //   throw Exception('Could not launch $url');
+    // }
   }
 
   @override
@@ -78,6 +79,6 @@ class TextLink extends StatelessWidget {
               decoration: TextDecoration.underline,
               color: Colors.blue),
         ),
-        onTap: () => _launchUrl());
+        onTap: () => _launchUrl(context));
   }
 }

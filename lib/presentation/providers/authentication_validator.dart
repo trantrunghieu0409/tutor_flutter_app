@@ -7,18 +7,23 @@ class AutheticationValidator {
 
   AutheticationValidator(this._accountUsecase);
 
-  UserEntity? user;
+  UserEntity? _user;
   bool _isAuthenticated = false;
   FailureEntity? failure;
 
   Future<bool> login(String email, String password) async {
     var resp = await _accountUsecase.login(email, password);
-    resp.fold((l) => {failure = l}, (r) => user = r);
+    resp.fold((l) => {failure = l}, (r) => _user = r);
     _isAuthenticated = resp.isRight();
     return isAuthenticated;
   }
 
+  Future<bool> register(String email, String password) {
+    return Future.delayed(const Duration(seconds: 1), () => false);
+  }
+
   bool get isAuthenticated => _isAuthenticated;
+  UserEntity? get user => _user;
 
   void logOut() {
     _isAuthenticated = false;

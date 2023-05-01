@@ -4,7 +4,6 @@ import 'package:tutor_flutter_app/domain/entities/history/past_history_entity.da
 import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/feedback_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/first_info_entity.dart';
-import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 
 part 'past_history_mapper.mapper.g.dart';
 

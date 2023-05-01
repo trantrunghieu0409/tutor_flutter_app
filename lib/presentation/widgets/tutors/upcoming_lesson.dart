@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
-import 'package:tutor_flutter_app/core/utils/meeting_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
 import 'package:tutor_flutter_app/presentation/pages/meeting_page.dart';
@@ -66,8 +65,10 @@ class _UpcommingLessonState extends ConsumerState<UpcommingLesson> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => MeetingPage(
-                                  meetingUrl:
-                                      fetchInstantMeetingUrl(meetingLink))));
+                                  tutorInfo: tutors.first.tutorInfo,
+                                  startTimestamp: schedule.startTimestamp,
+                                  endTimestamp: schedule.endTimestamp,
+                                  meetingUrl: meetingLink)));
                     })
               ],
             ),

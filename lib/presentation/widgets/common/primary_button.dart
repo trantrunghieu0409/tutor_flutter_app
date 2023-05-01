@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({super.key, required this.text, required this.onPressed});
+  const PrimaryButton({super.key, required this.text, required this.onPressed, this.backgroundColor = Colors.blue});
   final String text;
+  final Color backgroundColor;
   final void Function()? onPressed;
 
   @override
@@ -11,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: Colors.blue,
+            backgroundColor: backgroundColor,
             minimumSize: const Size.fromHeight(48)),
         child: Text(
           text,

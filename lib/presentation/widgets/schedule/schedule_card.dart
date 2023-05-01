@@ -6,7 +6,6 @@ import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
-import 'package:tutor_flutter_app/core/utils/meeting_utils.dart';
 import 'package:tutor_flutter_app/presentation/pages/meeting_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/schedule/session_list.dart';
 
@@ -71,8 +70,10 @@ class ScheduleCard extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (_) => MeetingPage(
-                          meetingUrl: fetchInstantMeetingUrl(
-                              tutor.getCurrentMeeting()))))
+                          tutorInfo: tutor.tutorInfo,
+                          startTimestamp: tutor.startTimestamp,
+                          endTimestamp: tutor.endTimestamp,
+                          meetingUrl: tutor.getCurrentMeeting())))
             },
           ),
         ]),

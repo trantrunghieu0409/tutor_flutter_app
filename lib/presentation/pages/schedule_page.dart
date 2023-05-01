@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
 import 'package:tutor_flutter_app/presentation/providers/history_notifier.dart';
-import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/common_scaffold.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/empty_widget.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/page_introduction.dart';

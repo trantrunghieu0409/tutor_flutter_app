@@ -32,7 +32,7 @@ class HistoryEntity {
   late final String scheduleDetailId;
   late final String tutorMeetingLink;
   late final String studentMeetingLink;
-  late final void studentRequest;
+  late final String? studentRequest;
   late final void tutorReview;
   late final void scoreByTutor;
   late final String createdAt;
