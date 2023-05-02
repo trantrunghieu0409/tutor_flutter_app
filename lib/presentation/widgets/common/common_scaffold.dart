@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/common_appbar.dart';
-import 'package:tutor_flutter_app/presentation/widgets/common_drawer.dart';
+import 'package:tutor_flutter_app/presentation/widgets/common/common_drawer.dart';
 
 class CommonScaffold extends StatelessWidget {
   CommonScaffold({super.key, required this.child});

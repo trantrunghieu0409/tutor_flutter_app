@@ -24,6 +24,19 @@ class AccountRemoteDatasource {
     return LoginResp.fromJson(data);
   }
 
+  Future<void> register(
+      {required String email, required String password}) async {
+    await _httpClient.post(
+        path: LettutorConfig.register,
+        body: jsonEncode({"email": email, "password": password}));
+  }
+
+  Future<void> forgotPassword(String email) async {
+    await _httpClient.post(
+        path: LettutorConfig.forgotPassword,
+        body: jsonEncode({"email": email}));
+  }
+
   Future<UserInfoResp> getUserInfo(String token) async {
     final Map<String, dynamic> data = await _httpClient.get(
         path: LettutorConfig.getUserInfo, auth: true, token: token);

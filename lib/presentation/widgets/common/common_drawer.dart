@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,19 +7,19 @@ import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/presentation/pages/courses_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/history_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/login_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/schedule_page.dart';
-import 'package:tutor_flutter_app/presentation/pages/splash_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 
 class CommonDrawer extends StatelessWidget {
-  CommonDrawer({super.key});
-
-  final AutheticationValidator _autheticationValidator =
-      Injector.resolve<AutheticationValidator>();
+  const CommonDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AutheticationValidator autheticationValidator =
+        Injector.resolve<AutheticationValidator>();
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -77,10 +79,10 @@ class CommonDrawer extends StatelessWidget {
                 text: 'Sign out',
                 icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket)),
             onTap: () {
-              _autheticationValidator.logOut();
+              autheticationValidator.logOut();
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (_) => const SplashPage()),
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
                   (route) => false);
             },
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 
 class TutorInfoEntity {
   TutorInfoEntity({
@@ -36,6 +37,10 @@ class TutorInfoEntity {
 
 
   Image getAvatar() {
-    return Image.network(avatar);
+    return Image.network(avatar,
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              return Image.asset(ImageUtils.defaultImagePath);
+            },);
   }
 }

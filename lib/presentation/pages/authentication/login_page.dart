@@ -51,9 +51,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // todo: delete 2 lines below -> this is for developing
+    // ***********************************
     emailTextController.text = 'phhai@ymail.com'; //"student@lettutor.com";
     // emailTextController.text = "student@lettutor.com";
     passwordTextController.text = '123456';
+    // ***********************************
 
     return isLoading
         ? Scaffold(
@@ -64,41 +67,46 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               ),
             ),
           )
-        : GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            child: Scaffold(
-              body: ListView(
-                padding: const EdgeInsets.all(40),
-                children: [
-                  const TextHeader(),
-                  const TextSubheader(),
-                  InputField(
-                    title: "EMAIL",
-                    placeholder: "Your email",
-                    textController: emailTextController,
-                  ),
-                  InputField(
-                      title: "PASSWORD",
-                      placeholder: "Your password",
-                      isObsecure: true,
-                      textController: passwordTextController),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: PrimaryButton(
-                        text: "LOGIN",
-                        onPressed: () => _handleLogin(context),
-                      )),
-                  const TextLink(
-                    text: "Forget Password?",
-                    link: "https://pub.dev/packages/url_launcher",
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  const Text("Or continue with"),
-                  const RowIcons(),
-                  const Footer(),
-                ],
+        : SafeArea(
+            child: GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: Scaffold(
+                body: ListView(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                  children: [
+                    const TextHeader(text: "MEET YOUR NEW ENGLISH TUTORS"),
+                    const TextSubheader(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    InputField(
+                      title: "EMAIL",
+                      placeholder: "Your email",
+                      textController: emailTextController,
+                    ),
+                    InputField(
+                        title: "PASSWORD",
+                        placeholder: "Your password",
+                        isObsecure: true,
+                        textController: passwordTextController),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: PrimaryButton(
+                          text: "Login",
+                          onPressed: () => _handleLogin(context),
+                        )),
+                    const TextLink(
+                      text: "Forget Password?",
+                      link: "https://pub.dev/packages/url_launcher",
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const RowIcons(),
+                    const Footer(),
+                  ],
+                ),
               ),
             ),
           );

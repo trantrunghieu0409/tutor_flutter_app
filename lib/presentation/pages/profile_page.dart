@@ -141,11 +141,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                   user: user,
                                   callback:
                                       (name, studySchedule, levelValue) async {
-                                    setState(() {
-                                      isLoading = true;
-                                      isEditing = false;
-                                    });
-
                                     Future<bool> isUploadSuccess = ref
                                         .watch(userProvider.notifier)
                                         .uploadAvatar(image);
@@ -162,9 +157,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                     ref
                                         .watch(userProvider.notifier)
                                         .getUserInfo();
-
+                                        
                                     setState(() {
-                                      isLoading = false;
+                                      image = null;
+                                      isEditing = false;
                                     });
                                   },
                                 )),

@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -52,11 +51,13 @@ class UserEntity {
   });
 
   Image getAvatar() {
-    try {
-      return Image.network(avatar);
-    } catch (e) {
-      return Image.asset(ImageUtils.defaultImagePath);
-    }
+    return Image.network(
+      avatar,
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace? stackTrace) {
+        return Image.asset(ImageUtils.defaultImagePath);
+      },
+    );
   }
 
   UserEntity copyWith({
@@ -113,51 +114,50 @@ class UserEntity {
   @override
   bool operator ==(covariant UserEntity other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.email == email &&
-      other.name == name &&
-      other.avatar == avatar &&
-      other.country == country &&
-      other.phone == phone &&
-      other.roles == roles &&
-      other.language == language &&
-      other.birthday == birthday &&
-      other.isActivated == isActivated &&
-      other.walletInfo == walletInfo &&
-      other.courses == courses &&
-      other.requireNote == requireNote &&
-      other.level == level &&
-      other.learnTopics == learnTopics &&
-      other.testPreparations == testPreparations &&
-      other.isPhoneActivated == isPhoneActivated &&
-      other.timezone == timezone &&
-      other.studySchedule == studySchedule &&
-      other.canSendMessage == canSendMessage;
+
+    return other.id == id &&
+        other.email == email &&
+        other.name == name &&
+        other.avatar == avatar &&
+        other.country == country &&
+        other.phone == phone &&
+        other.roles == roles &&
+        other.language == language &&
+        other.birthday == birthday &&
+        other.isActivated == isActivated &&
+        other.walletInfo == walletInfo &&
+        other.courses == courses &&
+        other.requireNote == requireNote &&
+        other.level == level &&
+        other.learnTopics == learnTopics &&
+        other.testPreparations == testPreparations &&
+        other.isPhoneActivated == isPhoneActivated &&
+        other.timezone == timezone &&
+        other.studySchedule == studySchedule &&
+        other.canSendMessage == canSendMessage;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      email.hashCode ^
-      name.hashCode ^
-      avatar.hashCode ^
-      country.hashCode ^
-      phone.hashCode ^
-      roles.hashCode ^
-      language.hashCode ^
-      birthday.hashCode ^
-      isActivated.hashCode ^
-      walletInfo.hashCode ^
-      courses.hashCode ^
-      requireNote.hashCode ^
-      level.hashCode ^
-      learnTopics.hashCode ^
-      testPreparations.hashCode ^
-      isPhoneActivated.hashCode ^
-      timezone.hashCode ^
-      studySchedule.hashCode ^
-      canSendMessage.hashCode;
+        email.hashCode ^
+        name.hashCode ^
+        avatar.hashCode ^
+        country.hashCode ^
+        phone.hashCode ^
+        roles.hashCode ^
+        language.hashCode ^
+        birthday.hashCode ^
+        isActivated.hashCode ^
+        walletInfo.hashCode ^
+        courses.hashCode ^
+        requireNote.hashCode ^
+        level.hashCode ^
+        learnTopics.hashCode ^
+        testPreparations.hashCode ^
+        isPhoneActivated.hashCode ^
+        timezone.hashCode ^
+        studySchedule.hashCode ^
+        canSendMessage.hashCode;
   }
 }

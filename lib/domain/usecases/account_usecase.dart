@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:typed_data';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
@@ -33,6 +32,32 @@ class AccountUsecase {
     }
   }
 
+  Future<Either<FailureEntity, bool>> register(
+      String email, String password) async {
+    try {
+      await _accountRepository.register(email: email, password: password);
+
+      return right(true);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, bool>> forgotPassword(String email) async {
+    try {
+      await _accountRepository.forgotPassword(email);
+      return right(true);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
   Future<Either<FailureEntity, UserEntity>> getUserInfo() async {
     try {
       UserInfoResp resp = await _accountRepository.getUserInfo();
@@ -46,9 +71,11 @@ class AccountUsecase {
     }
   }
 
-  Future<Either<FailureEntity, UserEntity>> updateUserInfo(UserEntity user) async {
+  Future<Either<FailureEntity, UserEntity>> updateUserInfo(
+      UserEntity user) async {
     try {
-      UserInfoResp resp = await _accountRepository.updateUserInfo(_userMapper.fromUserEntity(user));
+      UserInfoResp resp = await _accountRepository
+          .updateUserInfo(_userMapper.fromUserEntity(user));
       return right(_userMapper.fromUser(resp.user));
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));
@@ -58,8 +85,8 @@ class AccountUsecase {
     }
   }
 
-   Future<Either<FailureEntity, bool>> uploadAvatar(XFile avatar) async {
-     try {
+  Future<Either<FailureEntity, bool>> uploadAvatar(XFile avatar) async {
+    try {
       bool resp = await _accountRepository.uploadAvatar(avatar);
       return right(true);
     } on ServerException catch (e) {
@@ -68,5 +95,5 @@ class AccountUsecase {
       log(e.toString());
       return left(FailureEntity(e.toString()));
     }
-   }
+  }
 }

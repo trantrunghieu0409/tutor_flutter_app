@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
-import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
+import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/input_field.dart';
@@ -17,7 +17,8 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> with TickerProviderStateMixin {
+class _RegisterPageState extends State<RegisterPage>
+    with TickerProviderStateMixin {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final reTypePasswordTextController = TextEditingController();
@@ -62,22 +63,26 @@ class _RegisterPageState extends State<RegisterPage> with TickerProviderStateMix
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
                 child: Scaffold(
                   body: ListView(
-                    padding: const EdgeInsets.all(40),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 40),
                     children: [
-                      const TextHeader(),
+                      const TextHeader(text: "START TODAY"),
                       const TextSubheader(),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       InputField(
-                        title: "EMAIL",
+                        title: "Email",
                         placeholder: "Your email",
                         textController: emailTextController,
                       ),
                       InputField(
-                          title: "PASSWORD",
+                          title: "Password",
                           placeholder: "Your password",
                           isObsecure: true,
                           textController: passwordTextController),
                       InputField(
-                          title: "RE-TYPE PASSWORD",
+                          title: "Re-type password",
                           placeholder: "Your re-type password",
                           isObsecure: true,
                           textController: reTypePasswordTextController),
@@ -91,15 +96,13 @@ class _RegisterPageState extends State<RegisterPage> with TickerProviderStateMix
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: OutlinedButton(
                               style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: Colors.redAccent,
                                   minimumSize: const Size.fromHeight(48)),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
                               child: const Text(
-                                  "Return to login page") //_handleLogin(context),
-                              )),
+                                "Already have an account",
+                              ))),
                     ],
                   ),
                 ),
@@ -110,6 +113,11 @@ class _RegisterPageState extends State<RegisterPage> with TickerProviderStateMix
     String email = emailTextController.text;
     String password = passwordTextController.text;
     String retypePassword = reTypePasswordTextController.text;
+
+    if (retypePassword != password) {
+      SnackBarHelpers.showSnackBarFail(
+          context, 'Error: Re-type password must match password');
+    }
 
     if (email.isEmpty || password.isEmpty || retypePassword != password) {
       return;
@@ -124,15 +132,11 @@ class _RegisterPageState extends State<RegisterPage> with TickerProviderStateMix
         setState(() {
           isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${autheticationValidator.failure?.error}'),
-          backgroundColor: Colors.red.shade300,
-        ));
+        SnackBarHelpers.showSnackBarFail(
+            context, 'Error: ${autheticationValidator.failure?.error}');
       } else {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (_) => const TutorListPage()),
-            (route) => false);
+        SnackBarHelpers.showSnackBarSuccess(context, 'Register successfully!');
+        Navigator.of(context).pop();
       }
     }
   }

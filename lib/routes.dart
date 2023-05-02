@@ -5,7 +5,7 @@ import 'package:tutor_flutter_app/presentation/pages/authentication/register_pag
 import 'package:tutor_flutter_app/presentation/pages/course_detail_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/courses_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/history_page.dart';
-import 'package:tutor_flutter_app/presentation/pages/login_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/login_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/profile_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/schedule_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/setting_page.dart';

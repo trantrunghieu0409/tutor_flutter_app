@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
-import 'package:tutor_flutter_app/presentation/pages/login_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/login_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 
@@ -42,7 +42,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   }
 
   void initialize() async {
-   if (autheticationValidator.isAuthenticated) {
+    log(autheticationValidator.isAuthenticated.toString());
+    if (autheticationValidator.isAuthenticated) {
       log("Logging success...");
       Navigator.pushAndRemoveUntil(
           context,

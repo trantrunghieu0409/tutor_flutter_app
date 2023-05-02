@@ -26,6 +26,15 @@ class AccountRepository {
     return resp;
   }
 
+  Future<void> register(
+      {required String email, required String password}) async {
+    await _accountRemoteDatasource.register(email: email, password: password);
+  }
+
+  Future<void> forgotPassword(String email) async {
+    await _accountRemoteDatasource.forgotPassword(email);
+  }
+
   Future<UserInfoResp> getUserInfo() async {
     var token = await _accountLocalDatasource.getToken();
     var resp = await _accountRemoteDatasource.getUserInfo(token.token);

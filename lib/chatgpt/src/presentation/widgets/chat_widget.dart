@@ -1,12 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/chatgpt/src/common/utils/image_utils.dart';
 import 'package:tutor_flutter_app/chatgpt/src/domain/entities/message.dart';
 import 'package:tutor_flutter_app/chatgpt/src/presentation/helpers/tts_player.dart';
 import 'package:tutor_flutter_app/chatgpt/src/presentation/widgets/text_widget.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/injection/injector_config.dart';
+import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/common/language.dart';
 import 'package:tutor_flutter_app/presentation/controllers/settings_controller.dart';
 

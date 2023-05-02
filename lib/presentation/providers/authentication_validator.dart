@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/usecases/account_usecase.dart';
@@ -18,8 +20,16 @@ class AutheticationValidator {
     return isAuthenticated;
   }
 
-  Future<bool> register(String email, String password) {
-    return Future.delayed(const Duration(seconds: 1), () => false);
+  Future<bool> register(String email, String password) async {
+    var resp = await _accountUsecase.register(email, password);
+    resp.fold((l) => {failure = l}, (r) => r);
+    return resp.isRight();
+  }
+
+  Future<bool> forgotPassword(String email) async {
+    var resp = await _accountUsecase.forgotPassword(email);
+    resp.fold((l) => {failure = l}, (r) => r);
+    return resp.isRight();
   }
 
   bool get isAuthenticated => _isAuthenticated;
@@ -27,5 +37,6 @@ class AutheticationValidator {
 
   void logOut() {
     _isAuthenticated = false;
+    log("Loggin out: ${_isAuthenticated.toString()}");
   }
 }

@@ -6,6 +6,8 @@ class LettutorConfig {
 
   // authen - path
   static String login = "auth/login";
+  static String register = 'auth/register';
+  static String forgotPassword = 'user/forgotPassword';
 
   // user -path
   static String getUserInfo = "user/info";

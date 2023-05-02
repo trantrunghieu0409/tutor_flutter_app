@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 
 class TextHeader extends StatelessWidget {
-  const TextHeader({super.key});
+  const TextHeader({super.key, required this.text});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Text(
-        "SAY HELLO TO YOUR ENGLISH TUTORS",
-        style: TextStyle(
+        text,
+        style: const TextStyle(
           fontSize: 32.0,
           color: Color.fromRGBO(0, 113, 240, 1.0),
           fontWeight: FontWeight.w700,
         ),
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
         softWrap: true,
       ),
     );
@@ -30,7 +32,7 @@ class TextSubheader extends StatelessWidget {
     return const Text(
       'Become fluent faster through one on one video chat lessons tailored to your goals.',
       style: TextStyle(fontSize: 16.0),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       softWrap: true,
     );
   }
@@ -62,23 +64,21 @@ class TextLink extends StatelessWidget {
 
   Future<void> _launchUrl(BuildContext context) async {
     Navigator.pushNamed(context, RegisterPage.routeName);
-    // Uri url = Uri.parse(link);
-    // if (!await launchUrl(url)) {
-    //   throw Exception('Could not launch $url');
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        focusColor: Colors.blue,
-        child: Text(
-          text,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-              color: Colors.blue),
-        ),
-        onTap: () => _launchUrl(context));
+    return Container(
+      child: InkWell(
+          focusColor: Colors.blue,
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+                color: Colors.blue),
+          ),
+          onTap: () => _launchUrl(context)),
+    );
   }
 }

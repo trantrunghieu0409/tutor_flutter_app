@@ -24,7 +24,7 @@ class InputField extends StatelessWidget {
           child: Text(
             title,
             selectionColor: Colors.black12,
-            style: CommonTextStyle.h2Black,
+            style: CommonTextStyle.h3Black,
             textAlign: TextAlign.left,
           ),
         ),

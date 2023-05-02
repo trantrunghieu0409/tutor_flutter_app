@@ -31,7 +31,9 @@ class _VideoSectionState extends State<VideoSection> {
         if (visibility.visibleFraction == 0 && mounted) {
           _controller.pause(); //pausing  functionality
         } else {
-          _controller.play();
+          try {
+            _controller.play();
+          } catch (e) {}
         }
       },
       child: AspectRatio(
@@ -49,7 +51,7 @@ class _VideoSectionState extends State<VideoSection> {
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 }

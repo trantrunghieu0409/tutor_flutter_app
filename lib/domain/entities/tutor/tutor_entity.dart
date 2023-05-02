@@ -63,13 +63,15 @@ class TutorEntity {
   bool isFavorite = false;
 
   Image getAvatar() {
-    try {
-      return avatar != null
-          ? Image.network(avatar!)
-          : Image.asset(ImageUtils.defaultImagePath);
-    } catch (e) {
-      return Image.asset(ImageUtils.defaultImagePath);
-    }
+    return avatar != null
+        ? Image.network(
+            avatar!,
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              return Image.asset(ImageUtils.defaultImagePath);
+            },
+          )
+        : Image.asset(ImageUtils.defaultImagePath);
   }
 
   int get stars => rating != null ? rating!.round() : 0;
