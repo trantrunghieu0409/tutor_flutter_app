@@ -1,7 +1,8 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
+import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
-import 'package:tutor_flutter_app/data/models/request/update_user_req.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/user_info_resp.dart';
 import 'package:tutor_flutter_app/data/repositories/account_repository.dart';
@@ -56,4 +57,16 @@ class AccountUsecase {
       return left(FailureEntity(e.toString()));
     }
   }
+
+   Future<Either<FailureEntity, bool>> uploadAvatar(XFile avatar) async {
+     try {
+      bool resp = await _accountRepository.uploadAvatar(avatar);
+      return right(true);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+   }
 }

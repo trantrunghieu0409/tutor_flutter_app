@@ -4,6 +4,7 @@ import 'package:tutor_flutter_app/chatgpt/src/data/datasources/local/chatgpt_dat
 import 'package:tutor_flutter_app/chatgpt/src/data/datasources/remote/chatgpt_datasource.dart';
 import 'package:tutor_flutter_app/chatgpt/src/data/repositories/chatgpt_repository.dart';
 import 'package:tutor_flutter_app/chatgpt/src/domain/usescases/chatgpt_usecase.dart';
+import 'package:tutor_flutter_app/core/http/dio_client.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
 import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/local/settings_local_datasource.dart';
@@ -94,5 +95,6 @@ abstract class InjectorConfig {
   // ============ COMMON ============
   @Register.singleton(HttpClient, constructorName: 'setLetTutorHost')
   @Register.singleton(ChatGptHttpClient, constructorName: 'setChatgptAPIhost')
+  @Register.singleton(DioClient, constructorName: 'setLetTutorHost')
   void _configureCommon();
 }

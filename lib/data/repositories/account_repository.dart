@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/data/datasources/local/account_local_datasource.dart';
 import 'package:tutor_flutter_app/data/datasources/remote/account_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/models/request/update_user_req.dart';
@@ -34,8 +35,16 @@ class AccountRepository {
 
   Future<UserInfoResp> updateUserInfo(UpdateUserReq updateUserReq) async {
     var token = await _accountLocalDatasource.getToken();
-    var resp = await _accountRemoteDatasource.updateUserInfo(token.token, updateUserReq);
+    var resp = await _accountRemoteDatasource.updateUserInfo(
+        token.token, updateUserReq);
 
     return resp;
+  }
+
+  Future<bool> uploadAvatar(XFile avatar) async {
+    var token = await _accountLocalDatasource.getToken();
+    await _accountRemoteDatasource.uploadAvatar(token.token, avatar);
+
+    return true;
   }
 }

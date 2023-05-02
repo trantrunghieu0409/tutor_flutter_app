@@ -61,6 +61,7 @@ dependencies:
       ref: master
       path: omni_jitsi_meet
   image_picker: ^0.8.7+4
+  dio: ^5.1.1
 
 dev_dependencies:
   flutter_test:

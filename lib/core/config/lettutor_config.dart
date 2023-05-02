@@ -10,6 +10,7 @@ class LettutorConfig {
   // user -path
   static String getUserInfo = "user/info";
   static String putUserInfo = "user/info";
+  static String uploadAvatar = "user/uploadAvatar";
 
   // tutor - path
   static String getAllTutors = 'tutor/more?perPage=10&page=1';

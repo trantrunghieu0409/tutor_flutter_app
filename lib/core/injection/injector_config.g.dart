@@ -59,7 +59,8 @@ class _$InjectorConfig extends InjectorConfig {
   void _configureRemoteDataSources() {
     final KiwiContainer container = KiwiContainer();
     container
-      ..registerSingleton((c) => AccountRemoteDatasource(c<HttpClient>()))
+      ..registerSingleton(
+          (c) => AccountRemoteDatasource(c<HttpClient>(), c<DioClient>()))
       ..registerSingleton((c) => TutorRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => HistoryRemoteDatasource(c<HttpClient>()))
       ..registerSingleton((c) => PastHistoryRemoteDatasource(c<HttpClient>()))
@@ -82,6 +83,7 @@ class _$InjectorConfig extends InjectorConfig {
     final KiwiContainer container = KiwiContainer();
     container
       ..registerSingleton((c) => HttpClient.setLetTutorHost())
-      ..registerSingleton((c) => ChatGptHttpClient.setChatgptAPIhost());
+      ..registerSingleton((c) => ChatGptHttpClient.setChatgptAPIhost())
+      ..registerSingleton((c) => DioClient.setLetTutorHost());
   }
 }

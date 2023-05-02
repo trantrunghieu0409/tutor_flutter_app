@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
+import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/user_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.dart';
 import 'package:tutor_flutter_app/presentation/widgets/profile/user_editing_widget.dart';
@@ -38,10 +39,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     super.dispose();
   }
 
+  bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     onClosePage() => {Navigator.pop(context)};
-    final isLoading = ref.watch(userProvider.notifier).isLoading;
+    isLoading = ref.watch(userProvider.notifier).isLoading;
     final userEntity = ref.watch(userProvider);
 
     if (userEntity != null) {
@@ -136,13 +139,32 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                 )
                               : UserEditingWidget(
                                   user: user,
-                                  callback: (name, studySchedule, levelValue) {
-                                    ref
+                                  callback:
+                                      (name, studySchedule, levelValue) async {
+                                    setState(() {
+                                      isLoading = true;
+                                      isEditing = false;
+                                    });
+
+                                    Future<bool> isUploadSuccess = ref
+                                        .watch(userProvider.notifier)
+                                        .uploadAvatar(image);
+
+                                    Future<bool> isUpdateInfoSuccess = ref
                                         .watch(userProvider.notifier)
                                         .updateUserInfo(
                                             name, studySchedule, levelValue);
+                                    await isUploadSuccess &&
+                                            await isUpdateInfoSuccess
+                                        ? _onUpdateSuccess()
+                                        : _onUpdateFail();
+
+                                    ref
+                                        .watch(userProvider.notifier)
+                                        .getUserInfo();
+
                                     setState(() {
-                                      isEditing = false;
+                                      isLoading = false;
                                     });
                                   },
                                 )),
@@ -152,6 +174,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
             ),
     );
+  }
+
+  _onUpdateSuccess() {
+    SnackBarHelpers.showSnackBarSuccess(context, 'Update successful!');
+  }
+
+  _onUpdateFail() {
+    SnackBarHelpers.showSnackBarSuccess(context, 'Update fail!');
   }
 
   _previewImage() {
