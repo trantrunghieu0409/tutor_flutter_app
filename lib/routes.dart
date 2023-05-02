@@ -1,6 +1,7 @@
 import 'package:tutor_flutter_app/chatgpt/src/presentation/pages/main_chat_page.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/presentation/controllers/settings_controller.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/forget_password_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/course_detail_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/courses_page.dart';
@@ -16,6 +17,7 @@ import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
 final routes = {
   LoginPage.routeName: (context) => const LoginPage(),
   RegisterPage.routeName: (context) => const RegisterPage(),
+  ForgotPasswordPage.routeName: (context) => const ForgotPasswordPage(),
   ProfilePage.routeName: (context) => const ProfilePage(),
   SettingPage.routeName: (context) =>
       SettingPage(controller: Injector.resolve<SettingsController>()),

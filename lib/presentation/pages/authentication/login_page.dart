@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/forget_password_page.dart';
+import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
@@ -96,15 +98,30 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                           text: "Login",
                           onPressed: () => _handleLogin(context),
                         )),
-                    const TextLink(
+                    TextLink(
                       text: "Forget Password?",
-                      link: "https://pub.dev/packages/url_launcher",
+                      onClick: () {
+                        Navigator.pushNamed(
+                            context, ForgotPasswordPage.routeName);
+                      },
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     const RowIcons(),
-                    const Footer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Not a member yet? "),
+                        TextLink(
+                          text: "Sign up",
+                          onClick: () {
+                            Navigator.pushNamed(
+                                context, RegisterPage.routeName);
+                          },
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),

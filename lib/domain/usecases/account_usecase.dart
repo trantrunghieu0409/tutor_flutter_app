@@ -87,7 +87,7 @@ class AccountUsecase {
 
   Future<Either<FailureEntity, bool>> uploadAvatar(XFile avatar) async {
     try {
-      bool resp = await _accountRepository.uploadAvatar(avatar);
+      await _accountRepository.uploadAvatar(avatar);
       return right(true);
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));

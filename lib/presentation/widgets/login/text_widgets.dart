@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 
 class TextHeader extends StatelessWidget {
   const TextHeader({super.key, required this.text});
@@ -38,47 +37,26 @@ class TextSubheader extends StatelessWidget {
   }
 }
 
-class Footer extends StatelessWidget {
-  const Footer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text("Not a member yet? "),
-        TextLink(
-          text: "Sign up",
-          link:
-              'https://docs.flutter.io/flutter/services/UrlLauncher-class.html',
-        )
-      ],
-    );
-  }
-}
-
 class TextLink extends StatelessWidget {
-  const TextLink({super.key, required this.link, required this.text});
-  final String link;
+  const TextLink({super.key, required this.onClick, required this.text});
   final String text;
 
-  Future<void> _launchUrl(BuildContext context) async {
-    Navigator.pushNamed(context, RegisterPage.routeName);
-  }
+  final void Function() onClick;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: InkWell(
-          focusColor: Colors.blue,
-          child: Text(
-            text,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline,
-                color: Colors.blue),
-          ),
-          onTap: () => _launchUrl(context)),
+    return GestureDetector(
+      onTap: onClick,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text(
+          text,
+          style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              color: Colors.blue),
+        ),
+      ),
     );
   }
 }

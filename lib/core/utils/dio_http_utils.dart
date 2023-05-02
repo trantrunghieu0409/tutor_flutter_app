@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:dio/dio.dart';
 
@@ -25,8 +23,7 @@ class DioHttpUtils {
       default:
         throw ServerException(
           statusCode: response.statusCode ?? 400,
-          message:
-              getErroredResult(response.data),
+          message: getErroredResult(response.data),
         );
     }
   }

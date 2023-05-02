@@ -51,7 +51,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           (route) => false);
     } else {
       log("Logging in...");
-      Navigator.pushNamed(context, LoginPage.routeName);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const LoginPage()),
+          (route) => false);
     }
   }
 
