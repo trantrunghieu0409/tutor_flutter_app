@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 
 class InputField extends StatelessWidget {
   const InputField(
@@ -23,7 +24,7 @@ class InputField extends StatelessWidget {
           child: Text(
             title,
             selectionColor: Colors.black12,
-            style: const TextStyle(fontSize: 16.0),
+            style: CommonTextStyle.h2Black,
             textAlign: TextAlign.left,
           ),
         ),

@@ -5,17 +5,17 @@ class LoginResp {
   });
   late final User user;
   late final Token tokens;
-  
-  LoginResp.fromJson(Map<String, dynamic> json){
+
+  LoginResp.fromJson(Map<String, dynamic> json) {
     user = User.fromJson(json['user']);
     tokens = Token.fromJson(json['tokens']);
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['user'] = user.toJson();
-    _data['tokens'] = tokens.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['user'] = user.toJson();
+    data['tokens'] = tokens.toJson();
+    return data;
   }
 }
 
@@ -28,7 +28,7 @@ class User {
     required this.country,
     required this.phone,
     required this.roles,
-     this.language,
+    this.language,
     required this.birthday,
     required this.isActivated,
     required this.walletInfo,
@@ -39,7 +39,7 @@ class User {
     required this.testPreparations,
     required this.isPhoneActivated,
     required this.timezone,
-     this.studySchedule,
+    this.studySchedule,
     required this.canSendMessage,
   });
   late final String id;
@@ -62,8 +62,8 @@ class User {
   late final int timezone;
   late final String? studySchedule;
   late final bool canSendMessage;
-  
-  User.fromJson(Map<String, dynamic> json){
+
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     email = json['email'];
     name = json['name'];
@@ -78,38 +78,40 @@ class User {
     courses = List.castFrom<dynamic, dynamic>(json['courses'] ?? []);
     requireNote = json['requireNote'];
     level = json['level'];
-    learnTopics = List.from(json['learnTopics']).map((e)=>LearnTopic.fromJson(e)).toList();
-    testPreparations = List.castFrom<dynamic, dynamic>(json['testPreparations']);
+    learnTopics = List.from(json['learnTopics'])
+        .map((e) => LearnTopic.fromJson(e))
+        .toList();
+    testPreparations =
+        List.castFrom<dynamic, dynamic>(json['testPreparations']);
     isPhoneActivated = json['isPhoneActivated'];
     timezone = json['timezone'];
-    studySchedule = null;
+    studySchedule = json['studySchedule'];
     canSendMessage = json['canSendMessage'];
-
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['email'] = email;
-    _data['name'] = name;
-    _data['avatar'] = avatar;
-    _data['country'] = country;
-    _data['phone'] = phone;
-    _data['roles'] = roles;
-    _data['language'] = language;
-    _data['birthday'] = birthday;
-    _data['isActivated'] = isActivated;
-    _data['walletInfo'] = walletInfo.toJson();
-    _data['courses'] = courses;
-    _data['requireNote'] = requireNote;
-    _data['level'] = level;
-    _data['learnTopics'] = learnTopics.map((e)=>e.toJson()).toList();
-    _data['testPreparations'] = testPreparations;
-    _data['isPhoneActivated'] = isPhoneActivated;
-    _data['timezone'] = timezone;
-    _data['studySchedule'] = studySchedule;
-    _data['canSendMessage'] = canSendMessage;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['email'] = email;
+    data['name'] = name;
+    data['avatar'] = avatar;
+    data['country'] = country;
+    data['phone'] = phone;
+    data['roles'] = roles;
+    data['language'] = language;
+    data['birthday'] = birthday;
+    data['isActivated'] = isActivated;
+    data['walletInfo'] = walletInfo.toJson();
+    data['courses'] = courses;
+    data['requireNote'] = requireNote;
+    data['level'] = level;
+    data['learnTopics'] = learnTopics.map((e) => e.toJson()).toList();
+    data['testPreparations'] = testPreparations;
+    data['isPhoneActivated'] = isPhoneActivated;
+    data['timezone'] = timezone;
+    data['studySchedule'] = studySchedule;
+    data['canSendMessage'] = canSendMessage;
+    return data;
   }
 }
 
@@ -122,19 +124,19 @@ class WalletInfo {
   late final String amount;
   late final bool isBlocked;
   late final int bonus;
-  
-  WalletInfo.fromJson(Map<String, dynamic> json){
+
+  WalletInfo.fromJson(Map<String, dynamic> json) {
     amount = json['amount'];
     isBlocked = json['isBlocked'];
     bonus = json['bonus'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['amount'] = amount;
-    _data['isBlocked'] = isBlocked;
-    _data['bonus'] = bonus;
-    return _data;
+    final data = <String, dynamic>{};
+    data['amount'] = amount;
+    data['isBlocked'] = isBlocked;
+    data['bonus'] = bonus;
+    return data;
   }
 }
 
@@ -147,19 +149,19 @@ class LearnTopic {
   late final int id;
   late final String key;
   late final String name;
-  
-  LearnTopic.fromJson(Map<String, dynamic> json){
+
+  LearnTopic.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     key = json['key'];
     name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['key'] = key;
-    _data['name'] = name;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['key'] = key;
+    data['name'] = name;
+    return data;
   }
 }
 
@@ -170,17 +172,17 @@ class Token {
   });
   late final Access access;
   late final Refresh refresh;
-  
-  Token.fromJson(Map<String, dynamic> json){
+
+  Token.fromJson(Map<String, dynamic> json) {
     access = Access.fromJson(json['access']);
     refresh = Refresh.fromJson(json['refresh']);
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['access'] = access.toJson();
-    _data['refresh'] = refresh.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['access'] = access.toJson();
+    data['refresh'] = refresh.toJson();
+    return data;
   }
 }
 
@@ -191,17 +193,17 @@ class Access {
   });
   late final String token;
   late final String expires;
-  
-  Access.fromJson(Map<String, dynamic> json){
+
+  Access.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     expires = json['expires'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['token'] = token;
-    _data['expires'] = expires;
-    return _data;
+    final data = <String, dynamic>{};
+    data['token'] = token;
+    data['expires'] = expires;
+    return data;
   }
 }
 
@@ -212,16 +214,16 @@ class Refresh {
   });
   late final String token;
   late final String expires;
-  
-  Refresh.fromJson(Map<String, dynamic> json){
+
+  Refresh.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     expires = json['expires'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['token'] = token;
-    _data['expires'] = expires;
-    return _data;
+    final data = <String, dynamic>{};
+    data['token'] = token;
+    data['expires'] = expires;
+    return data;
   }
 }

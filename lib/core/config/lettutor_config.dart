@@ -9,6 +9,7 @@ class LettutorConfig {
 
   // user -path
   static String getUserInfo = "user/info";
+  static String putUserInfo = "user/info";
 
   // tutor - path
   static String getAllTutors = 'tutor/more?perPage=10&page=1';

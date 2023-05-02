@@ -55,4 +55,17 @@ class UserMapperImpl extends UserMapper {
     );
     return walletinfoentity;
   }
+
+  @override
+  UpdateUserReq fromUserEntity(UserEntity user) {
+    final updateuserreq = UpdateUserReq(
+      name: user.name,
+      country: user.country,
+      phone: user.phone,
+      birthday: user.birthday,
+      level: user.level,
+      studySchedule: user.studySchedule,
+    );
+    return updateuserreq;
+  }
 }

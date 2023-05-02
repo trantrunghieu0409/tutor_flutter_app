@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutor_flutter_app/chatgpt/src/presentation/pages/main_chat_page.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
@@ -40,7 +41,9 @@ class TutorDetailPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, MainChatPage.routeName);
+        },
         backgroundColor: Colors.lightBlue,
         label: const Text("Chat with me!"),
         icon: const Icon(Icons.message_outlined),

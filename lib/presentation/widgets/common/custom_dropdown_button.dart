@@ -52,7 +52,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
       child: DropdownButton2<String>(
         isExpanded: true,
         hint: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Text(
             widget.hintText!,
           ),

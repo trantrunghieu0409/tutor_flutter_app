@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tutor_flutter_app/presentation/pages/profile_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/setting_page.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,7 +26,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, ProfilePage.routeName);
+            },
             icon: const Icon(
               Icons.person_pin_rounded,
               color: Colors.blue,

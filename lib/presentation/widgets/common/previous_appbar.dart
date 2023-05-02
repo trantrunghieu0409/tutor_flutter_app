@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tutor_flutter_app/presentation/pages/setting_page.dart';
 
 class PreviousAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PreviousAppBar({super.key, this.callback});
@@ -22,6 +23,17 @@ class PreviousAppBar extends StatelessWidget implements PreferredSizeWidget {
         width: 140,
       ),
       backgroundColor: Colors.white,
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.settings,
+            color: Colors.blue,
+          ),
+          onPressed: () {
+            Navigator.restorablePushNamed(context, SettingPage.routeName);
+          },
+        ),
+      ],
     );
   }
 

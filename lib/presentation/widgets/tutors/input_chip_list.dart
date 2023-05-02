@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_flutter_app/domain/entities/specility_enum.dart';
+import 'package:tutor_flutter_app/domain/entities/common/specility_enum.dart';
 
 class InputChipList extends StatefulWidget {
   const InputChipList({super.key, this.callback});

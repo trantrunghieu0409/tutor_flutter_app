@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
-import 'package:tutor_flutter_app/domain/entities/specility_enum.dart';
+import 'package:tutor_flutter_app/domain/entities/common/specility_enum.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/feedback_entity.dart';
 
 class TutorEntity {
