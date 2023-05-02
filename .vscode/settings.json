@@ -1,5 +1,6 @@
 {
     "yaml.schemas": {
         "https://json.schemastore.org/pubspec.json": "file:///d%3A/Year4/AdvancedMobile/tutor_flutter_app/pubspec.yaml"
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

@@ -1,0 +1,16 @@
+{
+  "appTitle": "Voice GPT",
+  "@appTitle": {
+    "description": "Voice Chat GPT"
+  },
+  "language": "Language",
+  "theme": "Theme",
+  "auto_speak": "Auto-speak",
+  "clear_history": "Clear history",
+  "intro_input": "What interests you today?",
+  "listening": "I am listening...",
+  "system_theme": "System Theme",
+  "light_theme": "Light Theme",
+  "dark_theme": "Dark Theme",
+  "settings": "Settings"
+}
