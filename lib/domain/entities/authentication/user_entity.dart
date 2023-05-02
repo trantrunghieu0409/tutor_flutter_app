@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/learn_topic_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/authentication/second_tutor_info_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/wallet_info_entity.dart';
 
 class UserEntity {
@@ -27,6 +28,7 @@ class UserEntity {
   final int? timezone;
   final String? studySchedule;
   final bool canSendMessage;
+  final SecondTutorInfoEntity? tutorInfo;
   UserEntity({
     required this.id,
     required this.email,
@@ -48,6 +50,7 @@ class UserEntity {
     this.timezone,
     this.studySchedule,
     required this.canSendMessage,
+    this.tutorInfo,
   });
 
   Image getAvatar() {

@@ -53,14 +53,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // todo: delete 2 lines below -> this is for developing
-    // ***********************************
-    emailTextController.text =
-        'pexihem710@saeoil.com'; //"student@lettutor.com";
-    // emailTextController.text = "student@lettutor.com";
-    passwordTextController.text = '123456';
-    // ***********************************
-
     return isLoading
         ? Scaffold(
             body: Center(

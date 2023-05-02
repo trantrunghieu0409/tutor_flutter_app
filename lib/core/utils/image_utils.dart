@@ -8,6 +8,7 @@ class ImageUtils {
 
   static String defaultImagePath = "$imagePath/user.png";
   static String resetPasswordPath = "$imagePath/resetpassword.png";
+  static String becomeTutordPath = "$imagePath/becometutor.png";
 
   static String vnFlag = "$imagePath/vn_flag.png";
   static String englishFlag = "$imagePath/english_flag.png";

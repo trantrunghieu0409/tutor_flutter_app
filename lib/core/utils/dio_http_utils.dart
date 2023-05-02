@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:dio/dio.dart';
 
@@ -22,7 +24,7 @@ class DioHttpUtils {
         return null;
       default:
         throw ServerException(
-          statusCode: response.statusCode ?? 400,
+          statusCode: response.statusCode ?? 0,
           message: getErroredResult(response.data),
         );
     }

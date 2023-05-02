@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
+import 'package:tutor_flutter_app/data/models/request/become_tutor_req.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/user_info_resp.dart';
 import 'package:tutor_flutter_app/data/repositories/account_repository.dart';
@@ -88,6 +89,19 @@ class AccountUsecase {
   Future<Either<FailureEntity, bool>> uploadAvatar(XFile avatar) async {
     try {
       await _accountRepository.uploadAvatar(avatar);
+      return right(true);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, bool>> becomeTutor(
+      BecomeTutorReq becomeTutorReq) async {
+    try {
+      await _accountRepository.becomeTutor(becomeTutorReq);
       return right(true);
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));

@@ -9,6 +9,8 @@ class LettutorConfig {
   static String register = 'auth/register';
   static String forgotPassword = 'user/forgotPassword';
 
+  static String becomeTutor = 'tutor/register';
+
   // user -path
   static String getUserInfo = "user/info";
   static String putUserInfo = "user/info";

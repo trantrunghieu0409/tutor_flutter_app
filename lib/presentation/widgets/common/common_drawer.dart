@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
@@ -9,12 +10,13 @@ import 'package:tutor_flutter_app/presentation/pages/authentication/login_page.d
 import 'package:tutor_flutter_app/presentation/pages/schedule_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
+import 'package:tutor_flutter_app/presentation/providers/user_notifier.dart';
 
-class CommonDrawer extends StatelessWidget {
+class CommonDrawer extends ConsumerWidget {
   const CommonDrawer({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final AutheticationValidator autheticationValidator =
         Injector.resolve<AutheticationValidator>();
 
@@ -78,6 +80,7 @@ class CommonDrawer extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket)),
             onTap: () {
               autheticationValidator.logOut();
+              ref.watch(userProvider.notifier).clearState();
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (_) => const LoginPage()),

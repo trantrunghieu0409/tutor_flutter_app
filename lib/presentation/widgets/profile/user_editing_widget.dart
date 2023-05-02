@@ -42,8 +42,9 @@ class _UserEditingWidgetState extends State<UserEditingWidget> {
       ),
     );
 
-    levelValue =
-        LevelEnum.getValue(widget.user.level ?? LevelEnum.BEGINNER.value);
+    levelValue = widget.user.level == null
+        ? null
+        : LevelEnum.getValue(widget.user.level!);
 
     super.initState();
   }

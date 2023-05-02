@@ -62,6 +62,7 @@ class User {
   late final int? timezone;
   late final String? studySchedule;
   late final bool canSendMessage;
+  late final TutorInfo? tutorInfo;
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -87,6 +88,9 @@ class User {
     timezone = json['timezone'];
     studySchedule = json['studySchedule'];
     canSendMessage = json['canSendMessage'];
+    tutorInfo = json['tutorInfo'] != null
+        ? TutorInfo.fromJson(json['tutorInfo'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -111,6 +115,80 @@ class User {
     data['timezone'] = timezone;
     data['studySchedule'] = studySchedule;
     data['canSendMessage'] = canSendMessage;
+    data['tutorInfo'] = tutorInfo != null ? tutorInfo!.toJson() : null;
+    return data;
+  }
+}
+
+class TutorInfo {
+  TutorInfo({
+    required this.id,
+    required this.video,
+    required this.bio,
+    required this.education,
+    this.experience,
+    this.profession,
+    this.accent,
+    this.targetStudent,
+    required this.interests,
+    this.languages,
+    this.specialties,
+    this.resume,
+    required this.rating,
+    required this.isActivated,
+    required this.isNative,
+  });
+  late final String id;
+  late final String video;
+  late final String bio;
+  late final String education;
+  late final String? experience;
+  late final String? profession;
+  late final String? accent;
+  late final String? targetStudent;
+  late final String interests;
+  late final String? languages;
+  late final String? specialties;
+  late final String? resume;
+  late final int rating;
+  late final bool isActivated;
+  late final bool isNative;
+
+  TutorInfo.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    video = json['video'];
+    bio = json['bio'];
+    education = json['education'];
+    experience = null;
+    profession = null;
+    accent = null;
+    targetStudent = null;
+    interests = json['interests'];
+    languages = null;
+    specialties = null;
+    resume = null;
+    rating = json['rating'];
+    isActivated = json['isActivated'];
+    isNative = json['isNative'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['video'] = video;
+    data['bio'] = bio;
+    data['education'] = education;
+    data['experience'] = experience;
+    data['profession'] = profession;
+    data['accent'] = accent;
+    data['targetStudent'] = targetStudent;
+    data['interests'] = interests;
+    data['languages'] = languages;
+    data['specialties'] = specialties;
+    data['resume'] = resume;
+    data['rating'] = rating;
+    data['isActivated'] = isActivated;
+    data['isNative'] = isNative;
     return data;
   }
 }

@@ -7,10 +7,16 @@ class ProfileInputField extends StatelessWidget {
       required this.title,
       required this.placeholder,
       this.isObsecure = false,
-      required this.textController});
+      required this.textController,
+      this.isMultiline = false,
+      this.maxLength = 100});
   final String title;
   final String placeholder;
   final bool isObsecure;
+
+  final bool isMultiline;
+
+  final int maxLength;
 
   final TextEditingController textController;
 
@@ -30,16 +36,31 @@ class ProfileInputField extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          TextField(
-            obscureText: isObsecure,
-            controller: textController,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              isDense: true,
-              labelText: placeholder,
-            ),
-            style: CommonTextStyle.bodyBlack,
-          )
+          if (isMultiline)
+            TextField(
+              maxLength: maxLength,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              obscureText: isObsecure,
+              controller: textController,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                isDense: true,
+                labelText: placeholder,
+              ),
+              style: CommonTextStyle.bodyBlack,
+            )
+          else
+            TextField(
+              obscureText: isObsecure,
+              controller: textController,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                isDense: true,
+                labelText: placeholder,
+              ),
+              style: CommonTextStyle.bodyBlack,
+            )
         ],
       ),
     );

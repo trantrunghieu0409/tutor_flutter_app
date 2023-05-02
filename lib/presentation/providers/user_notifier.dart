@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/data/models/request/become_tutor_req.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/common/level_enum.dart';
 import 'package:tutor_flutter_app/domain/usecases/account_usecase.dart';
@@ -50,6 +51,19 @@ class UserNotifier extends StateNotifier<UserEntity?> {
   }
 
   bool get isLoading => state == null;
+
+  Future<bool> becomeTutor(BecomeTutorReq becomeTutorReq) async {
+    var resp = await _accountUsecase.becomeTutor(becomeTutorReq);
+
+    resp.fold((l) {
+      log(l.error);
+    }, (r) => r);
+    return resp.isRight();
+  }
+
+  void clearState() {
+    state = null;
+  }
 }
 
 final userProvider = StateNotifierProvider<UserNotifier, UserEntity?>((ref) {

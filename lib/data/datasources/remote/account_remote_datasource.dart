@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/http/dio_client.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
+import 'package:tutor_flutter_app/data/models/request/become_tutor_req.dart';
 import 'package:tutor_flutter_app/data/models/request/update_user_req.dart';
 import 'package:tutor_flutter_app/data/models/response/login_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/user_info_resp.dart';
@@ -62,6 +63,26 @@ class AccountRemoteDatasource {
     });
     await _dioClient.post(
         path: LettutorConfig.uploadAvatar,
+        body: formData,
+        auth: true,
+        token: token);
+
+    return true;
+  }
+
+  Future<bool> becomeTutor(String token, BecomeTutorReq becomeTutorReq) async {
+    FormData formData = FormData.fromMap({
+      "name": becomeTutorReq.name,
+      "interests": becomeTutorReq.interests,
+      "education": becomeTutorReq.education,
+      "bio": becomeTutorReq.bio,
+      "price": 50000,
+      if (becomeTutorReq.avatar != null)
+        "avatar": await MultipartFile.fromFile(becomeTutorReq.avatar!.path,
+            filename: becomeTutorReq.avatar!.path.split("/").last),
+    });
+    await _dioClient.post(
+        path: LettutorConfig.becomeTutor,
         body: formData,
         auth: true,
         token: token);

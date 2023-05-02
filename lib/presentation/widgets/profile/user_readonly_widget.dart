@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/common/level_enum.dart';
+import 'package:tutor_flutter_app/presentation/pages/register_tutor_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 
 class UserReadonlyWidget extends StatelessWidget {
@@ -47,11 +48,26 @@ class UserReadonlyWidget extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        PrimaryButton(
-          backgroundColor: Colors.green,
-          onPressed: () {},
-          text: "Become a tutor",
-        ),
+        if (user.tutorInfo != null)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "Tutor info",
+                maxLines: 3,
+                style: CommonTextStyle.h2Black,
+              ),
+              Text("Waiting for approval"),
+            ],
+          )
+        else
+          PrimaryButton(
+            backgroundColor: Colors.blue,
+            onPressed: () {
+              Navigator.pushNamed(context, RegisterTutorPage.routeName);
+            },
+            text: "Become a tutor",
+          ),
       ],
     );
   }

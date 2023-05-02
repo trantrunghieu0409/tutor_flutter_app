@@ -57,115 +57,118 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ? const Center(child: CircularProgressIndicator())
           : GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-              child: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[Colors.blue, Colors.white])),
-                child: ListView(
-                  padding: const EdgeInsets.only(top: 32),
-                  children: [
-                    Center(
-                      child: Stack(children: [
-                        CircleAvatar(
-                          radius: 80,
-                          backgroundImage: _previewImage(),
-                        ),
-                        Positioned(
-                            right: 0,
-                            bottom: 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.white),
-                                  borderRadius: BorderRadius.circular(90.0),
-                                  color: Colors.blue),
-                              child: isEditing
-                                  ? IconButton(
-                                      icon: const Icon(
-                                        Icons.image,
-                                        color: Colors.white,
+              child: RefreshIndicator(
+                onRefresh: _pullRefresh,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: <Color>[Colors.blue, Colors.white])),
+                  child: ListView(
+                    padding: const EdgeInsets.only(top: 32),
+                    children: [
+                      Center(
+                        child: Stack(children: [
+                          CircleAvatar(
+                            radius: 80,
+                            backgroundImage: _previewImage(),
+                          ),
+                          Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 2, color: Colors.white),
+                                    borderRadius: BorderRadius.circular(90.0),
+                                    color: Colors.blue),
+                                child: isEditing
+                                    ? IconButton(
+                                        icon: const Icon(
+                                          Icons.image,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () async {
+                                          image = await picker.pickImage(
+                                              source: ImageSource.gallery);
+                                          setState(() {});
+                                        },
+                                      )
+                                    : IconButton(
+                                        icon: const Icon(
+                                          Icons.edit,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            isEditing = true;
+                                          });
+                                        },
                                       ),
-                                      onPressed: () async {
-                                        image = await picker.pickImage(
-                                            source: ImageSource.gallery);
-                                        setState(() {});
-                                      },
-                                    )
-                                  : IconButton(
-                                      icon: const Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          isEditing = true;
-                                        });
-                                      },
-                                    ),
-                            ))
-                      ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              user.name,
-                              style: CommonTextStyle.h1,
-                            ),
-                            Text(
-                              user.email,
-                              style: CommonTextStyle.body,
-                            ),
-                          ],
+                              ))
+                        ]),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                user.name,
+                                style: CommonTextStyle.h1,
+                              ),
+                              Text(
+                                user.email,
+                                style: CommonTextStyle.body,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(30),
-                              topLeft: Radius.circular(30))),
-                      child: Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          child: !isEditing
-                              ? UserReadonlyWidget(
-                                  user: user,
-                                )
-                              : UserEditingWidget(
-                                  user: user,
-                                  callback:
-                                      (name, studySchedule, levelValue) async {
-                                    Future<bool> isUploadSuccess = ref
-                                        .watch(userProvider.notifier)
-                                        .uploadAvatar(image);
+                      Container(
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(30),
+                                topLeft: Radius.circular(30))),
+                        child: Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: !isEditing
+                                ? UserReadonlyWidget(
+                                    user: user,
+                                  )
+                                : UserEditingWidget(
+                                    user: user,
+                                    callback: (name, studySchedule,
+                                        levelValue) async {
+                                      Future<bool> isUploadSuccess = ref
+                                          .watch(userProvider.notifier)
+                                          .uploadAvatar(image);
 
-                                    Future<bool> isUpdateInfoSuccess = ref
-                                        .watch(userProvider.notifier)
-                                        .updateUserInfo(
-                                            name, studySchedule, levelValue);
-                                    await isUploadSuccess &&
-                                            await isUpdateInfoSuccess
-                                        ? _onUpdateSuccess()
-                                        : _onUpdateFail();
+                                      Future<bool> isUpdateInfoSuccess = ref
+                                          .watch(userProvider.notifier)
+                                          .updateUserInfo(
+                                              name, studySchedule, levelValue);
+                                      await isUploadSuccess &&
+                                              await isUpdateInfoSuccess
+                                          ? _onUpdateSuccess()
+                                          : _onUpdateFail();
 
-                                    ref
-                                        .watch(userProvider.notifier)
-                                        .getUserInfo();
-                                        
-                                    setState(() {
-                                      image = null;
-                                      isEditing = false;
-                                    });
-                                  },
-                                )),
-                    ),
-                  ],
+                                      ref
+                                          .watch(userProvider.notifier)
+                                          .getUserInfo();
+
+                                      setState(() {
+                                        image = null;
+                                        isEditing = false;
+                                      });
+                                    },
+                                  )),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -178,6 +181,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
   _onUpdateFail() {
     SnackBarHelpers.showSnackBarSuccess(context, 'Update fail!');
+  }
+
+  Future<void> _pullRefresh() async {
+    ref.watch(userProvider.notifier).getUserInfo();
   }
 
   _previewImage() {
