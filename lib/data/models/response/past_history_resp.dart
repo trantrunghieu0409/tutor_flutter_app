@@ -5,16 +5,16 @@ class PastHistoryResp {
   });
   late final int count;
   late final List<Rows> rows;
-  
-  PastHistoryResp.fromJson(Map<String, dynamic> json){
+
+  PastHistoryResp.fromJson(Map<String, dynamic> json) {
     count = json['count'];
-    rows = List.from(json['rows']).map((e)=>Rows.fromJson(e)).toList();
+    rows = List.from(json['rows']).map((e) => Rows.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['count'] = count;
-    _data['rows'] = rows.map((e)=>e.toJson()).toList();
+    _data['rows'] = rows.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -24,14 +24,14 @@ class Rows {
     required this.id,
     required this.studentId,
     required this.tutorId,
-     this.videoUrl,
+    this.videoUrl,
     required this.startTime,
     required this.endTime,
     required this.isReviewed,
     required this.isTutorReviewed,
     required this.createdAt,
     required this.updatedAt,
-     this.note,
+    this.note,
     required this.tutorInfo,
     required this.during,
   });
@@ -48,8 +48,8 @@ class Rows {
   late final String? note;
   late final TutorInfo tutorInfo;
   late final String during;
-  
-  Rows.fromJson(Map<String, dynamic> json){
+
+  Rows.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     studentId = json['studentId'];
     tutorId = json['tutorId'];
@@ -89,30 +89,30 @@ class TutorInfo {
     required this.id,
     required this.level,
     required this.email,
-     this.google,
-     this.facebook,
-     this.apple,
+    this.google,
+    this.facebook,
+    this.apple,
     required this.avatar,
     required this.name,
-    required this.country,
+    this.country,
     required this.phone,
     required this.language,
-    required this.birthday,
+    this.birthday,
     required this.requestPassword,
     required this.isActivated,
-     this.isPhoneActivated,
-     this.requireNote,
-    required this.timezone,
-     this.phoneAuth,
+    this.isPhoneActivated,
+    this.requireNote,
+    this.timezone,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
     required this.studySchedule,
     required this.canSendMessage,
     required this.isPublicRecord,
-     this.caredByStaffId,
+    this.caredByStaffId,
     required this.createdAt,
     required this.updatedAt,
-     this.deletedAt,
-     this.studentGroupId,
+    this.deletedAt,
+    this.studentGroupId,
     required this.feedbacks,
   });
   late final String id;
@@ -123,15 +123,15 @@ class TutorInfo {
   late final Null apple;
   late final String avatar;
   late final String name;
-  late final String country;
+  late final String? country;
   late final String phone;
   late final String language;
-  late final String birthday;
+  late final String? birthday;
   late final bool requestPassword;
   late final bool isActivated;
   late final Null isPhoneActivated;
   late final Null requireNote;
-  late final int timezone;
+  late final int? timezone;
   late final Null phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String studySchedule;
@@ -143,8 +143,8 @@ class TutorInfo {
   late final Null deletedAt;
   late final Null studentGroupId;
   late final List<Feedbacks> feedbacks;
-  
-  TutorInfo.fromJson(Map<String, dynamic> json){
+
+  TutorInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     level = json['level'];
     email = json['email'];
@@ -172,7 +172,8 @@ class TutorInfo {
     updatedAt = json['updatedAt'];
     deletedAt = null;
     studentGroupId = null;
-    feedbacks = List.from(json['feedbacks']).map((e)=>Feedbacks.fromJson(e)).toList();
+    feedbacks =
+        List.from(json['feedbacks']).map((e) => Feedbacks.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -204,7 +205,7 @@ class TutorInfo {
     _data['updatedAt'] = updatedAt;
     _data['deletedAt'] = deletedAt;
     _data['studentGroupId'] = studentGroupId;
-    _data['feedbacks'] = feedbacks.map((e)=>e.toJson()).toList();
+    _data['feedbacks'] = feedbacks.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -212,7 +213,7 @@ class TutorInfo {
 class Feedbacks {
   Feedbacks({
     required this.id,
-     this.bookingId,
+    this.bookingId,
     required this.firstId,
     required this.secondId,
     required this.rating,
@@ -230,8 +231,8 @@ class Feedbacks {
   late final String createdAt;
   late final String updatedAt;
   late final SecondInfo secondInfo;
-  
-  Feedbacks.fromJson(Map<String, dynamic> json){
+
+  Feedbacks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     bookingId = null;
     firstId = json['firstId'];
@@ -262,30 +263,30 @@ class SecondInfo {
   SecondInfo({
     required this.level,
     required this.email,
-     this.google,
-     this.facebook,
-     this.apple,
+    this.google,
+    this.facebook,
+    this.apple,
     required this.avatar,
     required this.name,
-    required this.country,
+    this.country,
     required this.phone,
     required this.language,
-    required this.birthday,
+    this.birthday,
     required this.requestPassword,
     required this.isActivated,
-     this.isPhoneActivated,
-     this.requireNote,
-    required this.timezone,
-     this.phoneAuth,
+    this.isPhoneActivated,
+    this.requireNote,
+    this.timezone,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
     required this.studySchedule,
     required this.canSendMessage,
     required this.isPublicRecord,
-     this.caredByStaffId,
+    this.caredByStaffId,
     required this.createdAt,
     required this.updatedAt,
-     this.deletedAt,
-     this.studentGroupId,
+    this.deletedAt,
+    this.studentGroupId,
   });
   late final String level;
   late final String email;
@@ -294,15 +295,15 @@ class SecondInfo {
   late final Null apple;
   late final String avatar;
   late final String name;
-  late final String country;
+  late final String? country;
   late final String phone;
   late final String language;
-  late final String birthday;
+  late final String? birthday;
   late final bool requestPassword;
   late final bool isActivated;
   late final Null isPhoneActivated;
   late final Null requireNote;
-  late final int timezone;
+  late final int? timezone;
   late final Null phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String studySchedule;
@@ -313,8 +314,8 @@ class SecondInfo {
   late final String updatedAt;
   late final Null deletedAt;
   late final Null studentGroupId;
-  
-  SecondInfo.fromJson(Map<String, dynamic> json){
+
+  SecondInfo.fromJson(Map<String, dynamic> json) {
     level = json['level'];
     email = json['email'];
     google = null;

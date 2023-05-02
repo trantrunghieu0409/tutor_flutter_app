@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/common/level_enum.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 
 class UserReadonlyWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class UserReadonlyWidget extends StatelessWidget {
           "Birthday",
           style: CommonTextStyle.h2Black,
         ),
-        Text(user.birthday),
+        Text(user.birthday ?? "No data"),
         const SizedBox(
           height: 16,
         ),
@@ -33,7 +34,7 @@ class UserReadonlyWidget extends StatelessWidget {
           "Level",
           style: CommonTextStyle.h2Black,
         ),
-        Text(user.level),
+        Text(LevelEnum.getValue(user.level ?? "No data")),
         const SizedBox(
           height: 16,
         ),

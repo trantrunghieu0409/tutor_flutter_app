@@ -39,7 +39,7 @@ class AvatarInfo extends StatelessWidget {
                     width: 8,
                   ),
                   NationWithFlag(
-                    nation: tutor.country,
+                    nation: tutor.country ?? "VN",
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ],

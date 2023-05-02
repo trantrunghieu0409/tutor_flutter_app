@@ -42,7 +42,8 @@ class _UserEditingWidgetState extends State<UserEditingWidget> {
       ),
     );
 
-    levelValue = LevelEnum.getValue(widget.user.level);
+    levelValue =
+        LevelEnum.getValue(widget.user.level ?? LevelEnum.BEGINNER.value);
 
     super.initState();
   }
@@ -90,7 +91,9 @@ class _UserEditingWidgetState extends State<UserEditingWidget> {
                 widget.callback!(
                     nameController.text,
                     studyScheduleController.text,
-                    levelValue ?? LevelEnum.getValue(widget.user.level));
+                    levelValue ??
+                        LevelEnum.getValue(
+                            widget.user.level ?? LevelEnum.BEGINNER.value));
               }
             })
       ],

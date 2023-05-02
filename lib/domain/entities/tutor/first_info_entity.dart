@@ -18,7 +18,7 @@ class InfoEntity {
     required this.isActivated,
     this.isPhoneActivated,
     this.requireNote,
-    required this.timezone,
+    this.timezone,
     this.phoneAuth,
     required this.isPhoneAuthActivated,
     this.studySchedule,
@@ -45,7 +45,7 @@ class InfoEntity {
   late final bool isActivated;
   late final bool? isPhoneActivated;
   late final String? requireNote;
-  late final int timezone;
+  late final int? timezone;
   late final String? phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String? studySchedule;
@@ -58,11 +58,13 @@ class InfoEntity {
   late final String? studentGroupId;
 
   Image getAvatar() {
-    return Image.network(avatar,
-            errorBuilder: (BuildContext context, Object exception,
-                StackTrace? stackTrace) {
-              return Image.asset(ImageUtils.defaultImagePath);
-            },);
+    return Image.network(
+      avatar,
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace? stackTrace) {
+        return Image.asset(ImageUtils.defaultImagePath);
+      },
+    );
   }
 
   String getCountry() => country ?? "Unknown";

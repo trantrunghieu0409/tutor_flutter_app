@@ -11,20 +11,20 @@ class UserEntity {
   final String email;
   final String name;
   final String avatar;
-  final String country;
+  final String? country;
   final String phone;
   final List<String> roles;
   final String? language;
-  final String birthday;
+  final String? birthday;
   final bool isActivated;
   final WalletInfoEntity walletInfo;
   final List<dynamic> courses;
-  final String requireNote;
-  final String level;
+  final String? requireNote;
+  final String? level;
   final List<LearnTopicEntity> learnTopics;
   final List<dynamic> testPreparations;
   final bool isPhoneActivated;
-  final int timezone;
+  final int? timezone;
   final String? studySchedule;
   final bool canSendMessage;
   UserEntity({
@@ -32,20 +32,20 @@ class UserEntity {
     required this.email,
     required this.name,
     required this.avatar,
-    required this.country,
+    this.country,
     required this.phone,
     required this.roles,
     this.language,
-    required this.birthday,
+    this.birthday,
     required this.isActivated,
     required this.walletInfo,
     required this.courses,
-    required this.requireNote,
-    required this.level,
+    this.requireNote,
+    this.level,
     required this.learnTopics,
     required this.testPreparations,
     required this.isPhoneActivated,
-    required this.timezone,
+    this.timezone,
     this.studySchedule,
     required this.canSendMessage,
   });

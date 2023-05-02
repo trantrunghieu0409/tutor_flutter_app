@@ -213,7 +213,8 @@ class Rows {
     data['updatedAt'] = updatedAt;
     data['deletedAt'] = deletedAt;
     data['studentGroupId'] = studentGroupId;
-    data['feedbacks'] = feedbacks = feedbacks.map((e) => e.toJson()).cast<Feedbacks>().toList();
+    data['feedbacks'] =
+        feedbacks = feedbacks.map((e) => e.toJson()).cast<Feedbacks>().toList();
     data['id'] = id;
     data['userId'] = userId;
     data['video'] = video;
@@ -301,7 +302,7 @@ class FirstInfo {
     required this.isActivated,
     this.isPhoneActivated,
     this.requireNote,
-    required this.timezone,
+    this.timezone,
     this.phoneAuth,
     required this.isPhoneAuthActivated,
     this.studySchedule,
@@ -328,7 +329,7 @@ class FirstInfo {
   late final bool isActivated;
   late final bool? isPhoneActivated;
   late final String? requireNote;
-  late final int timezone;
+  late final int? timezone;
   late final String? phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String? studySchedule;
@@ -448,15 +449,15 @@ class SecondInfo {
     this.apple,
     required this.avatar,
     required this.name,
-    required this.country,
+    this.country,
     required this.phone,
     this.language,
-    required this.birthday,
+    this.birthday,
     required this.requestPassword,
     required this.isActivated,
     this.isPhoneActivated,
     this.requireNote,
-    required this.timezone,
+    this.timezone,
     this.phoneAuth,
     required this.isPhoneAuthActivated,
     this.studySchedule,
@@ -477,15 +478,15 @@ class SecondInfo {
   late final String? apple;
   late final String avatar;
   late final String name;
-  late final String country;
+  late final String? country;
   late final String phone;
   late final String? language;
-  late final String birthday;
+  late final String? birthday;
   late final bool requestPassword;
   late final bool isActivated;
   late final bool? isPhoneActivated;
   late final String? requireNote;
-  late final int timezone;
+  late final int? timezone;
   late final String? phoneAuth;
   late final bool isPhoneAuthActivated;
   late final String? studySchedule;

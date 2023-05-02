@@ -5,8 +5,8 @@ class HistoryResp {
   });
   late final String message;
   late final Data data;
-  
-  HistoryResp.fromJson(Map<String, dynamic> json){
+
+  HistoryResp.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     data = Data.fromJson(json['data']);
   }
@@ -26,16 +26,16 @@ class Data {
   });
   late final int count;
   late final List<Rows> rows;
-  
-  Data.fromJson(Map<String, dynamic> json){
+
+  Data.fromJson(Map<String, dynamic> json) {
     count = json['count'];
-    rows = List.from(json['rows']).map((e)=>Rows.fromJson(e)).toList();
+    rows = List.from(json['rows']).map((e) => Rows.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['count'] = count;
-    _data['rows'] = rows.map((e)=>e.toJson()).toList();
+    _data['rows'] = rows.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -49,19 +49,19 @@ class Rows {
     required this.scheduleDetailId,
     required this.tutorMeetingLink,
     required this.studentMeetingLink,
-     this.studentRequest,
-     this.tutorReview,
-     this.scoreByTutor,
+    this.studentRequest,
+    this.tutorReview,
+    this.scoreByTutor,
     required this.createdAt,
     required this.updatedAt,
-     this.recordUrl,
-     this.cancelReasonId,
-     this.lessonPlanId,
-     this.cancelNote,
-     this.calendarId,
+    this.recordUrl,
+    this.cancelReasonId,
+    this.lessonPlanId,
+    this.cancelNote,
+    this.calendarId,
     required this.isDeleted,
     required this.scheduleDetailInfo,
-     this.classReview,
+    this.classReview,
     required this.showRecordUrl,
     required this.studentMaterials,
     required this.feedbacks,
@@ -89,8 +89,8 @@ class Rows {
   late final bool? showRecordUrl;
   late final List<dynamic> studentMaterials;
   late final List<dynamic> feedbacks;
-  
-  Rows.fromJson(Map<String, dynamic> json){
+
+  Rows.fromJson(Map<String, dynamic> json) {
     createdAtTimeStamp = json['createdAtTimeStamp'];
     updatedAtTimeStamp = json['updatedAtTimeStamp'];
     id = json['id'];
@@ -109,10 +109,12 @@ class Rows {
     cancelNote = null;
     calendarId = null;
     isDeleted = json['isDeleted'];
-    scheduleDetailInfo = ScheduleDetailInfo.fromJson(json['scheduleDetailInfo']);
+    scheduleDetailInfo =
+        ScheduleDetailInfo.fromJson(json['scheduleDetailInfo']);
     classReview = null;
     showRecordUrl = json['showRecordUrl'];
-    studentMaterials = List.castFrom<dynamic, dynamic>(json['studentMaterials'] ?? []);
+    studentMaterials =
+        List.castFrom<dynamic, dynamic>(json['studentMaterials'] ?? []);
     feedbacks = List.castFrom<dynamic, dynamic>(json['feedbacks'] ?? []);
   }
 
@@ -166,8 +168,8 @@ class ScheduleDetailInfo {
   late final String createdAt;
   late final String updatedAt;
   late final ScheduleInfo scheduleInfo;
-  
-  ScheduleDetailInfo.fromJson(Map<String, dynamic> json){
+
+  ScheduleDetailInfo.fromJson(Map<String, dynamic> json) {
     startPeriodTimestamp = json['startPeriodTimestamp'];
     endPeriodTimestamp = json['endPeriodTimestamp'];
     id = json['id'];
@@ -219,8 +221,8 @@ class ScheduleInfo {
   late final String createdAt;
   late final String updatedAt;
   late final TutorInfo tutorInfo;
-  
-  ScheduleInfo.fromJson(Map<String, dynamic> json){
+
+  ScheduleInfo.fromJson(Map<String, dynamic> json) {
     date = json['date'];
     startTimestamp = json['startTimestamp'];
     endTimestamp = json['endTimestamp'];
@@ -256,30 +258,30 @@ class TutorInfo {
     required this.id,
     required this.level,
     required this.email,
-     this.google,
-     this.facebook,
-     this.apple,
+    this.google,
+    this.facebook,
+    this.apple,
     required this.avatar,
     required this.name,
-    required this.country,
+    this.country,
     required this.phone,
-     this.language,
-    required this.birthday,
+    this.language,
+    this.birthday,
     required this.requestPassword,
     required this.isActivated,
-     this.isPhoneActivated,
-     this.requireNote,
-    required this.timezone,
-     this.phoneAuth,
+    this.isPhoneActivated,
+    this.requireNote,
+    this.timezone,
+    this.phoneAuth,
     required this.isPhoneAuthActivated,
-     this.studySchedule,
+    this.studySchedule,
     required this.canSendMessage,
     required this.isPublicRecord,
-     this.caredByStaffId,
+    this.caredByStaffId,
     required this.createdAt,
     required this.updatedAt,
-     this.deletedAt,
-     this.studentGroupId,
+    this.deletedAt,
+    this.studentGroupId,
   });
   late final String id;
   late final String level;
@@ -289,15 +291,15 @@ class TutorInfo {
   late final Null apple;
   late final String avatar;
   late final String name;
-  late final String country;
+  late final String? country;
   late final String phone;
   late final Null language;
-  late final String birthday;
+  late final String? birthday;
   late final bool requestPassword;
   late final bool isActivated;
   late final Null isPhoneActivated;
   late final Null requireNote;
-  late final int timezone;
+  late final int? timezone;
   late final Null phoneAuth;
   late final bool isPhoneAuthActivated;
   late final Null studySchedule;
@@ -308,8 +310,8 @@ class TutorInfo {
   late final String updatedAt;
   late final Null deletedAt;
   late final Null studentGroupId;
-  
-  TutorInfo.fromJson(Map<String, dynamic> json){
+
+  TutorInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     level = json['level'];
     email = json['email'];

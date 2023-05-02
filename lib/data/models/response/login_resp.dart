@@ -25,20 +25,20 @@ class User {
     required this.email,
     required this.name,
     required this.avatar,
-    required this.country,
+    this.country,
     required this.phone,
     required this.roles,
     this.language,
-    required this.birthday,
+    this.birthday,
     required this.isActivated,
     required this.walletInfo,
     required this.courses,
-    required this.requireNote,
-    required this.level,
+    this.requireNote,
+    this.level,
     required this.learnTopics,
     required this.testPreparations,
     required this.isPhoneActivated,
-    required this.timezone,
+    this.timezone,
     this.studySchedule,
     required this.canSendMessage,
   });
@@ -46,20 +46,20 @@ class User {
   late final String email;
   late final String name;
   late final String avatar;
-  late final String country;
+  late final String? country;
   late final String phone;
   late final List<String> roles;
   late final String? language;
-  late final String birthday;
+  late final String? birthday;
   late final bool isActivated;
   late final WalletInfo walletInfo;
   late final List<dynamic> courses;
-  late final String requireNote;
-  late final String level;
+  late final String? requireNote;
+  late final String? level;
   late final List<LearnTopic> learnTopics;
   late final List<dynamic> testPreparations;
   late final bool isPhoneActivated;
-  late final int timezone;
+  late final int? timezone;
   late final String? studySchedule;
   late final bool canSendMessage;
 
