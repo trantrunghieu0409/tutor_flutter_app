@@ -176,8 +176,6 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
       isStarted = startTime.compareTo(DateTime.now()) < 0;
       isEnded = endTime.compareTo(DateTime.now()) < 0;
 
-      // todo: remove this line ( add this to test when join meeting )
-
       remainTime = isStarted
           ? DateTime.now().difference(startTime)
           : startTime.difference(DateTime.now());
