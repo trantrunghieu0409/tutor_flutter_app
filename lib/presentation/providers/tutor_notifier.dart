@@ -30,7 +30,7 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
       _favoriteIds = r.favoriteIds!;
 
       for (var element in r.tutors) {
-        if (_favoriteIds.contains(element.id)) {
+        if (_favoriteIds.contains(element.userId)) {
           element.isFavorite = true;
         }
       }
@@ -48,6 +48,12 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
       return state;
     }, (r) {
       _total = r.total;
+
+      for (var element in r.tutors) {
+        if (_favoriteIds.contains(element.userId)) {
+          element.isFavorite = true;
+        }
+      }
       return _sortByFavoriteAndRating(r.tutors);
     });
   }

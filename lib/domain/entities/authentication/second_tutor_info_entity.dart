@@ -1,5 +1,5 @@
 class SecondTutorInfoEntity {
-   SecondTutorInfoEntity({
+  SecondTutorInfoEntity({
     required this.id,
     required this.video,
     required this.bio,
