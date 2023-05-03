@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
 import 'package:dio/dio.dart';
 
