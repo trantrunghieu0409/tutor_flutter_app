@@ -167,7 +167,9 @@ class TutorInfo {
     languages = null;
     specialties = null;
     resume = null;
-    rating = json['rating'];
+    rating = json['rating'] is int
+        ? json['rating']
+        : double.parse(json['rating']).round();
     isActivated = json['isActivated'];
     isNative = json['isNative'];
   }

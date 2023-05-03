@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/usecases/account_usecase.dart';
-import 'package:tutor_flutter_app/presentation/providers/user_notifier.dart';
 
 class AutheticationValidator {
   late final AccountUsecase _accountUsecase;

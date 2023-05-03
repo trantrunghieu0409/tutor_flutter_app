@@ -46,7 +46,6 @@ class UserNotifier extends StateNotifier<UserEntity?> {
       log(l.error);
       return state;
     }, (r) => r);
-    log(state!.studySchedule!);
     return resp.isRight();
   }
 
