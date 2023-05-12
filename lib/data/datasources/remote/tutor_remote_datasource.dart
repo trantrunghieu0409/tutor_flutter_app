@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
+import 'package:tutor_flutter_app/data/models/request/search_tutor_req.dart';
 import 'package:tutor_flutter_app/data/models/response/booking_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/schedule_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
@@ -18,21 +19,21 @@ class TutorRemoteDatasource {
     return TutorsResp.fromJson(data);
   }
 
-  Future<Tutors> search(String token, List<String> specialities, String name,
-      bool? isVietnamese) async {
+  Future<Tutors> search(String token, SearchTutorReq searchTutorReq) async {
     final Map<String, dynamic> data = await _httpClient.post(
         path: LettutorConfig.searchTutors,
         body: jsonEncode({
           "filters": {
-            "specialties": specialities,
+            "specialties": searchTutorReq.specialities,
             "date": null,
-            if (isVietnamese != null && isVietnamese == true)
+            if (searchTutorReq.isVietnamese != null &&
+                searchTutorReq.isVietnamese == true)
               "nationality": {"isVietNamese": true},
             "tutoringTimeAvailable": [null, null]
           },
-          "search": name,
-          "page": "1",
-          "perPage": 10
+          "search": searchTutorReq.name,
+          "page": searchTutorReq.page,
+          "perPage": searchTutorReq.perPage
         }),
         auth: true,
         token: token);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
-import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_icon_outline.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/chip_list_readonly.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
@@ -19,7 +18,8 @@ class TutorCard extends ConsumerWidget {
     return Card(
       child: InkWell(
         onTap: () async {
-          await ref.read(tutorsProvider.notifier).getAll();
+          // TODO: Better to get review in a different way
+          // await ref.read(tutorsProvider.notifier).getAll();
 
           if (context.mounted) {
             Navigator.pushNamed(context, TutorDetailPage.routeName,

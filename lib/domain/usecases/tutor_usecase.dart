@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:tutor_flutter_app/core/exceptions/server_exception.dart';
+import 'package:tutor_flutter_app/data/models/request/search_tutor_req.dart';
 import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
 import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/booking_entity.dart';
@@ -38,11 +39,10 @@ class TutorUsecase {
     }
   }
 
-  Future<Either<FailureEntity, TutorsResult>> search(
-      List<String> specialities, String name, bool? isVietnamese) async {
+  Future<Either<FailureEntity, TutorsResult>> search(SearchTutorReq searchTutorReq) async {
     try {
       var resp =
-          await _tutorRepository.search(specialities, name, isVietnamese);
+          await _tutorRepository.search(searchTutorReq);
 
       var tutors =
           resp.rows.map((event) => _tutorMapper.fromModel(event)).toList();
