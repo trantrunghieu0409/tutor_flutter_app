@@ -11,19 +11,27 @@ import 'package:tutor_flutter_app/domain/usecases/history_usecase.dart';
 class HistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
   late HistoryUsecase _historyUsecase;
 
+  int _total = 0;
+  int get total => _total;
+
   HistoryNotifier() : super([]) {
     _historyUsecase = Injector.resolve<HistoryUsecase>();
     getHistory();
   }
 
-  Future<void> getHistory() async {
-    var resp = await _historyUsecase.getHistory(HistoryReq(
-        dateTimeGte: DateTimeUtils.getTimestamp(DateTime.now())));
+  Future<void> getHistory({HistoryReq? historyReq}) async {
+    var resp = await _historyUsecase.getHistory(historyReq ??
+        HistoryReq(dateTimeGte: DateTimeUtils.getTimestamp(DateTime.now())));
 
-    state = resp.fold((l) {
+    var res = resp.fold((l) {
       log(l.error);
       return state;
-    }, (r) => _groupRelatedSchedules(r));
+    }, (r) {
+      _total = r.total;
+      return _groupRelatedSchedules(r.histories);
+    });
+    state =
+        (historyReq == null || historyReq.page == 1) ? res : [...state, ...res];
   }
 
   List<TutorHistoryEntity> _groupRelatedSchedules(

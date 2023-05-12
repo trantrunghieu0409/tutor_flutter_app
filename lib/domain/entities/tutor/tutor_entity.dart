@@ -63,7 +63,7 @@ class TutorEntity {
   bool isFavorite = false;
 
   Image getAvatar() {
-    return avatar != null
+    return avatar != null && avatar != 'https://www.alliancerehabmed.com/wp-content/uploads/icon-avatar-default.png'
         ? Image.network(
             avatar!,
             errorBuilder: (BuildContext context, Object exception,

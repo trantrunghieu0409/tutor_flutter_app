@@ -7,7 +7,7 @@ class HistoryReq {
 
   HistoryReq(
       {this.page = 1,
-      this.perPage = 20,
+      this.perPage = 5,
       required this.dateTimeGte,
       this.orderBy = 'meeting',
       this.sortBy = 'asc'});
