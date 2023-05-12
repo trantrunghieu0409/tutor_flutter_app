@@ -91,7 +91,10 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
             ),
           ),
           ..._buidHistoryCardList(),
-          if (!isEndOfPage()) const Center(child: CircularProgressIndicator())
+          if (!isEndOfPage()) const Center(child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircularProgressIndicator(),
+          ))
         ],
       ),
     ));

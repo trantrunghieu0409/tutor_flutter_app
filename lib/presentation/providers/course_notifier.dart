@@ -10,18 +10,26 @@ import 'package:tutor_flutter_app/domain/usecases/course_usecase.dart';
 class CourseNotifier extends StateNotifier<List<CourseEntity>> {
   late CourseUsecase _courseUsecase;
 
+  late int _total = 0;
+  int get total => _total;
+
   CourseNotifier() : super([]) {
     _courseUsecase = Injector.resolve<CourseUsecase>();
     getCourses();
   }
 
-  Future<void> getCourses() async {
-    var resp = await _courseUsecase.getCourses(BaseReq());
+  Future<void> getCourses({BaseReq? baseReq}) async {
+    var resp = await _courseUsecase.getCourses(baseReq ?? BaseReq());
 
     state = resp.fold((l) {
       log(l.error);
       return state;
-    }, (r) => _sortTopicsByOrderCourse(r));
+    }, (r) {
+      _total = r.total;
+      return _sortTopicsByOrderCourse((baseReq == null || baseReq.page == 1)
+          ? r.courses
+          : [...state, ...r.courses]);
+    });
   }
 
   _sortTopicsByOrderCourse(List<CourseEntity> courses) {

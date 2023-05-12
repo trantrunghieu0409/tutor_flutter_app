@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
+import 'package:tutor_flutter_app/data/models/request/base_req.dart';
 import 'package:tutor_flutter_app/domain/entities/course/book_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/course/course_entity.dart';
 import 'package:tutor_flutter_app/presentation/pages/course_detail_page.dart';
@@ -22,11 +23,31 @@ class CoursesPage extends ConsumerStatefulWidget {
 class _CoursesPageState extends ConsumerState<CoursesPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final _scrollController = ScrollController();
 
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+  int page = 1;
+  bool isLoading = false;
+
+  bool isEndOfPage() {
+    int total = ref.read(coursesProvider.notifier).total;
+    return page >= (total / 10).ceil();
+  }
+
+  void onScrollNearEnd() async {
+    double maxScroll = _scrollController.position.maxScrollExtent;
+    double currentScroll = _scrollController.position.pixels;
+    double delta = 100.0;
+    if (!isLoading && maxScroll - currentScroll <= delta && !isEndOfPage()) {
+      isLoading = true;
+      await _fetchPage(++page);
+      isLoading = false;
+    }
+  }
+
+  Future<void> _fetchPage(int page) async {
+    await ref
+        .watch(coursesProvider.notifier)
+        .getCourses(baseReq: BaseReq(page: page));
   }
 
   @override
@@ -34,6 +55,15 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
     super.initState();
+    _scrollController.addListener(() {
+      onScrollNearEnd();
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   _handleTabSelection() {
@@ -49,7 +79,6 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
 
   @override
   Widget build(BuildContext context) {
-    courses = ref.watch(coursesProvider);
     books = ref.watch(booksProvider);
 
     return DefaultTabController(
@@ -60,6 +89,7 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
           child: RefreshIndicator(
             onRefresh: _pullRefresh,
             child: ListView(
+              controller: _scrollController,
               shrinkWrap: true,
               children: [
                 Container(
@@ -96,24 +126,33 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                 Center(
                   child: [
                     // first tab bar view widget
-                    Column(
-                      children: List<Widget>.generate(
-                          courses.length,
-                          (index) => CardWithPicture(
-                                cover: ImageUtils.getImage(
-                                    courses[index].imageUrl),
-                                title: courses[index].name,
-                                description: courses[index].description,
-                                footer: Text(
-                                  "${courses[index].getLevel()} - ${courses[index].topics.length} lessons",
-                                ),
-                                callback: () {
-                                  Navigator.pushNamed(
-                                      context, CourseDetailPage.routeName,
-                                      arguments: courses[index]);
-                                },
-                              )),
-                    ),
+                    Consumer(builder: (contex, ref, child) {
+                      courses = ref.watch(coursesProvider);
+
+                      return Column(children: [
+                        ...List<Widget>.generate(
+                            courses.length,
+                            (index) => CardWithPicture(
+                                  cover: ImageUtils.getImage(
+                                      courses[index].imageUrl),
+                                  title: courses[index].name,
+                                  description: courses[index].description,
+                                  footer: Text(
+                                    "${courses[index].getLevel()} - ${courses[index].topics.length} lessons",
+                                  ),
+                                  callback: () {
+                                    Navigator.pushNamed(
+                                        context, CourseDetailPage.routeName,
+                                        arguments: courses[index]);
+                                  },
+                                )),
+                        if (!isEndOfPage())
+                          const Center(
+                              child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator()))
+                      ]);
+                    }),
 
                     // second tab bar view widget
                     Column(

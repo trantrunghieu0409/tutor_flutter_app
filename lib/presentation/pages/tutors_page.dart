@@ -162,7 +162,11 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                             tutorList: ref.watch(tutorsProvider),
                           ),
                           if (!isEndOfPage())
-                            const Center(child: CircularProgressIndicator())
+                            const Center(
+                                child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: CircularProgressIndicator(),
+                            ))
                         ],
                       );
                     }),
