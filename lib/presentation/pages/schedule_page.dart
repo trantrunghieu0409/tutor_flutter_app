@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -91,10 +89,12 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
             ),
           ),
           ..._buidHistoryCardList(),
-          if (!isEndOfPage()) const Center(child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircularProgressIndicator(),
-          ))
+          if (!isEndOfPage())
+            const Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ))
         ],
       ),
     ));

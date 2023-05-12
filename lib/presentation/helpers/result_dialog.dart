@@ -66,7 +66,7 @@ class DialogHelpers {
         });
   }
 
-  Future<void> showSimpleResultDialog(
+  static Future<void> showSimpleResultDialog(
       BuildContext context, String title, String text) async {
     return showDialog<void>(
       context: context,

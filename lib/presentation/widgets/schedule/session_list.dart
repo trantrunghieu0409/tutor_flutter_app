@@ -52,7 +52,7 @@ class _SessionListState extends ConsumerState<SessionList> {
                         ),
                         IconButton(
                             onPressed: () {
-                              _showReportConfirmDialog(sessions[index],
+                              _showConfirmDialog(sessions[index],
                                   widget.tutor.histories[index].id);
                             },
                             icon: const Icon(
@@ -74,10 +74,17 @@ class _SessionListState extends ConsumerState<SessionList> {
     'Other'
   ];
 
-  String dropdownValue = 'Reschedule at another time';
-
-  Future<void> _showReportConfirmDialog(
+  Future<void> _showConfirmDialog(
       ScheduleInfoEntity session, String scheduleDetailId) async {
+    if (DateTimeUtils.getDateTime(session.startTimestamp)
+            .difference(DateTime.now()) <
+        const Duration(hours: 2)) {
+      return DialogHelpers.showSimpleResultDialog(
+        context,
+        "Cannot cancel session ${DateTimeUtils.formatTimeRange(session.startTimestamp, session.endTimestamp)}'",
+        'You cannot cancel the class less than 2 hours before it starts',
+      );
+    }
     return showDialog<void>(
         context: context,
         barrierDismissible: false, // user must tap button!

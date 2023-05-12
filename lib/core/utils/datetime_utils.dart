@@ -21,6 +21,10 @@ class DateTimeUtils {
     return (dateTime.toUtc().microsecondsSinceEpoch / 1000).round();
   }
 
+  static DateTime getDateTime(int timestamp) {
+    return DateTime.fromMillisecondsSinceEpoch(timestamp);
+  }
+
   static String formatTimeRange(int startTimestamp, int endTimestamp) {
     return "${DateTimeUtils.formatScheduleTime(startTimestamp)} - ${DateTimeUtils.formatScheduleTime(endTimestamp)}";
   }

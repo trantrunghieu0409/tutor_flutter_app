@@ -53,6 +53,6 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
     return tutors.isEmpty
         ? [const EmptyWidget(text: "History is empty")]
         : List<Widget>.generate(tutors.length,
-            (index) => HistoryCard(tutor: tutors[index], time: DateTime.now()));
+            (index) => HistoryCard(tutor: tutors[index]));
   }
 }

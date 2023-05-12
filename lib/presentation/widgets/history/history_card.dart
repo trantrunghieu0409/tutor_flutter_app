@@ -9,14 +9,13 @@ import 'package:tutor_flutter_app/presentation/widgets/common/border_container.d
 import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_button.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({super.key, required this.tutor, required this.time});
+  const HistoryCard({super.key, required this.tutor});
 
   final PastHistoryEntity tutor;
-  final DateTime time;
 
   @override
   Widget build(BuildContext context) {
-    var dateFormatted = DateFormat("EEE, dd MMM yy").format(time);
+    var dateFormatted = DateFormat("EEE, dd MMM yy").format(DateTime.now());
 
     return Card(
       elevation: 4,
