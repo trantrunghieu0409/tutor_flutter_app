@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:riverpod/riverpod.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
+import 'package:tutor_flutter_app/data/models/request/cancel_schedule_req.dart';
 import 'package:tutor_flutter_app/data/models/request/history_req.dart';
 import 'package:tutor_flutter_app/domain/entities/history/history_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
@@ -66,6 +67,11 @@ class HistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
     }
 
     return res;
+  }
+
+  Future<bool> cancelSchedule(CancelScheduleReq cancelScheduleReq) async {
+    var resp = await _historyUsecase.cancelSchedule(cancelScheduleReq);
+    return resp.isRight();
   }
 }
 

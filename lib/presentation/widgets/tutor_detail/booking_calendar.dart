@@ -283,10 +283,11 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                       ),
                     );
                   } else {
-                    return Column(
-                      children: const [
-                        SizedBox(width: 24, child: CircularProgressIndicator()),
-                      ],
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: CircularProgressIndicator(),
+                      ),
                     );
                   }
                 }),

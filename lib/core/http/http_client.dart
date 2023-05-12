@@ -102,4 +102,28 @@ class HttpClient {
       response,
     );
   }
+
+  dynamic delete(
+      {required String path,
+      dynamic body,
+      bool auth = false,
+      String? token}) async {
+    final requestHeader = _generateRequestHeader(auth, token);
+
+    log('method: delete');
+    log("path: $host$path");
+    log("header: $requestHeader");
+    log("body: $body");
+
+    final Response response = await client.delete(
+      _getParsedUrl(path),
+      body: HttpUtil.encodeRequestBody(
+          body, requestHeader[HttpConstants.contentType]!),
+      headers: requestHeader,
+    );
+
+    return HttpUtil.getResponse(
+      response,
+    );
+  }
 }
