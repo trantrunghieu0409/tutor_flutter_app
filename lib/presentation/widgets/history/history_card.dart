@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
-import 'package:tutor_flutter_app/domain/entities/history/past_history_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_button.dart';
@@ -11,11 +11,12 @@ import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_but
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key, required this.tutor});
 
-  final PastHistoryEntity tutor;
+  final TutorHistoryEntity tutor;
 
   @override
   Widget build(BuildContext context) {
-    var dateFormatted = DateFormat("EEE, dd MMM yy").format(DateTime.now());
+    var dateFormatted = DateFormat("EEE, dd MMM yy").format(tutor.date);
+    var sessions = tutor.scheduleHitories;
 
     return Card(
       elevation: 4,
@@ -28,7 +29,8 @@ class HistoryCard extends StatelessWidget {
             style: CommonTextStyle.h2Second,
           ),
           Text(
-            DateTimeUtils.formatTimeAgo(time: DateTime.parse(tutor.startTime)),
+            DateTimeUtils.formatTimeAgo(
+                time: DateTimeUtils.getDateTime(sessions.first.startTimestamp)),
             style: CommonTextStyle.bodySecond,
           ),
           const SizedBox(
@@ -40,7 +42,7 @@ class HistoryCard extends StatelessWidget {
           ),
           BorderContainer(
               child: Text(
-            "Lesson Time: ${DateTimeUtils.formatTimeRangeDateTime(DateTime.parse(tutor.startTime), DateTime.parse(tutor.endTime))}",
+            "Lesson Time: ${DateTimeUtils.formatTimeRange(sessions.last.startTimestamp, sessions.first.endTimestamp)}",
             style: CommonTextStyle.h3Second,
           )),
           const SizedBox(

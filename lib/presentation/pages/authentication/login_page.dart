@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // TODO: delete this before submit
-    emailTextController.text = 'jvatex298@meidecn.com';
+    emailTextController.text = 'phhai@ymail.com';
     passwordTextController.text = '123456';
 
     return isLoading

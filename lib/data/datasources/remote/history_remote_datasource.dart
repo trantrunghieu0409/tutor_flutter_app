@@ -14,8 +14,7 @@ class HistoryRemoteDatasource {
   Future<HistoryResp> getHistory(String token, HistoryReq historyReq) async {
     final Map<String, dynamic> data = await _httpClient.get(
         path:
-            "${LettutorConfig.getHistory}?page=${historyReq.page}&perPage=${historyReq.perPage}"
-            "&dateTimeGte=${historyReq.dateTimeGte}&orderBy=${historyReq.orderBy}&sortBy=${historyReq.sortBy}",
+            "${LettutorConfig.getHistory}?page=${historyReq.page}&perPage=${historyReq.perPage}${historyReq.dateTimeGte != null ? "&dateTimeGte=${historyReq.dateTimeGte}" : ""}${historyReq.dateTimeLte != null ? "&dateTimeLte=${historyReq.dateTimeLte}" : ""}&orderBy=${historyReq.orderBy}&sortBy=${historyReq.sortBy}",
         auth: true,
         token: token);
 
@@ -31,12 +30,13 @@ class HistoryRemoteDatasource {
 
   cancelSchedule(String token, CancelScheduleReq cancelScheduleReq) async {
     await _httpClient.delete(
-        path: LettutorConfig.cancelSchedule,body: jsonEncode({
+        path: LettutorConfig.cancelSchedule,
+        body: jsonEncode({
           "scheduleDetailId": cancelScheduleReq.scheduleDetailId,
-          "cancelInfo": {
-            "cancelReasonId": cancelScheduleReq.cancelReasonId
-          }
-        }), auth: true, token: token);
+          "cancelInfo": {"cancelReasonId": cancelScheduleReq.cancelReasonId}
+        }),
+        auth: true,
+        token: token);
     return true;
   }
 }

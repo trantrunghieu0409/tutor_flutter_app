@@ -2,29 +2,74 @@ import 'dart:developer';
 
 import 'package:riverpod/riverpod.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
-import 'package:tutor_flutter_app/data/models/request/past_history_req.dart';
-import 'package:tutor_flutter_app/domain/entities/history/past_history_entity.dart';
-import 'package:tutor_flutter_app/domain/usecases/past_history_usecase.dart';
+import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
+import 'package:tutor_flutter_app/data/models/request/history_req.dart';
+import 'package:tutor_flutter_app/domain/entities/history/history_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
+import 'package:tutor_flutter_app/domain/usecases/history_usecase.dart';
 
-class PastHistoryNotifier extends StateNotifier<List<PastHistoryEntity>> {
-  late PastHistoryUsecase _pastHistoryUsecase;
+class PastHistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
+  late HistoryUsecase _historyUsecase;
 
   PastHistoryNotifier() : super([]) {
-    _pastHistoryUsecase = Injector.resolve<PastHistoryUsecase>();
+    _historyUsecase = Injector.resolve<HistoryUsecase>();
     getHistory();
   }
 
-  Future<void> getHistory() async {
-    var resp = await _pastHistoryUsecase.getPastHistory(PastHistoryReq());
+  Future<void> getHistory({HistoryReq? historyReq}) async {
+    var resp = await _historyUsecase.getHistory(historyReq ??
+        HistoryReq(
+          dateTimeLte: DateTimeUtils.getTimestamp(DateTime.now()),
+          perPage: 20,
+          sortBy: 'desc',
+        ));
 
-    state = resp.fold((l) {
+    var res = resp.fold((l) {
       log(l.error);
       return state;
-    }, (r) => r);
+    }, (r) {
+      return _groupRelatedSchedules(r.histories);
+    });
+    state =
+        (historyReq == null || historyReq.page == 1) ? res : [...state, ...res];
+  }
+
+  List<TutorHistoryEntity> _groupRelatedSchedules(
+      List<HistoryEntity> histories) {
+    List<TutorHistoryEntity> res = [];
+
+    for (var history in histories) {
+      var tutorId = history.tutorId;
+
+      int index = res.indexWhere((element) {
+        Duration duration =
+            DateTime.fromMillisecondsSinceEpoch(element.startTimestamp)
+                .difference(DateTime.fromMillisecondsSinceEpoch(
+                    history.scheduleDetailInfo.endPeriodTimestamp));
+
+        return element.tutorInfo.id == tutorId &&
+            duration.compareTo(const Duration(minutes: 10)) <= 0;
+      });
+      if (index == -1) {
+        res.add(TutorHistoryEntity(
+            tutorInfo: history.tutorInfo,
+            histories: [history],
+            scheduleHitories: [history.scheduleDetailInfo.scheduleInfo],
+            date: history.date));
+      } else {
+        res[index]
+            .scheduleHitories
+            .add(history.scheduleDetailInfo.scheduleInfo);
+
+        res[index].histories.add(history);
+      }
+    }
+
+    return res;
   }
 }
 
 final pastHistoryProvider =
-    StateNotifierProvider<PastHistoryNotifier, List<PastHistoryEntity>>((ref) {
+    StateNotifierProvider<PastHistoryNotifier, List<TutorHistoryEntity>>((ref) {
   return PastHistoryNotifier();
 });

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tutor_flutter_app/domain/entities/history/past_history_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
 import 'package:tutor_flutter_app/presentation/providers/past_history_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/common_scaffold.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/empty_widget.dart';
@@ -18,7 +18,7 @@ class HistoryPage extends ConsumerStatefulWidget {
 }
 
 class _HistoryPageState extends ConsumerState<HistoryPage> {
-  late List<PastHistoryEntity> tutors;
+  late List<TutorHistoryEntity> tutors;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
   List<Widget> _buidHistoryCardList() {
     return tutors.isEmpty
         ? [const EmptyWidget(text: "History is empty")]
-        : List<Widget>.generate(tutors.length,
-            (index) => HistoryCard(tutor: tutors[index]));
+        : List<Widget>.generate(
+            tutors.length, (index) => HistoryCard(tutor: tutors[index]));
   }
 }
