@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/utils/string_utils.dart';
+import 'package:tutor_flutter_app/presentation/helpers/result_dialog.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/forget_password_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
@@ -55,8 +56,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // TODO: delete this before submit
-    // emailTextController.text = 'phhai@ymail.com';
-    // passwordTextController.text = '123456';
+    emailTextController.text = 'jvatex298@meidecn.com';
+    passwordTextController.text = '123456';
 
     return isLoading
         ? Scaffold(
@@ -150,10 +151,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
         setState(() {
           isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${autheticationValidator.failure?.error}'),
-          backgroundColor: Colors.red.shade300,
-        ));
+        if (autheticationValidator.failure?.error ==
+            "Your account has not activated") {
+          DialogHelpers.showSimpleResultDialog(
+              context,
+              "Account not yet activated",
+              "You account has not activated.\nPlease click on the verification link that we've sent to your email.");
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Error: ${autheticationValidator.failure?.error}'),
+            backgroundColor: Colors.red.shade300,
+          ));
+        }
       } else {
         Navigator.pushAndRemoveUntil(
             context,
