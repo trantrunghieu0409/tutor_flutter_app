@@ -23,8 +23,9 @@ class PreviousAppBar extends StatelessWidget implements PreferredSizeWidget {
         semanticsLabel: 'LetTutor Logo',
         width: 140,
       ),
-      backgroundColor:
-          SettingUtils.isLightTheme ? Colors.white : Colors.black12,
+      backgroundColor: SettingUtils.isLightTheme
+          ? Colors.white
+          : Theme.of(context).scaffoldBackgroundColor  ,
       actions: [
         IconButton(
           icon: const Icon(

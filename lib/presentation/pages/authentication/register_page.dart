@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/core/utils/string_utils.dart';
 import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
@@ -75,17 +76,27 @@ class _RegisterPageState extends State<RegisterPage>
                         title: "Email",
                         placeholder: "Your email",
                         textController: emailTextController,
+                        validate: () =>
+                            StringUtils.isValidEmail(emailTextController.text),
+                        errorText: "Not a valid email format",
                       ),
                       InputField(
-                          title: "Password",
-                          placeholder: "Your password",
-                          isObsecure: true,
-                          textController: passwordTextController),
+                        title: "Password",
+                        placeholder: "Your password",
+                        isObsecure: true,
+                        textController: passwordTextController,
+                        validate: () => passwordTextController.text.isNotEmpty,
+                        errorText: "Password cannot be empty",
+                      ),
                       InputField(
                           title: "Re-type password",
                           placeholder: "Your re-type password",
                           isObsecure: true,
-                          textController: reTypePasswordTextController),
+                          textController: reTypePasswordTextController,
+                          validate: () =>
+                              reTypePasswordTextController.text ==
+                              passwordTextController.text,
+                          errorText: "Retype-Password does not match password"),
                       Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: PrimaryButton(
@@ -119,7 +130,9 @@ class _RegisterPageState extends State<RegisterPage>
           context, 'Error: Re-type password must match password');
     }
 
-    if (email.isEmpty || password.isEmpty || retypePassword != password) {
+    if (!StringUtils.isValidEmail(email) ||
+        password.isEmpty ||
+        retypePassword != password) {
       return;
     }
     setState(() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
+import 'package:tutor_flutter_app/core/utils/string_utils.dart';
 import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
@@ -102,6 +103,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                                   title: "Email",
                                   placeholder: "Your email",
                                   textController: emailTextController,
+                                  validate: () => StringUtils.isValidEmail(
+                                      emailTextController.text),
+                                  errorText: "Not a valid email format",
                                 ),
                                 Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -134,6 +138,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
 
   Future<void> _handleForgotPassword(BuildContext context) async {
     String email = emailTextController.text;
+
+    if (!StringUtils.isValidEmail(email)) {
+      return;
+    }
 
     if (email.isEmpty) {
       SnackBarHelpers.showSnackBarFail(context, 'Error: Email cannot be empty');

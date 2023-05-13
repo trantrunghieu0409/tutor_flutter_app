@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/core/utils/string_utils.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/forget_password_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/register_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
@@ -54,8 +55,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // TODO: delete this before submit
-    emailTextController.text = 'phhai@ymail.com';
-    passwordTextController.text = '123456';
+    // emailTextController.text = 'phhai@ymail.com';
+    // passwordTextController.text = '123456';
 
     return isLoading
         ? Scaffold(
@@ -83,12 +84,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       title: "EMAIL",
                       placeholder: "Your email",
                       textController: emailTextController,
+                      validate: () =>
+                          StringUtils.isValidEmail(emailTextController.text),
+                      errorText: "Not a valid email format",
                     ),
                     InputField(
-                        title: "PASSWORD",
-                        placeholder: "Your password",
-                        isObsecure: true,
-                        textController: passwordTextController),
+                      title: "PASSWORD",
+                      placeholder: "Your password",
+                      isObsecure: true,
+                      textController: passwordTextController,
+                      validate: () => passwordTextController.text.isNotEmpty,
+                      errorText: "Password cannot be empty",
+                    ),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: PrimaryButton(
@@ -130,7 +137,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     String email = emailTextController.text;
     String password = passwordTextController.text;
 
-    if (email.isEmpty || password.isEmpty) {
+    if (!StringUtils.isValidEmail(email) || password.isEmpty) {
       return;
     }
     setState(() {
