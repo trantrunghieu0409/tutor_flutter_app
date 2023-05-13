@@ -35,6 +35,7 @@ class LettutorConfig {
   // course - path
   static String getCourses = 'course';
   static String getEBooks = 'e-book';
+  static String getCategories = 'content-category';
 
   // hard-coded value for authorization
   static String token =

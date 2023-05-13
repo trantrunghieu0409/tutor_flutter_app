@@ -79,7 +79,7 @@ class HttpClient {
     );
   }
 
-   dynamic put(
+  dynamic put(
       {required String path,
       dynamic body,
       bool auth = false,

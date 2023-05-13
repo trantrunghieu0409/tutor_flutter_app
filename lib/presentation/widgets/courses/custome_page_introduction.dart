@@ -4,7 +4,10 @@ import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/search_input_field.dart';
 
 class CustomPageIntroduction extends StatelessWidget {
-  const CustomPageIntroduction({super.key});
+  const CustomPageIntroduction({super.key, required this.searchTextController, required this.onChange});
+
+  final TextEditingController searchTextController;
+  final void Function() onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +25,15 @@ class CustomPageIntroduction extends StatelessWidget {
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "Discover Courses",
                   style: CommonTextStyle.h1Black,
                 ),
-                SearchInputField(),
+                SearchInputField(
+                  controller: searchTextController,
+                  onChange: onChange,
+                ),
               ],
             ),
           )

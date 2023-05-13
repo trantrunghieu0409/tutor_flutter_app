@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
-import 'package:tutor_flutter_app/data/models/request/base_req.dart';
+import 'package:tutor_flutter_app/data/models/request/search_course_req.dart';
 import 'package:tutor_flutter_app/domain/entities/course/course_entity.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:tutor_flutter_app/domain/usecases/course_usecase.dart';
@@ -18,17 +18,19 @@ class CourseNotifier extends StateNotifier<List<CourseEntity>> {
     getCourses();
   }
 
-  Future<void> getCourses({BaseReq? baseReq}) async {
-    var resp = await _courseUsecase.getCourses(baseReq ?? BaseReq());
+  Future<void> getCourses({SearchCourseReq? searchCourseReq}) async {
+    var resp =
+        await _courseUsecase.getCourses(searchCourseReq ?? SearchCourseReq());
 
     state = resp.fold((l) {
       log(l.error);
       return state;
     }, (r) {
       _total = r.total;
-      return _sortTopicsByOrderCourse((baseReq == null || baseReq.page == 1)
-          ? r.courses
-          : [...state, ...r.courses]);
+      return _sortTopicsByOrderCourse(
+          (searchCourseReq == null || searchCourseReq.page == 1)
+              ? r.courses
+              : [...state, ...r.courses]);
     });
   }
 
