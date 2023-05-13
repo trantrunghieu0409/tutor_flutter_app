@@ -47,7 +47,7 @@ class DialogHelpers {
                               ),
                               Text(
                                 displayText,
-                                style: CommonTextStyle.bodyBlack,
+                                style: CommonTextStyle.bodySecond,
                               ),
                             ],
                           ),

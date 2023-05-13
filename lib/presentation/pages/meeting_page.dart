@@ -120,25 +120,25 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
                           children: [
                             const Text(
                               "Class time",
-                              style: CommonTextStyle.h2Black,
+                              style: CommonTextStyle.h2Second,
                             ),
                             Text(
                               DateTimeUtils.formatTimeRangeDateTime(
                                   startTime, endTime),
-                              style: CommonTextStyle.bodyBlack,
+                              style: CommonTextStyle.bodySecond,
                             ),
                             const SizedBox(
                               height: 24,
                             ),
                             const Text(
                               "Student request",
-                              style: CommonTextStyle.h2Black,
+                              style: CommonTextStyle.h2Second,
                             ),
                             Text(
                               widget.tutorInfo.studentRequest != null
                                   ? widget.tutorInfo.studentRequest!
                                   : "No request",
-                              style: CommonTextStyle.bodyItalicBlack,
+                              style: CommonTextStyle.bodyItalicSecond,
                               maxLines: 3,
                             ),
                             const SizedBox(

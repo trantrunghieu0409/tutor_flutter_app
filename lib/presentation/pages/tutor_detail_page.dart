@@ -29,7 +29,7 @@ class TutorDetailPage extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: Text(
               "Make an Appoinment",
-              style: CommonTextStyle.h2Black,
+              style: CommonTextStyle.h2Second,
             ),
           ),
           BookingCalendar(

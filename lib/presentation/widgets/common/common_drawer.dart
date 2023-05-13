@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/presentation/pages/courses_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/history_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/login_page.dart';
@@ -25,8 +25,8 @@ class CommonDrawer extends ConsumerWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
-              color: CommonColor.lightBlue,
+            decoration: BoxDecoration(
+              color: SettingUtils.isLightTheme ? Colors.white : Colors.black12,
             ),
             child: SvgPicture.asset(
               "assets/images/lettutor_logo.svg",

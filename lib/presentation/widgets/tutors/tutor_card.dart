@@ -71,7 +71,7 @@ class _TutorCardState extends ConsumerState<TutorCard> {
             ),
             Text(
               tutor.name,
-              style: CommonTextStyle.h2Black,
+              style: CommonTextStyle.h2Second,
             ),
             NationWithFlag(
               nation: tutor.getCountry(),

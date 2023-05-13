@@ -80,8 +80,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             height: 40,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.black38),
-                color: Colors.white)),
+                border: Border.all(color: Theme.of(context).hintColor))),
         dropdownStyleData: const DropdownStyleData(
           maxHeight: 200,
         ),

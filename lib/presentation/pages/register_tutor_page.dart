@@ -230,7 +230,7 @@ class _RegisterTutorPageState extends ConsumerState<RegisterTutorPage> {
           ),
           Text(
             text,
-            style: CommonTextStyle.h2Black,
+            style: CommonTextStyle.h2Second,
           ),
         ],
       ),

@@ -158,18 +158,18 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
         return AlertDialog(
           title: const Text(
             "Booking Details",
-            style: CommonTextStyle.h1Black,
+            style: CommonTextStyle.h1Second,
           ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 const Text(
                   "Booking time",
-                  style: CommonTextStyle.h2Black,
+                  style: CommonTextStyle.h2Second,
                 ),
                 Text(
                   "${DateTimeUtils.formatScheduleTime(startTimestamp)} - ${DateTimeUtils.formatScheduleTime(endTimestamp)}",
-                  style: CommonTextStyle.bodyBlack,
+                  style: CommonTextStyle.bodySecond,
                 ),
                 const SizedBox(
                   height: 12,
@@ -179,7 +179,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                   children: [
                     const Text(
                       "Price",
-                      style: CommonTextStyle.h2Black,
+                      style: CommonTextStyle.h2Second,
                     ),
                     Text(
                       "${widget.tutor.price} lesson(s)",
@@ -191,7 +191,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                 ),
                 const Text(
                   'Notes',
-                  style: CommonTextStyle.h2Black,
+                  style: CommonTextStyle.h2Second,
                 ),
                 GestureDetector(
                   onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -275,7 +275,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                               ),
                               Text(
                                 displayText,
-                                style: CommonTextStyle.bodyBlack,
+                                style: CommonTextStyle.bodySecond,
                               ),
                             ],
                           ),

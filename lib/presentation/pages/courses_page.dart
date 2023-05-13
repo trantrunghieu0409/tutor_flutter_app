@@ -276,8 +276,7 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                           ),
                           Text(
                             "No data",
-                            style:
-                                TextStyle(fontSize: 16, color: Colors.black45),
+                            style: TextStyle(fontSize: 16),
                           )
                         ],
                       ),

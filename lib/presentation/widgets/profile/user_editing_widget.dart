@@ -69,7 +69,7 @@ class _UserEditingWidgetState extends State<UserEditingWidget> {
             children: [
               const Text(
                 "Level",
-                style: CommonTextStyle.h3Black,
+                style: CommonTextStyle.h3Second,
               ),
               CustomDropdownButton(
                   items: LevelEnum.values.map((e) => e.value).toList(),

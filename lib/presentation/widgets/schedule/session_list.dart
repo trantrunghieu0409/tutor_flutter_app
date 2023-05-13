@@ -28,11 +28,11 @@ class _SessionListState extends ConsumerState<SessionList> {
           child: sessions.isEmpty
               ? const Text(
                   "No session yet!",
-                  style: CommonTextStyle.bodyItalicBlack,
+                  style: CommonTextStyle.bodyItalicSecond,
                 )
               : Text(
                   "Lesson Time: ${DateTimeUtils.formatTimeRange(sessions.first.startTimestamp, sessions.last.endTimestamp)}",
-                  style: CommonTextStyle.h3Black,
+                  style: CommonTextStyle.h3Second,
                 )),
       const SizedBox(
         height: 16,
@@ -48,7 +48,7 @@ class _SessionListState extends ConsumerState<SessionList> {
                       children: [
                         Text(
                           'Session ${(index + 1)}: ${DateTimeUtils.formatTimeRange(sessions[index].startTimestamp, sessions[index].endTimestamp)}',
-                          style: CommonTextStyle.bodyBlack,
+                          style: CommonTextStyle.bodySecond,
                         ),
                         IconButton(
                             onPressed: () {

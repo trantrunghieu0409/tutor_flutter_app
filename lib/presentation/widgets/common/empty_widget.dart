@@ -10,6 +10,6 @@ class EmptyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BorderContainer(
-        child: Text(text, style: CommonTextStyle.bodyItalicBlack));
+        child: Text(text, style: CommonTextStyle.bodyItalicSecond));
   }
 }

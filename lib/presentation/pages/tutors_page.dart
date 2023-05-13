@@ -91,7 +91,7 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                   children: [
                     const Text(
                       "Find a tutor",
-                      style: CommonTextStyle.h1Black,
+                      style: CommonTextStyle.h1Second,
                     ),
                     const SizedBox(
                       height: 16,
@@ -144,7 +144,7 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                     ),
                     const Text(
                       "Recommended Tutors",
-                      style: CommonTextStyle.h2Black,
+                      style: CommonTextStyle.h2Second,
                     ),
                     Consumer(builder: (contex, ref, child) {
                       return Column(
@@ -153,7 +153,7 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                         children: [
                           Text(
                             "Found ${ref.watch(tutorsProvider.notifier).total} result(s)",
-                            style: CommonTextStyle.bodyBlack,
+                            style: CommonTextStyle.bodySecond,
                           ),
                           const SizedBox(
                             height: 16,

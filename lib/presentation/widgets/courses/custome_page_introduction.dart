@@ -4,7 +4,8 @@ import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/search_input_field.dart';
 
 class CustomPageIntroduction extends StatelessWidget {
-  const CustomPageIntroduction({super.key, required this.searchTextController, required this.onChange});
+  const CustomPageIntroduction(
+      {super.key, required this.searchTextController, required this.onChange});
 
   final TextEditingController searchTextController;
   final void Function() onChange;
@@ -28,7 +29,7 @@ class CustomPageIntroduction extends StatelessWidget {
               children: [
                 const Text(
                   "Discover Courses",
-                  style: CommonTextStyle.h1Black,
+                  style: CommonTextStyle.h1Second,
                 ),
                 SearchInputField(
                   controller: searchTextController,
@@ -43,7 +44,7 @@ class CustomPageIntroduction extends StatelessWidget {
         ),
         const Text(
           "LiveTutor has built the most quality, methodical and scientific courses in the fields of life for those who are in need of improving their knowledge of the fields.",
-          style: CommonTextStyle.bodyBlack,
+          style: CommonTextStyle.bodySecond,
         ),
       ],
     );

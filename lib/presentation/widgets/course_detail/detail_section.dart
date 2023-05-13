@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/course/course_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/topic_request.dart';
 import 'package:tutor_flutter_app/presentation/pages/topic_detail_page.dart';
@@ -74,25 +75,18 @@ class DetailSection extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(32),
                         margin: const EdgeInsets.symmetric(vertical: 8),
-                        decoration: const BoxDecoration(
-                            color: CommonColor.lightBlue,
-                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8))),
                         child: Text(
                           "${index + 1}. ${course.topics[index].name}",
-                          style: CommonTextStyle.h3Black,
+                          style: CommonTextStyle.h3Second,
                         ),
                       ),
                     )),
           )
         ]),
-        // Section(
-        //   header: "Suggested Tutors",
-        //   children: [
-        //     TutorList(
-        //       tutorList: course.suggestedTutors,
-        //     )
-        //   ],
-        // ),
       ],
     );
   }

@@ -32,7 +32,7 @@ class ProfileInputField extends StatelessWidget {
             child: Text(
               title,
               selectionColor: Colors.black,
-              style: CommonTextStyle.h3Black,
+              style: CommonTextStyle.h3Second,
               textAlign: TextAlign.left,
             ),
           ),
@@ -48,7 +48,7 @@ class ProfileInputField extends StatelessWidget {
                 isDense: true,
                 labelText: placeholder,
               ),
-              style: CommonTextStyle.bodyBlack,
+              style: CommonTextStyle.bodySecond,
             )
           else
             TextField(
@@ -59,7 +59,7 @@ class ProfileInputField extends StatelessWidget {
                 isDense: true,
                 labelText: placeholder,
               ),
-              style: CommonTextStyle.bodyBlack,
+              style: CommonTextStyle.bodySecond,
             )
         ],
       ),

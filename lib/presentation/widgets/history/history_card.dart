@@ -25,11 +25,11 @@ class HistoryCard extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             dateFormatted,
-            style: CommonTextStyle.h2Black,
+            style: CommonTextStyle.h2Second,
           ),
           Text(
             DateTimeUtils.formatTimeAgo(time: DateTime.parse(tutor.startTime)),
-            style: CommonTextStyle.bodyBlack,
+            style: CommonTextStyle.bodySecond,
           ),
           const SizedBox(
             height: 16,
@@ -41,7 +41,7 @@ class HistoryCard extends StatelessWidget {
           BorderContainer(
               child: Text(
             "Lesson Time: ${DateTimeUtils.formatTimeRangeDateTime(DateTime.parse(tutor.startTime), DateTime.parse(tutor.endTime))}",
-            style: CommonTextStyle.h3Black,
+            style: CommonTextStyle.h3Second,
           )),
           const SizedBox(
             height: 16,
@@ -52,14 +52,14 @@ class HistoryCard extends StatelessWidget {
             children: [
               const Text(
                 "Request for lesson",
-                style: CommonTextStyle.h3Black,
+                style: CommonTextStyle.h3Second,
               ),
               const SizedBox(
                 height: 8,
               ),
               Text(
                 tutor.tutorInfo.studentRequest ?? "No request yet!",
-                style: CommonTextStyle.bodyItalicBlack,
+                style: CommonTextStyle.bodyItalicSecond,
               )
             ],
           )),
@@ -69,14 +69,14 @@ class HistoryCard extends StatelessWidget {
             children: const [
               Text(
                 "Reviews",
-                style: CommonTextStyle.h3Black,
+                style: CommonTextStyle.h3Second,
               ),
               SizedBox(
                 height: 8,
               ),
               Text(
                 "Tutor haven't reviewed yet",
-                style: CommonTextStyle.bodyItalicBlack,
+                style: CommonTextStyle.bodyItalicSecond,
               )
             ],
           )),

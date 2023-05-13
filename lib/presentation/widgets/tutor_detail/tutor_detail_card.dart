@@ -54,14 +54,14 @@ class _TutorDetailCardState extends ConsumerState<TutorDetailCard> {
                 children: [
                   Text(
                     widget.tutor.name,
-                    style: CommonTextStyle.h2Black,
+                    style: CommonTextStyle.h2Second,
                   ),
                   Row(
                     children: [
                       StarsRating(nStars: widget.tutor.stars),
                       Text(
                         "(${widget.tutor.feedbacks.length} reviews)",
-                        style: CommonTextStyle.bodyItalicBlack,
+                        style: CommonTextStyle.bodyItalicSecond,
                       )
                     ],
                   ),
@@ -84,7 +84,7 @@ class _TutorDetailCardState extends ConsumerState<TutorDetailCard> {
             padding: EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               "Interests",
-              style: CommonTextStyle.bodyItalicBlack,
+              style: CommonTextStyle.bodyItalicSecond,
             ),
           ),
           Text(widget.tutor.interests),
@@ -92,7 +92,7 @@ class _TutorDetailCardState extends ConsumerState<TutorDetailCard> {
             padding: EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               "Teaching experience",
-              style: CommonTextStyle.bodyItalicBlack,
+              style: CommonTextStyle.bodyItalicSecond,
             ),
           ),
           Text(widget.tutor.experience),

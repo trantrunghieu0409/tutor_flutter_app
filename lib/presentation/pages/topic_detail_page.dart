@@ -69,7 +69,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   children: [
                     Text(
                       courseName,
-                      style: CommonTextStyle.h2Black,
+                      style: CommonTextStyle.h2Second,
                     ),
                     TopicDropdown(
                         topicList: topics,

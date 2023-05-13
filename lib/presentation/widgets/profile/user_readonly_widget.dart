@@ -17,7 +17,7 @@ class UserReadonlyWidget extends StatelessWidget {
       children: [
         const Text(
           "Birthday",
-          style: CommonTextStyle.h2Black,
+          style: CommonTextStyle.h2Second,
         ),
         Text(user.birthday ?? "No data"),
         const SizedBox(
@@ -25,7 +25,7 @@ class UserReadonlyWidget extends StatelessWidget {
         ),
         const Text(
           "Phone number",
-          style: CommonTextStyle.h2Black,
+          style: CommonTextStyle.h2Second,
         ),
         Text(user.phone),
         const SizedBox(
@@ -33,7 +33,7 @@ class UserReadonlyWidget extends StatelessWidget {
         ),
         const Text(
           "Level",
-          style: CommonTextStyle.h2Black,
+          style: CommonTextStyle.h2Second,
         ),
         Text(LevelEnum.getValue(user.level ?? "No data")),
         const SizedBox(
@@ -42,7 +42,7 @@ class UserReadonlyWidget extends StatelessWidget {
         const Text(
           "Study schedule",
           maxLines: 3,
-          style: CommonTextStyle.h2Black,
+          style: CommonTextStyle.h2Second,
         ),
         Text(user.studySchedule ?? "None"),
         const SizedBox(
@@ -55,7 +55,7 @@ class UserReadonlyWidget extends StatelessWidget {
               Text(
                 "Tutor info",
                 maxLines: 3,
-                style: CommonTextStyle.h2Black,
+                style: CommonTextStyle.h2Second,
               ),
               Text("Waiting for approval"),
             ],

@@ -33,11 +33,11 @@ class CardWithPicture extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: CommonTextStyle.h2Black,
+                    style: CommonTextStyle.h2Second,
                   ),
                   Text(
                     description,
-                    style: CommonTextStyle.bodyBlack,
+                    style: CommonTextStyle.bodySecond,
                   ),
                   const SizedBox(
                     height: 32,

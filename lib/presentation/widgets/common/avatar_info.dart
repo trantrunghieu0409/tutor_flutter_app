@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/chatgpt/src/presentation/pages/main_chat_page.dart';
+import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
@@ -14,7 +15,7 @@ class AvatarInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: SettingUtils.isLightTheme ? Colors.white : Colors.black12,
       padding: const EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,7 +34,7 @@ class AvatarInfo extends StatelessWidget {
                 children: [
                   Text(
                     tutor.name,
-                    style: CommonTextStyle.h2Black,
+                    style: CommonTextStyle.h2Second,
                   ),
                   const SizedBox(
                     width: 8,

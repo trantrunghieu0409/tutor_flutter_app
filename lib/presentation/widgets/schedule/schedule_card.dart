@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
@@ -21,17 +22,19 @@ class ScheduleCard extends StatelessWidget {
 
     return Card(
       elevation: 4,
-      color: CommonColor.lightBlue,
+      color: SettingUtils.isLightTheme
+          ? CommonColor.lightBlue
+          : Theme.of(context).secondaryHeaderColor,
       child: Container(
         padding: const EdgeInsets.all(16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             dateFormatted,
-            style: CommonTextStyle.h2Black,
+            style: CommonTextStyle.h2Second,
           ),
           Text(
             "${tutor.scheduleHitories.length} consecutive(s) lesson",
-            style: CommonTextStyle.bodyBlack,
+            style: CommonTextStyle.bodySecond,
           ),
           const SizedBox(
             height: 16,
@@ -52,14 +55,14 @@ class ScheduleCard extends StatelessWidget {
             children: [
               const Text(
                 "Request for lesson",
-                style: CommonTextStyle.h3Black,
+                style: CommonTextStyle.h3Second,
               ),
               const SizedBox(
                 height: 8,
               ),
               Text(
                 tutor.tutorInfo.studentRequest ?? "No request yet!",
-                style: CommonTextStyle.bodyItalicBlack,
+                style: CommonTextStyle.bodyItalicSecond,
               )
             ],
           )),

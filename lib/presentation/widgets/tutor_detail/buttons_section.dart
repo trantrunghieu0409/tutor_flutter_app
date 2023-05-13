@@ -66,7 +66,7 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
           child: AlertDialog(
             title: Text(
               'Reviews about ${widget.tutor.name}',
-              style: CommonTextStyle.h2Black,
+              style: CommonTextStyle.h2Second,
             ),
             content: SingleChildScrollView(
               child: ListBody(

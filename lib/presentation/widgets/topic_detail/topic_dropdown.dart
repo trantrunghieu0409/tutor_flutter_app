@@ -34,7 +34,7 @@ class TopicDropdown extends StatelessWidget {
           padding: EdgeInsets.only(top: 8.0),
           child: Text(
             "Topic",
-            style: CommonTextStyle.bodyItalicBlack,
+            style: CommonTextStyle.bodyItalicSecond,
           ),
         ),
         CustomDropdownButton(
