@@ -4,6 +4,7 @@ import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/http/http_client.dart';
 import 'package:tutor_flutter_app/data/models/request/search_tutor_req.dart';
 import 'package:tutor_flutter_app/data/models/response/booking_resp.dart';
+import 'package:tutor_flutter_app/data/models/response/feedback_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/schedule_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
 
@@ -64,5 +65,26 @@ class TutorRemoteDatasource {
         token: token);
 
     return BookingResp.fromJson(data);
+  }
+
+  Future<bool> toggleFavorite(String token, String tutorId) async {
+    await _httpClient.post(
+        path: LettutorConfig.toggleFavorite,
+        body: jsonEncode({
+          "tutorId": tutorId,
+        }),
+        auth: true,
+        token: token);
+
+    return true;
+  }
+
+  Future<FeedbackResp> getReviews(String token, String tutorId) async {
+    final Map<String, dynamic> data = await _httpClient.get(
+        path: "${LettutorConfig.getReviews}/$tutorId?page=1&perPage=100",
+        auth: true,
+        token: token);
+
+    return FeedbackResp.fromJson(data);
   }
 }

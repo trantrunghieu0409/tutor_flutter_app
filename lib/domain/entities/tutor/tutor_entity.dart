@@ -59,7 +59,7 @@ class TutorEntity {
   late final double? rating;
   late final int? price;
   late final bool? isOnline;
-  late final List<FeedbackEntity> feedbacks;
+  late List<FeedbackEntity> feedbacks;
   bool isFavorite = false;
 
   Image getAvatar() {

@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/data/repositories/tutor_repository.dart';
 import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/booking_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/feedback_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutors_result.dart';
 import 'package:tutor_flutter_app/domain/mapper/schedule_mapper.dart';
 import 'package:tutor_flutter_app/domain/mapper/tutor_mapper.dart';
@@ -39,10 +40,10 @@ class TutorUsecase {
     }
   }
 
-  Future<Either<FailureEntity, TutorsResult>> search(SearchTutorReq searchTutorReq) async {
+  Future<Either<FailureEntity, TutorsResult>> search(
+      SearchTutorReq searchTutorReq) async {
     try {
-      var resp =
-          await _tutorRepository.search(searchTutorReq);
+      var resp = await _tutorRepository.search(searchTutorReq);
 
       var tutors =
           resp.rows.map((event) => _tutorMapper.fromModel(event)).toList();
@@ -84,6 +85,35 @@ class TutorUsecase {
           resp.data.map((event) => _scheduleMapper.fromBooking(event)).toList();
 
       return right(bookings);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, bool>> toggleFavorite(String tutorId) async {
+    try {
+      await _tutorRepository.toggleFavorite(tutorId);
+
+      return right(true);
+    } on ServerException catch (e) {
+      return left(FailureEntity(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(FailureEntity(e.toString()));
+    }
+  }
+
+  Future<Either<FailureEntity, List<FeedbackEntity>>> getReviews(
+      String tutorId) async {
+    try {
+      var resp = await _tutorRepository.getReviews(tutorId);
+
+      return right(resp.data.rows
+          .map((feedback) => _tutorMapper.fromFeedback(feedback))
+          .toList());
     } on ServerException catch (e) {
       return left(FailureEntity(e.message));
     } catch (e) {

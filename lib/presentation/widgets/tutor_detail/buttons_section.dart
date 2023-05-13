@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
+import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_column.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/feedback_row.dart';
 
-class ButtonSection extends StatefulWidget {
+class ButtonSection extends ConsumerStatefulWidget {
   const ButtonSection({super.key, required this.tutor});
 
   final TutorEntity tutor;
 
   @override
-  State<ButtonSection> createState() => _ButtonSectionState();
+  ConsumerState<ButtonSection> createState() => _ButtonSectionState();
 }
 
-class _ButtonSectionState extends State<ButtonSection> {
+class _ButtonSectionState extends ConsumerState<ButtonSection> {
   @override
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
@@ -30,6 +32,9 @@ class _ButtonSectionState extends State<ButtonSection> {
             callback: () {
               setState(() {
                 widget.tutor.toggleFavorite();
+                ref
+                    .read(tutorsProvider.notifier)
+                    .toggleFavorite(widget.tutor.userId);
               });
             }),
         ButtonColumn(

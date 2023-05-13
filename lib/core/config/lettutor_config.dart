@@ -19,6 +19,8 @@ class LettutorConfig {
   // tutor - path
   static String getAllTutors = 'tutor/more?perPage=10&page=1';
   static String searchTutors = 'tutor/search';
+  static String toggleFavorite = 'user/manageFavoriteTutor';
+  static String getReviews = 'feedback/v2';
 
   // schedule - path
   static String scheduleByTutorIdPath = 'schedule';

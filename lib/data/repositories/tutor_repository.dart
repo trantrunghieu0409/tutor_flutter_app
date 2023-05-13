@@ -2,6 +2,7 @@ import 'package:tutor_flutter_app/data/datasources/local/account_local_datasourc
 import 'package:tutor_flutter_app/data/datasources/remote/tutor_remote_datasource.dart';
 import 'package:tutor_flutter_app/data/models/request/search_tutor_req.dart';
 import 'package:tutor_flutter_app/data/models/response/booking_resp.dart';
+import 'package:tutor_flutter_app/data/models/response/feedback_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/schedule_resp.dart';
 import 'package:tutor_flutter_app/data/models/response/tutors_resp.dart';
 
@@ -40,5 +41,16 @@ class TutorRepository {
         token.token, scheduleDetailId, note);
 
     return resp;
+  }
+
+  Future<bool> toggleFavorite(String tutorId) async {
+    var token = await _accountLocalDatasource.getToken();
+    await _tutorRemoteDatasource.toggleFavorite(token.token, tutorId);
+    return true;
+  }
+
+  Future<FeedbackResp> getReviews(String tutorId) async {
+    var token = await _accountLocalDatasource.getToken();
+    return await _tutorRemoteDatasource.getReviews(token.token, tutorId);
   }
 }
