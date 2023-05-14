@@ -1,0 +1,37 @@
+name: Build Release App Bundle
+on:
+  push:
+    tags:
+      - v*
+env:
+  PROPERTIES_PATH: "./android/key.properties"
+
+jobs:
+  build_and_deploy_android:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+
+      # Creating the key.properties file
+      - run: |
+          echo keyPassword=\${{ secrets.SIGNING_KEY_PASSWORD }} > ${{env.PROPERTIES_PATH}}
+          echo storePassword=\${{ secrets.SIGNING_STORE_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
+          echo keyAlias=\${{ secrets.SIGNING_KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
+      # Decoding base64 key into a file
+      - run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > android/app/key.jks
+      # Decoding base64 google play into a file
+      - run: echo "${{ secrets.PLAYSTORE_KEY }}" | base64 --decode > android/fastlane/playstore_key.json
+      # Get dependencies and make assigned appbundle
+      - run: | 
+          flutter pub get
+          flutter build appbundle
+      - name: run fastlane
+        working-directory: ./android
+        run: fastlane deploy
