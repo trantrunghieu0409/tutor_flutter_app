@@ -30,7 +30,7 @@
    
    <application
         tools:replace="android:label"  
-        android:label="tutor_flutter_app"
+        android:label="LetTutor Online Class"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
