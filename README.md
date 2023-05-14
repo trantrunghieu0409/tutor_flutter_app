@@ -1,16 +1,10 @@
-# tutor_flutter_app
+# LET_TUTOR MOBILE APPLICATION
 
-A new Flutter project.
+## INFORMATION
 
-## Getting Started
+STUDENT ID: 19127641 </br>
+STUDENT NAME: TRAN TRUNG HIEU
 
-This project is a starting point for a Flutter application.
+## WIDGET TREE
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Link widget tree: https://drive.google.com/file/d/1B9Z71oOnxjO421dA04yYitdY9OT4ST8W/view?usp=sharing 
