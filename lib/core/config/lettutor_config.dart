@@ -1,6 +1,6 @@
 class LettutorConfig {
   // endpoint
-  static String endpoint = "https://sandbox.api.lettutor.com/";
+  // static String endpoint = "https://sandbox.api.lettutor.com/";
 
   static String jitsiServerUrl = "https://meet.lettutor.com";
 

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:http/http.dart';
-import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
+import 'package:tutor_flutter_app/core/config/env.dart';
 import 'package:tutor_flutter_app/core/constants/http_constants.dart';
 import 'package:tutor_flutter_app/core/utils/http_utils.dart';
 
@@ -17,7 +17,7 @@ class HttpClient {
   }
 
   factory HttpClient.setLetTutorHost() =>
-      HttpClient(host: LettutorConfig.endpoint);
+      HttpClient(host: Environment().config!.baseUrl);
 
   Uri _getParsedUrl(String path) {
     return Uri.parse('$host$path');

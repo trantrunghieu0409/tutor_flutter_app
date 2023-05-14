@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tutor_flutter_app/core/config/env.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/injection/injector_config.dart';
 import 'package:tutor_flutter_app/presentation/controllers/settings_controller.dart';
@@ -11,6 +12,14 @@ import 'package:tutor_flutter_app/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
+  // Get the env from argument ENVIRONMENT
+  const String environment = String.fromEnvironment(
+    'ENVIRONMENT',
+    defaultValue: Environment.DEV,
+  );
+  Environment().initConfig(environment);
+
+  // Set up Injectors
   WidgetsFlutterBinding.ensureInitialized();
   InjectorConfig.setup();
 
