@@ -31,7 +31,7 @@ jobs:
       # Get dependencies and make assigned appbundle
       - run: | 
           flutter pub get
-          flutter build appbundle
+          flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
       - name: run fastlane
         working-directory: ./android
         run: fastlane deploy

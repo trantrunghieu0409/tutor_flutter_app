@@ -1,7 +1,7 @@
 name: CD
 on:
-  pull_request:
-    branches: ["master"]
+  push:
+    branches: ["chores/test_cd"]
 
 jobs:
   deploy_ios:
