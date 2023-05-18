@@ -32,7 +32,7 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
             label: AppLocalizations.of(context)!.favor,
             callback: () {
               setState(() {
-                // widget.tutor.toggleFavorite();
+                widget.tutor.toggleFavorite();
                 ref
                     .read(tutorsProvider.notifier)
                     .toggleFavorite(widget.tutor.userId);

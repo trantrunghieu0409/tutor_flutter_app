@@ -56,19 +56,21 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
 
   Future<bool> toggleFavorite(String tutorId) async {
     var resp = await _tutorUsecase.toggleFavorite(tutorId);
-    resp.fold((l) {
+    state = resp.fold((l) {
       log(l.error);
       return state;
     }, (r) {
-      getAll();
-      for (var element in state) {
-        if (_favoriteIds.contains(element.userId)) {
-          element.isFavorite = true;
-        } else {
-          element.isFavorite = false;
-        }
+      if (_favoriteIds.contains(tutorId)) {
+        _favoriteIds.remove(tutorId);
+      } else {
+        _favoriteIds.add(tutorId);
       }
-      // TODO: fix unsync favorite problem
+      return _sortByFavoriteAndRating(state.map((e) {
+        if (_favoriteIds.contains(e.userId)) {
+          e.isFavorite = true;
+        }
+        return e;
+      }).toList());
     });
     return resp.isRight();
   }

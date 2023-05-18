@@ -53,7 +53,7 @@ class _TutorCardState extends ConsumerState<TutorCard> {
                   child: TextButton.icon(
                       onPressed: () {
                         setState(() {
-                          // tutor.toggleFavorite();
+                          tutor.toggleFavorite();
                           ref
                               .read(tutorsProvider.notifier)
                               .toggleFavorite(tutor.userId);
