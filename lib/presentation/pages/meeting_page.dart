@@ -14,6 +14,7 @@ import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MeetingPage extends ConsumerStatefulWidget {
   final String meetingUrl;
@@ -80,10 +81,10 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
               children: [
                 Text(
                   isEnded
-                      ? "Class ended"
+                      ? AppLocalizations.of(context)!.class_end
                       : isStarted
-                          ? "Class time"
-                          : "Class will begin in",
+                          ? AppLocalizations.of(context)!.lesson_time
+                          : AppLocalizations.of(context)!.class_begin,
                   style: CommonTextStyle.h1,
                 ),
                 Center(
@@ -118,8 +119,8 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "Class time",
+                            Text(
+                              AppLocalizations.of(context)!.lesson_time,
                               style: CommonTextStyle.h2Second,
                             ),
                             Text(
@@ -130,14 +131,14 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
                             const SizedBox(
                               height: 24,
                             ),
-                            const Text(
-                              "Student request",
+                            Text(
+                              AppLocalizations.of(context)!.request_for_lesson,
                               style: CommonTextStyle.h2Second,
                             ),
                             Text(
                               widget.tutorInfo.studentRequest != null
                                   ? widget.tutorInfo.studentRequest!
-                                  : "No request",
+                                  : AppLocalizations.of(context)!.no_request,
                               style: CommonTextStyle.bodyItalicSecond,
                               maxLines: 3,
                             ),
@@ -147,7 +148,8 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
                             Center(
                               child: isEnded
                                   ? PrimaryButton(
-                                      text: "Return to homepage",
+                                      text: AppLocalizations.of(context)!
+                                          .return_homepage,
                                       onPressed: onClosePage,
                                       backgroundColor: Colors.redAccent,
                                     )
@@ -155,7 +157,7 @@ class _MeetingPageState extends ConsumerState<MeetingPage> {
                                       onPressed: () {
                                         _joinMeeting(widget.meetingUrl);
                                       },
-                                      text: "Join meeting"),
+                                      text: AppLocalizations.of(context)!.join),
                             ),
                           ],
                         ),

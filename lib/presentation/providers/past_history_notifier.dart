@@ -16,11 +16,16 @@ class PastHistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
     getHistory();
   }
 
-  Future<void> getHistory({HistoryReq? historyReq}) async {
+  int _total = 0;
+  int get total => _total;
+
+  Future<void> getHistory(
+      {int page = 1, int perPage = 10, HistoryReq? historyReq}) async {
     var resp = await _historyUsecase.getHistory(historyReq ??
         HistoryReq(
           dateTimeLte: DateTimeUtils.getTimestamp(DateTime.now()),
-          perPage: 20,
+          perPage: perPage,
+          page: page,
           sortBy: 'desc',
         ));
 
@@ -28,10 +33,10 @@ class PastHistoryNotifier extends StateNotifier<List<TutorHistoryEntity>> {
       log(l.error);
       return state;
     }, (r) {
+      _total = r.total;
       return _groupRelatedSchedules(r.histories);
     });
-    state =
-        (historyReq == null || historyReq.page == 1) ? res : [...state, ...res];
+    state = (page == 1) ? res : [...state, ...res];
   }
 
   List<TutorHistoryEntity> _groupRelatedSchedules(

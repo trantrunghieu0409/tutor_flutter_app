@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchInputField extends StatelessWidget {
   const SearchInputField(
@@ -14,12 +15,12 @@ class SearchInputField extends StatelessWidget {
       onChanged: (value) {
         onChange();
       },
-      decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.search),
-        border: OutlineInputBorder(),
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search),
+        border: const OutlineInputBorder(),
         isDense: true,
-        contentPadding: EdgeInsets.all(8),
-        hintText: "Search",
+        contentPadding: const EdgeInsets.all(8),
+        hintText: AppLocalizations.of(context)!.search,
       ),
     );
   }

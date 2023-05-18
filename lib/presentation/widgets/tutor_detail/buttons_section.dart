@@ -5,6 +5,7 @@ import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_column.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/feedback_row.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ButtonSection extends ConsumerStatefulWidget {
   const ButtonSection({super.key, required this.tutor});
@@ -28,10 +29,10 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
             icon: widget.tutor.isFavorite
                 ? Icons.favorite
                 : Icons.favorite_outline,
-            label: 'Favorite',
+            label: AppLocalizations.of(context)!.favor,
             callback: () {
               setState(() {
-                widget.tutor.toggleFavorite();
+                // widget.tutor.toggleFavorite();
                 ref
                     .read(tutorsProvider.notifier)
                     .toggleFavorite(widget.tutor.userId);
@@ -40,7 +41,7 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
         ButtonColumn(
           color: color,
           icon: Icons.list_alt_outlined,
-          label: 'Reviews',
+          label: AppLocalizations.of(context)!.reviews,
           callback: () {
             _showReviews();
           },
@@ -48,7 +49,7 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
         ButtonColumn(
           color: color,
           icon: Icons.report_outlined,
-          label: 'Report',
+          label: AppLocalizations.of(context)!.report,
           callback: () {
             _showReportConfirmDialog();
           },
@@ -65,7 +66,7 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
         return GestureDetector(
           child: AlertDialog(
             title: Text(
-              'Reviews about ${widget.tutor.name}',
+              '${AppLocalizations.of(context)!.review_about} ${widget.tutor.name}',
               style: CommonTextStyle.h2Second,
             ),
             content: SingleChildScrollView(
@@ -84,7 +85,7 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
             ),
             actions: <Widget>[
               ElevatedButton(
-                child: const Text('Close'),
+                child: Text(AppLocalizations.of(context)!.close),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -103,15 +104,16 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
       builder: (BuildContext context) {
         return GestureDetector(
           child: AlertDialog(
-            title: Text('Report - ${widget.tutor.name}'),
+            title: Text(
+                '${AppLocalizations.of(context)!.report} - ${widget.tutor.name}'),
             content: SingleChildScrollView(
               child: ListBody(
-                children: const <Widget>[
-                  Text('What do you want to report?'),
-                  SizedBox(
+                children: <Widget>[
+                  Text(AppLocalizations.of(context)!.report_ques),
+                  const SizedBox(
                     height: 12,
                   ),
-                  TextField(
+                  const TextField(
                     keyboardType: TextInputType.text,
                     maxLines: 5,
                     decoration: InputDecoration(
@@ -129,9 +131,9 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text("Cancel")),
+                  child: Text(AppLocalizations.of(context)!.cancel)),
               ElevatedButton(
-                child: const Text('Submit'),
+                child: Text(AppLocalizations.of(context)!.submit),
                 onPressed: () {
                   Navigator.of(context).pop();
                   _showReportResultDialog();
@@ -150,18 +152,17 @@ class _ButtonSectionState extends ConsumerState<ButtonSection> {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Report successfully'),
+          title: Text(AppLocalizations.of(context)!.report_success),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text(
-                    'We\'ve received your report and will take care of this case carefully.'),
+              children: <Widget>[
+                Text(AppLocalizations.of(context)!.report_success_desc),
               ],
             ),
           ),
           actions: <Widget>[
             OutlinedButton(
-              child: const Text('Close'),
+              child: Text(AppLocalizations.of(context)!.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

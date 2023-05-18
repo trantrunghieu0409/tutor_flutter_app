@@ -4,7 +4,7 @@ import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'button_icon_outline.dart';
 
 class AvatarInfo extends StatelessWidget {
@@ -48,7 +48,7 @@ class AvatarInfo extends StatelessWidget {
             ],
           ),
           ButtonIconOutline(
-            labelText: "Inbox",
+            labelText: AppLocalizations.of(context)!.inbox,
             icon: const Icon(Icons.message),
             callback: () {
               Navigator.pushNamed(context, MainChatPage.routeName);

@@ -7,9 +7,11 @@ import 'package:tutor_flutter_app/presentation/pages/authentication/register_pag
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
+import 'package:tutor_flutter_app/presentation/widgets/login/change_language.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/input_field.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/row_icons.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/text_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 typedef LoginCallback = void Function()?;
 
@@ -55,6 +57,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    emailTextController.text = 'phhai@ymail.com';
+    passwordTextController.text = '123456';
     return isLoading
         ? Scaffold(
             body: Center(
@@ -68,39 +72,41 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             child: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: Scaffold(
+                floatingActionButton: const ChangeLanguageButton(),
                 body: ListView(
                   padding:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                   children: [
-                    const TextHeader(text: "MEET YOUR NEW ENGLISH TUTORS"),
+                    TextHeader(text: AppLocalizations.of(context)!.login_title),
                     const TextSubheader(),
                     const SizedBox(
                       height: 16,
                     ),
                     InputField(
-                      title: "EMAIL",
-                      placeholder: "Your email",
+                      title: "Email",
+                      placeholder: AppLocalizations.of(context)!.your_email,
                       textController: emailTextController,
                       validate: () =>
                           StringUtils.isValidEmail(emailTextController.text),
-                      errorText: "Not a valid email format",
+                      errorText: AppLocalizations.of(context)!.invalid_email,
                     ),
                     InputField(
-                      title: "PASSWORD",
-                      placeholder: "Your password",
+                      title: AppLocalizations.of(context)!.password,
+                      placeholder: AppLocalizations.of(context)!.your_password,
                       isObsecure: true,
                       textController: passwordTextController,
                       validate: () => passwordTextController.text.isNotEmpty,
-                      errorText: "Password cannot be empty",
+                      errorText:
+                          AppLocalizations.of(context)!.password_notempty,
                     ),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: PrimaryButton(
-                          text: "Login",
+                          text: AppLocalizations.of(context)!.login,
                           onPressed: () => _handleLogin(context),
                         )),
                     TextLink(
-                      text: "Forget Password?",
+                      text: AppLocalizations.of(context)!.forget_password,
                       onClick: () {
                         Navigator.pushNamed(
                             context, ForgotPasswordPage.routeName);
@@ -113,9 +119,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Not a member yet? "),
+                        Text("${AppLocalizations.of(context)!.not_member} "),
                         TextLink(
-                          text: "Sign up",
+                          text: AppLocalizations.of(context)!.sign_up,
                           onClick: () {
                             Navigator.pushNamed(
                                 context, RegisterPage.routeName);
@@ -151,8 +157,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             "Your account has not activated") {
           DialogHelpers.showSimpleResultDialog(
               context,
-              "Account not yet activated",
-              "You account has not activated.\nPlease click on the verification link that we've sent to your email.");
+              AppLocalizations.of(context)!.not_activate_title,
+              AppLocalizations.of(context)!.not_activate_desc);
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('Error: ${autheticationValidator.failure?.error}'),

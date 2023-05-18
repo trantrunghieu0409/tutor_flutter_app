@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tutor_flutter_app/presentation/controllers/settings_controller.dart';
 
 class Schedule extends StatefulWidget {
   const Schedule(
@@ -46,7 +49,9 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormatted = DateFormat("EEE, dd MMM").format(widget.date);
+    var dateFormatted = DateFormat("EEEE, dd MMM",
+            Injector.resolve<SettingsController>().language.locale)
+        .format(widget.date);
 
     return Column(
       children: [
@@ -64,8 +69,8 @@ class _ScheduleState extends State<Schedule> {
         ),
         Text(
           startTime.compareTo(DateTime.now()) < 0
-              ? "(class time: ${DateTimeUtils.formatDuration(remainTime)})"
-              : "(starts in : ${DateTimeUtils.formatDuration(remainTime)})",
+              ? "(${AppLocalizations.of(context)!.class_time}: ${DateTimeUtils.formatDuration(remainTime)})"
+              : "(${AppLocalizations.of(context)!.start} : ${DateTimeUtils.formatDuration(remainTime)})",
           style: CommonTextStyle.subtitle,
         )
       ],

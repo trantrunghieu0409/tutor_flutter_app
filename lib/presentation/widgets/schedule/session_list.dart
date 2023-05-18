@@ -8,6 +8,7 @@ import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
 import 'package:tutor_flutter_app/presentation/helpers/result_dialog.dart';
 import 'package:tutor_flutter_app/presentation/providers/history_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SessionList extends ConsumerStatefulWidget {
   const SessionList({super.key, required this.tutor});
@@ -26,12 +27,9 @@ class _SessionListState extends ConsumerState<SessionList> {
     return Column(children: [
       BorderContainer(
           child: sessions.isEmpty
-              ? const Text(
-                  "No session yet!",
-                  style: CommonTextStyle.bodyItalicSecond,
-                )
+              ? const SizedBox()
               : Text(
-                  "Lesson Time: ${DateTimeUtils.formatTimeRange(sessions.first.startTimestamp, sessions.last.endTimestamp)}",
+                  "${AppLocalizations.of(context)!.lesson_time}: ${DateTimeUtils.formatTimeRange(sessions.first.startTimestamp, sessions.last.endTimestamp)}",
                   style: CommonTextStyle.h3Second,
                 )),
       const SizedBox(
@@ -47,7 +45,7 @@ class _SessionListState extends ConsumerState<SessionList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Session ${(index + 1)}: ${DateTimeUtils.formatTimeRange(sessions[index].startTimestamp, sessions[index].endTimestamp)}',
+                          '${AppLocalizations.of(context)!.session} ${(index + 1)}: ${DateTimeUtils.formatTimeRange(sessions[index].startTimestamp, sessions[index].endTimestamp)}',
                           style: CommonTextStyle.bodySecond,
                         ),
                         IconButton(

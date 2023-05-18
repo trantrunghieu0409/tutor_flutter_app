@@ -8,6 +8,7 @@ import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/buttons_section.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorDetailCard extends ConsumerStatefulWidget {
   const TutorDetailCard({super.key, required this.tutor});
@@ -80,18 +81,18 @@ class _TutorDetailCardState extends ConsumerState<TutorDetailCard> {
             height: 16,
           ),
           Text(widget.tutor.bio),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              "Interests",
+              AppLocalizations.of(context)!.interests,
               style: CommonTextStyle.bodyItalicSecond,
             ),
           ),
           Text(widget.tutor.interests),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              "Teaching experience",
+              AppLocalizations.of(context)!.teaching_exp,
               style: CommonTextStyle.bodyItalicSecond,
             ),
           ),

@@ -10,6 +10,7 @@ import 'package:tutor_flutter_app/presentation/widgets/tutors/input_chip_list.da
 import 'package:tutor_flutter_app/presentation/widgets/tutors/secondary_input_filed.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/tutor_list.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutors/upcoming_lesson.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorListPage extends ConsumerStatefulWidget {
   const TutorListPage({Key? key}) : super(key: key);
@@ -89,8 +90,8 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Find a tutor",
+                    Text(
+                      AppLocalizations.of(context)!.find_tutor,
                       style: CommonTextStyle.h1Second,
                     ),
                     const SizedBox(
@@ -103,7 +104,8 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                           children: [
                             SecondaryInputField(
                               textEditingController: controller,
-                              placeholder: "Enter tutor name",
+                              placeholder: AppLocalizations.of(context)!
+                                  .enter_tutor_name,
                               callback: (p0) {
                                 _name = p0!;
                                 _handleFilter();
@@ -116,7 +118,8 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                         ),
                         CustomDropdownButton(
                             items: _nationalities,
-                            hintText: 'Select tutor nationality',
+                            hintText:
+                                AppLocalizations.of(context)!.select_nation,
                             callback: (p0) {
                               _nationality = _nationalities.indexOf(p0!);
                               _handleFilter();
@@ -135,15 +138,16 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                           onPressed: () {
                             _handleClear();
                           },
-                          child: const Text('Reset filters'),
+                          child:
+                              Text(AppLocalizations.of(context)!.reset_filters),
                         )
                       ],
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    const Text(
-                      "Recommended Tutors",
+                    Text(
+                      AppLocalizations.of(context)!.recommend_tutors,
                       style: CommonTextStyle.h2Second,
                     ),
                     Consumer(builder: (contex, ref, child) {
@@ -152,7 +156,8 @@ class _TutorListPageState extends ConsumerState<TutorListPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Found ${ref.watch(tutorsProvider.notifier).total} result(s)",
+                            AppLocalizations.of(context)!.found(
+                                ref.watch(tutorsProvider.notifier).total),
                             style: CommonTextStyle.bodySecond,
                           ),
                           const SizedBox(

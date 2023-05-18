@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.da
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 import 'package:tutor_flutter_app/presentation/widgets/course_detail/detail_section.dart';
 import 'package:tutor_flutter_app/presentation/pages/topic_detail_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CourseDetailPage extends StatelessWidget {
   const CourseDetailPage({super.key});
@@ -30,7 +31,7 @@ class CourseDetailPage extends StatelessWidget {
                 title: course.name,
                 description: course.description,
                 footer: PrimaryButton(
-                    text: "Discover",
+                    text: AppLocalizations.of(context)!.discover,
                     onPressed: () => {
                           Navigator.pushNamed(
                               context, TopicDetailPage.routeName,

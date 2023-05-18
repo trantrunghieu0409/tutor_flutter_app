@@ -4,8 +4,10 @@ import 'package:tutor_flutter_app/core/utils/string_utils.dart';
 import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
+import 'package:tutor_flutter_app/presentation/widgets/login/change_language.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/input_field.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/text_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 typedef LoginCallback = void Function()?;
 
@@ -63,44 +65,50 @@ class _RegisterPageState extends State<RegisterPage>
             : GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
                 child: Scaffold(
+                  floatingActionButton: const ChangeLanguageButton(),
                   body: ListView(
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 40),
                     children: [
-                      const TextHeader(text: "START TODAY"),
+                      TextHeader(
+                          text: AppLocalizations.of(context)!.singup_title),
                       const TextSubheader(),
                       const SizedBox(
                         height: 16,
                       ),
                       InputField(
                         title: "Email",
-                        placeholder: "Your email",
+                        placeholder: AppLocalizations.of(context)!.your_email,
                         textController: emailTextController,
                         validate: () =>
                             StringUtils.isValidEmail(emailTextController.text),
-                        errorText: "Not a valid email format",
+                        errorText: AppLocalizations.of(context)!.invalid_email,
                       ),
                       InputField(
-                        title: "Password",
-                        placeholder: "Your password",
+                        title: AppLocalizations.of(context)!.password,
+                        placeholder:
+                            AppLocalizations.of(context)!.your_password,
                         isObsecure: true,
                         textController: passwordTextController,
                         validate: () => passwordTextController.text.isNotEmpty,
-                        errorText: "Password cannot be empty",
+                        errorText:
+                            AppLocalizations.of(context)!.password_notempty,
                       ),
                       InputField(
-                          title: "Re-type password",
-                          placeholder: "Your re-type password",
+                          title: AppLocalizations.of(context)!.retype_password,
+                          placeholder: AppLocalizations.of(context)!
+                              .your_retype_password,
                           isObsecure: true,
                           textController: reTypePasswordTextController,
                           validate: () =>
                               reTypePasswordTextController.text ==
                               passwordTextController.text,
-                          errorText: "Retype-Password does not match password"),
+                          errorText:
+                              AppLocalizations.of(context)!.retype_notmatch),
                       Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: PrimaryButton(
-                            text: "Register",
+                            text: AppLocalizations.of(context)!.register,
                             onPressed: () => _handleRegister(context),
                           )),
                       Padding(
@@ -111,8 +119,8 @@ class _RegisterPageState extends State<RegisterPage>
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: const Text(
-                                "Already have an account",
+                              child: Text(
+                                AppLocalizations.of(context)!.have_account,
                               ))),
                     ],
                   ),
@@ -127,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage>
 
     if (retypePassword != password) {
       SnackBarHelpers.showSnackBarFail(
-          context, 'Error: Re-type password must match password');
+          context, 'Error: ${AppLocalizations.of(context)!.retype_notmatch}');
     }
 
     if (!StringUtils.isValidEmail(email) ||

@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
 
               locale: Locale(settingController.language.locale, ''),
 
-              theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+              theme: ThemeData(textTheme: GoogleFonts.openSansTextTheme()),
               darkTheme: ThemeData.dark(),
               themeMode: settingController.themeMode,
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TextHeader extends StatelessWidget {
   const TextHeader({super.key, required this.text});
@@ -18,6 +19,7 @@ class TextHeader extends StatelessWidget {
         ),
         textAlign: TextAlign.start,
         softWrap: true,
+        maxLines: 2,
       ),
     );
   }
@@ -28,9 +30,9 @@ class TextSubheader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'Become fluent faster through one on one video chat lessons tailored to your goals.',
-      style: TextStyle(fontSize: 16.0),
+    return Text(
+      AppLocalizations.of(context)!.login_desc,
+      style: const TextStyle(fontSize: 16.0),
       textAlign: TextAlign.start,
       softWrap: true,
     );

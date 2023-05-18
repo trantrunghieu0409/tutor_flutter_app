@@ -6,6 +6,7 @@ import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/video_player.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/booking_calendar.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/tutor_detail_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorDetailPage extends StatelessWidget {
   const TutorDetailPage({super.key});
@@ -25,10 +26,10 @@ class TutorDetailPage extends StatelessWidget {
         children: [
           VideoSection(link: tutor.video),
           TutorDetailCard(tutor: tutor),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              "Make an Appoinment",
+              AppLocalizations.of(context)!.make_appointment,
               style: CommonTextStyle.h2Second,
             ),
           ),
@@ -45,7 +46,7 @@ class TutorDetailPage extends StatelessWidget {
           Navigator.pushNamed(context, MainChatPage.routeName);
         },
         backgroundColor: Colors.lightBlue,
-        label: const Text("Chat with me!"),
+        label: Text(AppLocalizations.of(context)!.chat),
         icon: const Icon(Icons.message_outlined),
       ),
     );

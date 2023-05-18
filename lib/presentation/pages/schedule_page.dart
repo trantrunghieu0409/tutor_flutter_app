@@ -9,6 +9,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/common_scaffold.da
 import 'package:tutor_flutter_app/presentation/widgets/common/empty_widget.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/page_introduction.dart';
 import 'package:tutor_flutter_app/presentation/widgets/schedule/schedule_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SchedulePage extends ConsumerStatefulWidget {
   const SchedulePage({super.key});
@@ -23,6 +24,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
   late List<TutorHistoryEntity> tutors;
 
   int page = 1;
+  int perPage = 5;
   bool isLoading = false;
 
   TextEditingController controller = TextEditingController();
@@ -45,7 +47,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
 
   bool isEndOfPage() {
     int total = ref.read(historyProvider.notifier).total;
-    return page >= (total / 5).ceil();
+    return page >= (total / perPage).ceil();
   }
 
   void onScrollNearEnd() async {
@@ -63,13 +65,12 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
     await ref.watch(historyProvider.notifier).getHistory(
         historyReq: HistoryReq(
             dateTimeGte: DateTimeUtils.getTimestamp(DateTime.now()),
+            perPage: perPage,
             page: page));
   }
 
   @override
   Widget build(BuildContext context) {
-    tutors = ref.watch(historyProvider);
-
     return CommonScaffold(
         child: RefreshIndicator(
       onRefresh: _pullRefresh,
@@ -79,22 +80,25 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
         padding: const EdgeInsets.all(8),
         children: [
           PageIntroduction(
-            title: "Schedule",
-            description:
-                "You can track when the meeting starts, join the meeting with one click or cancel the meeting before 2 hours",
+            title: AppLocalizations.of(context)!.schedule,
+            description: AppLocalizations.of(context)!.schedule_desc,
             image: SvgPicture.asset(
               "assets/images/schedule_picture.svg",
               semanticsLabel: "history_picture",
               width: 140,
             ),
           ),
-          ..._buidHistoryCardList(),
-          if (!isEndOfPage())
-            const Center(
-                child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: CircularProgressIndicator(),
-            ))
+          Consumer(builder: (context, ref, child) {
+            return Column(children: [
+              ..._buidHistoryCardList(ref.watch(historyProvider)),
+              if (!isEndOfPage())
+                const Center(
+                    child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                ))
+            ]);
+          })
         ],
       ),
     ));
@@ -105,12 +109,17 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
     _fetchPage(1);
   }
 
-  List<Widget> _buidHistoryCardList() {
+  List<Widget> _buidHistoryCardList(List<TutorHistoryEntity> tutors) {
     return tutors.isEmpty
         ? [
-            const EmptyWidget(
-                text:
-                    "You do not have any class yet!\nTry to book a class to start learning today.")
+            Column(
+              children: [
+                EmptyWidget(text: AppLocalizations.of(context)!.no_schedule),
+                const SizedBox(
+                  height: 500,
+                )
+              ],
+            )
           ]
         : List<Widget>.generate(
             tutors.length,

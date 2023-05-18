@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
+import 'package:tutor_flutter_app/presentation/controllers/settings_controller.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/avatar_info.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_container.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/border_outline_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key, required this.tutor});
@@ -15,7 +18,9 @@ class HistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormatted = DateFormat("EEE, dd MMM yy").format(tutor.date);
+    var dateFormatted = DateFormat("EEEE, dd MMM",
+            Injector.resolve<SettingsController>().language.locale)
+        .format(tutor.date);
     var sessions = tutor.scheduleHitories;
 
     return Card(
@@ -30,6 +35,7 @@ class HistoryCard extends StatelessWidget {
           ),
           Text(
             DateTimeUtils.formatTimeAgo(
+                context: context,
                 time: DateTimeUtils.getDateTime(sessions.first.startTimestamp)),
             style: CommonTextStyle.bodySecond,
           ),
@@ -42,7 +48,7 @@ class HistoryCard extends StatelessWidget {
           ),
           BorderContainer(
               child: Text(
-            "Lesson Time: ${DateTimeUtils.formatTimeRange(sessions.last.startTimestamp, sessions.first.endTimestamp)}",
+            "${AppLocalizations.of(context)!.lesson_time} ${DateTimeUtils.formatTimeRange(sessions.last.startTimestamp, sessions.first.endTimestamp)}",
             style: CommonTextStyle.h3Second,
           )),
           const SizedBox(
@@ -52,15 +58,16 @@ class HistoryCard extends StatelessWidget {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Request for lesson",
+              Text(
+                AppLocalizations.of(context)!.request_for_lesson,
                 style: CommonTextStyle.h3Second,
               ),
               const SizedBox(
                 height: 8,
               ),
               Text(
-                tutor.tutorInfo.studentRequest ?? "No request yet!",
+                tutor.tutorInfo.studentRequest ??
+                    AppLocalizations.of(context)!.no_request,
                 style: CommonTextStyle.bodyItalicSecond,
               )
             ],
@@ -68,16 +75,16 @@ class HistoryCard extends StatelessWidget {
           BorderContainer(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                "Reviews",
+                AppLocalizations.of(context)!.reviews,
                 style: CommonTextStyle.h3Second,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Text(
-                "Tutor haven't reviewed yet",
+                AppLocalizations.of(context)!.no_review_tutor,
                 style: CommonTextStyle.bodyItalicSecond,
               )
             ],
@@ -88,11 +95,12 @@ class HistoryCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const BorderOutlineButton(
-                    labelText: "Report", icon: Icons.report),
+                BorderOutlineButton(
+                    labelText: AppLocalizations.of(context)!.report,
+                    icon: Icons.report),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  label: const Text("Add a rating"),
+                  label: Text(AppLocalizations.of(context)!.rating),
                   icon: const Icon(Icons.rate_review),
                 ),
               ],

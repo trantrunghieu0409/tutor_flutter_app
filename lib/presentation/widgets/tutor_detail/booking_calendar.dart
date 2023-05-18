@@ -7,6 +7,7 @@ import 'package:tutor_flutter_app/domain/entities/schedule/schedule_entity.dart'
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:tutor_flutter_app/presentation/providers/schedule_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingCalendar extends ConsumerStatefulWidget {
   const BookingCalendar({super.key, required this.tutor});
@@ -134,7 +135,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
           ),
         if (schedules.isNotEmpty)
           PrimaryButton(
-              text: "Book",
+              text: AppLocalizations.of(context)!.book,
               onPressed: () {
                 if (bookingId != null && scheduleEntity != null) {
                   _showBookingDialog(bookingId!, scheduleEntity!.startTimestamp,
@@ -156,15 +157,15 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(
-            "Booking Details",
+          title: Text(
+            AppLocalizations.of(context)!.book_detail,
             style: CommonTextStyle.h1Second,
           ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                const Text(
-                  "Booking time",
+                Text(
+                  AppLocalizations.of(context)!.book_time,
                   style: CommonTextStyle.h2Second,
                 ),
                 Text(
@@ -177,20 +178,20 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "Price",
+                    Text(
+                      AppLocalizations.of(context)!.price,
                       style: CommonTextStyle.h2Second,
                     ),
                     Text(
-                      "${widget.tutor.price} lesson(s)",
+                      "${widget.tutor.price} ${AppLocalizations.of(context)!.lesson}",
                     ),
                   ],
                 ),
                 const SizedBox(
                   height: 12,
                 ),
-                const Text(
-                  'Notes',
+                Text(
+                  AppLocalizations.of(context)!.note,
                   style: CommonTextStyle.h2Second,
                 ),
                 GestureDetector(
@@ -214,9 +215,9 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text("Cancel")),
+                child: Text(AppLocalizations.of(context)!.cancel)),
             ElevatedButton(
-              child: const Text('Book'),
+              child: Text(AppLocalizations.of(context)!.book),
               onPressed: () {
                 Navigator.of(context).pop();
                 _showBookingResult();
@@ -247,8 +248,8 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                     bool isSuccess = snapshot.data!;
 
                     String displayText = isSuccess
-                        ? "Booked this time successully"
-                        : "This booking time is unavaliable";
+                        ? AppLocalizations.of(context)!.book_success
+                        : AppLocalizations.of(context)!.book_fail;
 
                     if (isSuccess) {
                       _getScheduleListInDay(_selectedDay ?? DateTime.now());
@@ -320,32 +321,32 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
       children: [
         Wrap(
           spacing: 4,
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.circle,
               color: Colors.green,
             ),
-            Text("Available"),
+            Text(AppLocalizations.of(context)!.available),
           ],
         ),
         Wrap(
           spacing: 4,
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.circle,
               color: Colors.amber,
             ),
-            Text("Selected"),
+            Text(AppLocalizations.of(context)!.selected),
           ],
         ),
         Wrap(
           spacing: 4,
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.circle,
               color: Colors.red,
             ),
-            Text("Booked"),
+            Text(AppLocalizations.of(context)!.booked),
           ],
         ),
       ],

@@ -9,6 +9,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.d
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorCard extends ConsumerStatefulWidget {
   const TutorCard({super.key, required this.tutor});
@@ -52,11 +53,11 @@ class _TutorCardState extends ConsumerState<TutorCard> {
                   child: TextButton.icon(
                       onPressed: () {
                         setState(() {
-                          tutor.toggleFavorite();
+                          // tutor.toggleFavorite();
+                          ref
+                              .read(tutorsProvider.notifier)
+                              .toggleFavorite(tutor.userId);
                         });
-                        ref
-                            .read(tutorsProvider.notifier)
-                            .toggleFavorite(tutor.userId);
                       },
                       icon: tutor.isFavorite
                           ? const Icon(
@@ -98,10 +99,10 @@ class _TutorCardState extends ConsumerState<TutorCard> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
+              children: [
                 ButtonIconOutline(
-                    labelText: "Book",
-                    icon: Icon(Icons.calendar_today_outlined))
+                    labelText: AppLocalizations.of(context)!.book,
+                    icon: const Icon(Icons.calendar_today_outlined))
               ],
             )
           ]),

@@ -14,6 +14,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/card_with_picture.
 import 'package:tutor_flutter_app/presentation/widgets/common/common_scaffold.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/custom_dropdown_button.dart';
 import 'package:tutor_flutter_app/presentation/widgets/courses/custome_page_introduction.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CoursesPage extends ConsumerStatefulWidget {
   const CoursesPage({super.key});
@@ -139,7 +140,8 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                           CustomDropdownButton(
                             items: levels,
                             selectedValue: level == -1 ? null : levels[level],
-                            hintText: "Select level",
+                            hintText:
+                                AppLocalizations.of(context)!.select_level,
                             callback: (value) {
                               setState(() {
                                 level = levels.indexOf(value!);
@@ -159,7 +161,8 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                                     .firstWhere(
                                         (element) => element.id == categoryId)
                                     .title,
-                            hintText: "Select category",
+                            hintText:
+                                AppLocalizations.of(context)!.select_category,
                             callback: (value) {
                               setState(() {
                                 categoryId = categories
@@ -181,7 +184,7 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                                 : (direction == CommonConsts.asc
                                     ? "Increasing"
                                     : "Descreasing"),
-                            hintText: "Sort by level",
+                            hintText: AppLocalizations.of(context)!.sort_level,
                             callback: (value) {
                               setState(() {
                                 direction = value == "Increasing"
@@ -202,15 +205,15 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                 TabBar(
                   controller: _tabController,
                   labelColor: Colors.blue,
-                  tabs: const [
+                  tabs: [
                     Tab(
-                      text: "Course",
+                      text: AppLocalizations.of(context)!.course,
                     ),
-                    Tab(
+                    const Tab(
                       text: "E-Book",
                     ),
                     Tab(
-                      text: "Modern E-book",
+                      text: AppLocalizations.of(context)!.modern_ebook,
                     ),
                   ],
                 ),
@@ -231,7 +234,7 @@ class _CoursesPageState extends ConsumerState<CoursesPage>
                                   title: courses[index].name,
                                   description: courses[index].description,
                                   footer: Text(
-                                    "${courses[index].getLevel()} - ${courses[index].topics.length} lessons",
+                                    "${courses[index].getLevel()} - ${courses[index].topics.length} ${AppLocalizations.of(context)!.lesson}",
                                   ),
                                   callback: () {
                                     Navigator.pushNamed(

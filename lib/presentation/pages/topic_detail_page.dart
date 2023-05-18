@@ -5,6 +5,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.da
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/topic_detail/pdf_holder.dart';
 import 'package:tutor_flutter_app/presentation/widgets/topic_detail/topic_dropdown.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TopicDetailPage extends StatefulWidget {
   const TopicDetailPage({super.key});
@@ -53,9 +54,11 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
             });
           },
           backgroundColor: Colors.lightBlue,
-          label: Text(isHorizontal ? "Vertical swipe" : "Horizontal swipe"),
+          label: Text(isHorizontal
+              ? AppLocalizations.of(context)!.horizontal_swipe
+              : AppLocalizations.of(context)!.vertical_swipe),
           icon:
-              Icon(isHorizontal ? Icons.arrow_downward : Icons.compare_arrows),
+              Icon(isHorizontal ? Icons.compare_arrows : Icons.arrow_downward),
         ),
         body: Column(
           children: [

@@ -60,11 +60,15 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
       log(l.error);
       return state;
     }, (r) {
-      if (_favoriteIds.contains(tutorId)) {
-        _favoriteIds.remove(tutorId);
-      } else {
-        _favoriteIds.add(tutorId);
+      getAll();
+      for (var element in state) {
+        if (_favoriteIds.contains(element.userId)) {
+          element.isFavorite = true;
+        } else {
+          element.isFavorite = false;
+        }
       }
+      // TODO: fix unsync favorite problem
     });
     return resp.isRight();
   }

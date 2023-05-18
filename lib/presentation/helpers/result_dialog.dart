@@ -56,10 +56,11 @@ class DialogHelpers {
                     );
                   } else {
                     return const Center(
+                        heightFactor: 1.0,
                         child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(),
-                    ));
+                          padding: EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        ));
                   }
                 }),
           );

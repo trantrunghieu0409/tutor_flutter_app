@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DateTimeUtils {
   DateTimeUtils._();
@@ -38,27 +39,27 @@ class DateTimeUtils {
   }
 
   static String formatTimeAgo(
-      {required DateTime time, bool numericDates = true}) {
+      {required BuildContext context, required DateTime time}) {
     final date2 = DateTime.now();
     final difference = date2.difference(time);
     if ((difference.inDays / 7).floor() == 1) {
-      return (numericDates) ? '1 week ago' : 'Last week';
+      return AppLocalizations.of(context)!.last_week;
     } else if (difference.inDays >= 2) {
-      return '${difference.inDays} days ago';
+      return '${difference.inDays} ${AppLocalizations.of(context)!.day_ago}';
     } else if (difference.inDays >= 1) {
-      return (numericDates) ? '1 day ago' : 'Yesterday';
+      return AppLocalizations.of(context)!.yesterday;
     } else if (difference.inHours >= 2) {
-      return '${difference.inHours} hours ago';
+      return '${difference.inHours} ${AppLocalizations.of(context)!.hour_ago}';
     } else if (difference.inHours >= 1) {
-      return (numericDates) ? '1 hour ago' : 'An hour ago';
+      return AppLocalizations.of(context)!.one_hour_ago;
     } else if (difference.inMinutes >= 2) {
-      return '${difference.inMinutes} minutes ago';
+      return '${difference.inMinutes} ${AppLocalizations.of(context)!.minute_ago}';
     } else if (difference.inMinutes >= 1) {
-      return (numericDates) ? '1 minute ago' : 'A minute ago';
+      return AppLocalizations.of(context)!.one_minute_ago;
     } else if (difference.inSeconds >= 3) {
-      return '${difference.inSeconds} seconds ago';
+      return '${difference.inSeconds} ${AppLocalizations.of(context)!.second_ago}';
     } else {
-      return 'Just now';
+      return AppLocalizations.of(context)!.just_now;
     }
   }
 }
