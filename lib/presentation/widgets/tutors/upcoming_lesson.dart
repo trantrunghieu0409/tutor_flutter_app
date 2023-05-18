@@ -1,17 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
-import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/common/failure_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_history_entity.dart';
 import 'package:tutor_flutter_app/presentation/pages/meeting_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/helper_future_providers.dart';
 import 'package:tutor_flutter_app/presentation/providers/history_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_icon_outline.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'schedule.dart';
 
@@ -38,10 +36,10 @@ class _UpcommingLessonState extends ConsumerState<UpcommingLesson> {
         decoration: const BoxDecoration(gradient: CommonColor.linearBlue),
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 16.0),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
               child: Text(
-                "Upcoming lesson",
+                AppLocalizations.of(context)!.upcoming,
                 style: CommonTextStyle.h1,
               ),
             ),
@@ -57,10 +55,9 @@ class _UpcommingLessonState extends ConsumerState<UpcommingLesson> {
                   },
                 ),
                 ButtonIconOutline(
-                    labelText: "Enter Meeting",
+                    labelText: AppLocalizations.of(context)!.enter,
                     icon: const FaIcon(FontAwesomeIcons.youtube),
                     callback: () {
-                      log("Pressing");
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -77,7 +74,8 @@ class _UpcommingLessonState extends ConsumerState<UpcommingLesson> {
             ),
             total.when(
                 data: (total) => Text(
-                      "Total lesson time is ${DateTimeUtils.formatHourMinute(total)}",
+                      AppLocalizations.of(context)!.total_time(
+                          (total / 60).floor(), total.remainder(60)),
                       style: CommonTextStyle.body,
                       textAlign: TextAlign.center,
                     ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
 import 'package:tutor_flutter_app/core/utils/image_utils.dart';
+import 'package:tutor_flutter_app/core/utils/string_utils.dart';
 import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
+import 'package:tutor_flutter_app/presentation/widgets/login/change_language.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/input_field.dart';
 import 'package:tutor_flutter_app/presentation/widgets/login/text_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -61,11 +64,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
             : GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
                 child: Scaffold(
+                  floatingActionButton: const ChangeLanguageButton(),
                   body: ListView(
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 40),
                     children: [
-                      const TextHeader(text: "RESET PASSWORD"),
+                      TextHeader(
+                          text: AppLocalizations.of(context)!.reset_password),
                       isSentEmail
                           ? Column(
                               children: [
@@ -79,9 +84,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                                 const SizedBox(
                                   height: 16,
                                 ),
-                                const Text(
-                                  'Check your mailbox for a link to reset your password.',
-                                  style: TextStyle(fontSize: 16.0),
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .reset_success_desc,
+                                  style: const TextStyle(fontSize: 16.0),
                                   textAlign: TextAlign.start,
                                   softWrap: true,
                                 ),
@@ -89,9 +95,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                             )
                           : Column(
                               children: [
-                                const Text(
-                                  'Enter the email address associated with your account.',
-                                  style: TextStyle(fontSize: 16.0),
+                                Text(
+                                  AppLocalizations.of(context)!.reset_desc,
+                                  style: const TextStyle(fontSize: 16.0),
                                   textAlign: TextAlign.start,
                                   softWrap: true,
                                 ),
@@ -100,14 +106,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                                 ),
                                 InputField(
                                   title: "Email",
-                                  placeholder: "Your email",
+                                  placeholder:
+                                      AppLocalizations.of(context)!.your_email,
                                   textController: emailTextController,
+                                  validate: () => StringUtils.isValidEmail(
+                                      emailTextController.text),
+                                  errorText: "Not a valid email format",
                                 ),
                                 Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 16.0),
                                     child: PrimaryButton(
-                                      text: "Reset Password",
+                                      text: AppLocalizations.of(context)!
+                                          .reset_password,
                                       onPressed: () =>
                                           _handleForgotPassword(context),
                                     )),
@@ -123,8 +134,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                               },
                               child: Text(
                                 isSentEmail
-                                    ? "Return to login"
-                                    : "Already remember your password",
+                                    ? AppLocalizations.of(context)!.return_login
+                                    : AppLocalizations.of(context)!
+                                        .remember_account,
                               ))),
                     ],
                   ),
@@ -134,6 +146,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
 
   Future<void> _handleForgotPassword(BuildContext context) async {
     String email = emailTextController.text;
+
+    if (!StringUtils.isValidEmail(email)) {
+      return;
+    }
 
     if (email.isEmpty) {
       SnackBarHelpers.showSnackBarFail(context, 'Error: Email cannot be empty');

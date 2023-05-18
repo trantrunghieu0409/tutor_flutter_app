@@ -9,22 +9,26 @@ import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.d
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutor_detail_page.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TutorCard extends ConsumerWidget {
+class TutorCard extends ConsumerStatefulWidget {
   const TutorCard({super.key, required this.tutor});
+
   final TutorEntity tutor;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<TutorCard> createState() => _TutorCardState();
+}
+
+class _TutorCardState extends ConsumerState<TutorCard> {
+  @override
+  Widget build(BuildContext context) {
+    final TutorEntity tutor = widget.tutor;
     return Card(
       child: InkWell(
-        onTap: () async {
-          await ref.read(tutorsProvider.notifier).getAll();
-
-          if (context.mounted) {
-            Navigator.pushNamed(context, TutorDetailPage.routeName,
-                arguments: tutor);
-          }
+        onTap: () {
+          Navigator.pushNamed(context, TutorDetailPage.routeName,
+              arguments: tutor);
         },
         child: Container(
           padding: const EdgeInsets.all(24.0),
@@ -44,11 +48,16 @@ class TutorCard extends ConsumerWidget {
                   ),
                 ),
                 Positioned(
-                  right: 72,
+                  right: 80,
                   top: 48,
                   child: TextButton.icon(
                       onPressed: () {
-                        tutor.toggleFavorite();
+                        setState(() {
+                          tutor.toggleFavorite();
+                          ref
+                              .read(tutorsProvider.notifier)
+                              .toggleFavorite(tutor.userId);
+                        });
                       },
                       icon: tutor.isFavorite
                           ? const Icon(
@@ -63,7 +72,7 @@ class TutorCard extends ConsumerWidget {
             ),
             Text(
               tutor.name,
-              style: CommonTextStyle.h2Black,
+              style: CommonTextStyle.h2Second,
             ),
             NationWithFlag(
               nation: tutor.getCountry(),
@@ -90,10 +99,10 @@ class TutorCard extends ConsumerWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
+              children: [
                 ButtonIconOutline(
-                    labelText: "Book",
-                    icon: Icon(Icons.calendar_today_outlined))
+                    labelText: AppLocalizations.of(context)!.book,
+                    icon: const Icon(Icons.calendar_today_outlined))
               ],
             )
           ]),

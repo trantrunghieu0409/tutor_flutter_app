@@ -17,6 +17,7 @@ import 'package:tutor_flutter_app/presentation/widgets/common/previous_appbar.da
 import 'package:image_picker/image_picker.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/primary_button.dart';
 import 'package:tutor_flutter_app/presentation/widgets/profile/profile_input_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterTutorPage extends ConsumerStatefulWidget {
   const RegisterTutorPage({super.key});
@@ -230,7 +231,7 @@ class _RegisterTutorPageState extends ConsumerState<RegisterTutorPage> {
           ),
           Text(
             text,
-            style: CommonTextStyle.h2Black,
+            style: CommonTextStyle.h2Second,
           ),
         ],
       ),

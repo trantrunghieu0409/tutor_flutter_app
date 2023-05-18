@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/domain/entities/course/topic_entity.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/custom_dropdown_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class TopicDropdown extends StatelessWidget {
@@ -30,11 +31,11 @@ class TopicDropdown extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 8.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
           child: Text(
-            "Topic",
-            style: CommonTextStyle.bodyItalicBlack,
+            AppLocalizations.of(context)!.topic,
+            style: CommonTextStyle.bodyItalicSecond,
           ),
         ),
         CustomDropdownButton(

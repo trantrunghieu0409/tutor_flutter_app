@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/search_input_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomPageIntroduction extends StatelessWidget {
-  const CustomPageIntroduction({super.key});
+  const CustomPageIntroduction(
+      {super.key, required this.searchTextController, required this.onChange});
+
+  final TextEditingController searchTextController;
+  final void Function() onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +27,15 @@ class CustomPageIntroduction extends StatelessWidget {
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  "Discover Courses",
-                  style: CommonTextStyle.h1Black,
+                  AppLocalizations.of(context)!.course_title,
+                  style: CommonTextStyle.h1Second,
                 ),
-                SearchInputField(),
+                SearchInputField(
+                  controller: searchTextController,
+                  onChange: onChange,
+                ),
               ],
             ),
           )
@@ -35,9 +43,9 @@ class CustomPageIntroduction extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        const Text(
-          "LiveTutor has built the most quality, methodical and scientific courses in the fields of life for those who are in need of improving their knowledge of the fields.",
-          style: CommonTextStyle.bodyBlack,
+        Text(
+          AppLocalizations.of(context)!.course_desc,
+          style: CommonTextStyle.bodySecond,
         ),
       ],
     );

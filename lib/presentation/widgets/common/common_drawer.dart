@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tutor_flutter_app/core/constants/common_color.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/presentation/pages/courses_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/history_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/authentication/login_page.dart';
@@ -11,6 +11,7 @@ import 'package:tutor_flutter_app/presentation/pages/schedule_page.dart';
 import 'package:tutor_flutter_app/presentation/pages/tutors_page.dart';
 import 'package:tutor_flutter_app/presentation/providers/authentication_validator.dart';
 import 'package:tutor_flutter_app/presentation/providers/user_notifier.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommonDrawer extends ConsumerWidget {
   const CommonDrawer({super.key});
@@ -25,8 +26,8 @@ class CommonDrawer extends ConsumerWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
-              color: CommonColor.lightBlue,
+            decoration: BoxDecoration(
+              color: SettingUtils.isLightTheme ? Colors.white : Colors.black12,
             ),
             child: SvgPicture.asset(
               "assets/images/lettutor_logo.svg",
@@ -35,7 +36,7 @@ class CommonDrawer extends ConsumerWidget {
           ),
           ListTile(
             title: _buildTextRow(
-                text: 'Tutor',
+                text: AppLocalizations.of(context)!.tutor,
                 icon: const FaIcon(FontAwesomeIcons.graduationCap)),
             onTap: () {
               Navigator.pushAndRemoveUntil(
@@ -46,7 +47,8 @@ class CommonDrawer extends ConsumerWidget {
           ),
           ListTile(
             title: _buildTextRow(
-                text: 'Schedule', icon: const Icon(Icons.bookmark)),
+                text: AppLocalizations.of(context)!.schedule,
+                icon: const Icon(Icons.bookmark)),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                   context,
@@ -55,8 +57,9 @@ class CommonDrawer extends ConsumerWidget {
             },
           ),
           ListTile(
-            title:
-                _buildTextRow(text: 'History', icon: const Icon(Icons.history)),
+            title: _buildTextRow(
+                text: AppLocalizations.of(context)!.history,
+                icon: const Icon(Icons.history)),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                   context,
@@ -66,7 +69,8 @@ class CommonDrawer extends ConsumerWidget {
           ),
           ListTile(
             title: _buildTextRow(
-                text: 'Course', icon: const FaIcon(FontAwesomeIcons.bookOpen)),
+                text: AppLocalizations.of(context)!.course,
+                icon: const FaIcon(FontAwesomeIcons.bookOpen)),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                   context,
@@ -76,7 +80,7 @@ class CommonDrawer extends ConsumerWidget {
           ),
           ListTile(
             title: _buildTextRow(
-                text: 'Sign out',
+                text: AppLocalizations.of(context)!.sign_out,
                 icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket)),
             onTap: () {
               autheticationValidator.logOut();

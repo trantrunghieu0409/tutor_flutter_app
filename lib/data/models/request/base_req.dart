@@ -3,7 +3,10 @@ class BaseReq {
   late int perPage;
 
   BaseReq({
-    this.page = 1,
-    this.perPage = 20,
+    this.page = BaseReq.defaultPage,
+    this.perPage = defaultPageSize,
   });
+
+  static const int defaultPage = 1;
+  static const int defaultPageSize = 10;
 }

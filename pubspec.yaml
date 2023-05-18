@@ -27,7 +27,7 @@ dependencies:
   flutter_svg: ^2.0.2
   google_fonts: ^4.0.3
   url_launcher: ^6.1.10
-  intl: ^0.17.0
+  intl: any
   country_icons: ^2.0.2
   video_player: ^2.6.0
   visibility_detector: ^0.4.0+2
@@ -62,6 +62,8 @@ dependencies:
       path: omni_jitsi_meet
   image_picker: ^0.8.7+4
   dio: ^5.1.1
+  infinite_scroll_pagination: ^3.2.0
+  meta: ^1.8.0
 
 dev_dependencies:
   flutter_test:

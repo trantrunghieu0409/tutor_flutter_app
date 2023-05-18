@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:tutor_flutter_app/core/utils/settings_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/authentication/user_entity.dart';
 import 'package:tutor_flutter_app/presentation/helpers/snackbar_helpers.dart';
 import 'package:tutor_flutter_app/presentation/providers/user_notifier.dart';
@@ -128,9 +129,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       ),
                       Container(
                         width: double.infinity,
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
+                        decoration: BoxDecoration(
+                            color: SettingUtils.isLightTheme
+                                ? Colors.white
+                                : Colors.black26,
+                            borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(30),
                                 topLeft: Radius.circular(30))),
                         child: Padding(
