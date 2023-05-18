@@ -2,7 +2,16 @@ name: Build Release App Bundle
 on:
   push:
     branches: ["chores/test_cd"]
-    
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+
 env:
   PROPERTIES_PATH: "./android/key.properties"
 
