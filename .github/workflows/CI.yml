@@ -2,8 +2,6 @@ name: CI
 on:
   push:
     branches: ['feature/**', 'basic-online-app', 'milestone-1-mockup-ui', 'advance-online-app']
-  pull_request:
-    branches: ["develop", 'basic-online-app', 'milestone-1-mockup-ui', 'advance-online-app']
 
 jobs:
   continous_integration:
