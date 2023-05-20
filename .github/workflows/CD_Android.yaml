@@ -1,7 +1,7 @@
-name: Build Release App Bundle
+name: CD_Android
 on:
   push:
-    branches: ["chores/test_cd"]
+    branches: ["release"]
 
   workflow_dispatch:
     inputs:
