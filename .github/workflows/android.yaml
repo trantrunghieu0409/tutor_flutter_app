@@ -45,7 +45,9 @@ jobs:
         run: flutter pub get
       - name: Install bundle
         working-directory: ./android
-        run: bundle install
+        run: |
+          gem install bundler
+          bundle install
       - name: Increment version code
         working-directory: ./android
         run: |
