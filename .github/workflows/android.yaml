@@ -37,10 +37,14 @@ jobs:
       - run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > android/app/key.jks
       # Decoding base64 google play into a file
       - run: echo "${{ secrets.PLAYSTORE_KEY }}" | base64 --decode > android/fastlane/playstore_key.json
-      # Get dependencies and make assigned appbundle
-      - run: | 
-          flutter pub get
-          flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
-      - name: run fastlane
+      # Get dependencies
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Increment version code
+        working-directory: ./android
+        run: fastlane add_plugin increment_version_code 
+      - name: Build production bundle
+        run: flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
+      - name: Run fastlane
         working-directory: ./android
         run: fastlane deploy
