@@ -42,7 +42,9 @@ jobs:
         run: flutter pub get
       - name: Increment version code
         working-directory: ./android
-        run: fastlane add_plugin increment_version_code 
+        run: |
+          fastlane add_plugin increment_version_code 
+          fastlane increment_build_num
       - name: Build production bundle
         run: flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
       - name: Run fastlane
