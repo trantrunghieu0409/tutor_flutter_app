@@ -1,2 +1,2 @@
-json_key_file("./fastlane/pc-api-6888173054009922748-785-17b87061f83e.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+json_key_file("./fastlane/playstore_key.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
 package_name("hcmus.lettutor.tutor_flutter_app") # e.g. com.krausefx.app
