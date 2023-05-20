@@ -44,7 +44,9 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Build production bundle
-        run: flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
-      - name: Run fastlane
+        run: |
+          flutter run 
+          flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
+      - name: Deploy to Google Play
         working-directory: ./android
         run: fastlane deploy
