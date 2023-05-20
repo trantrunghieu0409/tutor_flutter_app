@@ -43,16 +43,6 @@ jobs:
       # Get dependencies
       - name: Get dependencies
         run: flutter pub get
-      - name: Install bundle
-        working-directory: ./android
-        run: |
-          gem install bundler
-          bundle install
-      - name: Increment version code
-        working-directory: ./android
-        run: |
-          fastlane add_plugin increment_version_code 
-          fastlane increment_build_num
       - name: Build production bundle
         run: flutter build appbundle --release --flavor prod --dart-define=ENVIRONMENT=PROD
       - name: Run fastlane
