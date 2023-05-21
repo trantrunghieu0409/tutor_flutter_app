@@ -17,7 +17,7 @@ Link drive: https://drive.google.com/file/d/1Mhx0eJe5nI_TQIhi7qJvRmlzez2KxcEH/vi
 <br>
 ***(Video có giải thích bằng lời nói)***
 
-## Milestone 023
+## Milestone 03
 ### Video Demo: 
 Link drive: https://drive.google.com/drive/folders/1DeJWeHHZigRK2aIQ8ni1ULDGfozQDTfa?usp=sharing
 <br>
