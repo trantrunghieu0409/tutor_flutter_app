@@ -253,6 +253,9 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
 
                     if (isSuccess) {
                       _getScheduleListInDay(_selectedDay ?? DateTime.now());
+                      widget.tutor.price = widget.tutor.price != null
+                          ? widget.tutor.price! - 1
+                          : 0;
                     }
                     return SingleChildScrollView(
                       child: ListBody(
@@ -285,6 +288,7 @@ class _BookingCalendarState extends ConsumerState<BookingCalendar> {
                     );
                   } else {
                     return const Center(
+                      heightFactor: 1.0,
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: CircularProgressIndicator(),

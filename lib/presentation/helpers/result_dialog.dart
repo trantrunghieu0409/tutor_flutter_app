@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DialogHelpers {
   static Future<void> showFutureResultDialog(
@@ -84,7 +85,7 @@ class DialogHelpers {
           ),
           actions: <Widget>[
             OutlinedButton(
-              child: const Text('Close'),
+              child: Text(AppLocalizations.of(context)!.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

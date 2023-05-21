@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:tutor_flutter_app/core/config/env.dart';
-import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
 import 'package:tutor_flutter_app/core/constants/http_constants.dart';
 import 'package:tutor_flutter_app/core/utils/dio_http_utils.dart';
 

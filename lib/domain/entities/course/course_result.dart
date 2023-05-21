@@ -1,5 +1,4 @@
 import 'package:tutor_flutter_app/domain/entities/course/course_entity.dart';
-import 'package:tutor_flutter_app/domain/entities/history/history_entity.dart';
 
 class CourseResult {
   late int total;
