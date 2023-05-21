@@ -18,7 +18,7 @@ class StarsRating extends StatelessWidget {
                     ))
             : [
                 const Text("No ratings yet!",
-                    style: CommonTextStyle.bodyItalicBlack)
+                    style: CommonTextStyle.bodyItalicSecond)
               ]);
   }
 }

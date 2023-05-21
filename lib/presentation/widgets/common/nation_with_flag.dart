@@ -21,7 +21,7 @@ class NationWithFlag extends StatelessWidget {
         ),
         Text(
           nation,
-          style: CommonTextStyle.bodyBlack,
+          style: CommonTextStyle.bodySecond,
         )
       ],
     );

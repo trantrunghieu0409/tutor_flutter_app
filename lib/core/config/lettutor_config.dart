@@ -1,6 +1,6 @@
 class LettutorConfig {
   // endpoint
-  static String endpoint = "https://sandbox.api.lettutor.com/";
+  // static String endpoint = "https://sandbox.api.lettutor.com/";
 
   static String jitsiServerUrl = "https://meet.lettutor.com";
 
@@ -19,14 +19,17 @@ class LettutorConfig {
   // tutor - path
   static String getAllTutors = 'tutor/more?perPage=10&page=1';
   static String searchTutors = 'tutor/search';
+  static String toggleFavorite = 'user/manageFavoriteTutor';
+  static String getReviews = 'feedback/v2';
 
-  // schedule - patj
+  // schedule - path
   static String scheduleByTutorIdPath = 'schedule';
   static String bookSchedule = 'booking';
 
   // history - path
   static String getHistory = 'booking/list/student';
   static String getTotalLessonTime = 'call/total';
+  static String cancelSchedule = 'booking/schedule-detail';
 
   // past history - path
   static String getPastHistory = 'call/history';
@@ -34,6 +37,7 @@ class LettutorConfig {
   // course - path
   static String getCourses = 'course';
   static String getEBooks = 'e-book';
+  static String getCategories = 'content-category';
 
   // hard-coded value for authorization
   static String token =

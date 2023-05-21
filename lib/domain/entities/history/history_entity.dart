@@ -1,3 +1,4 @@
+import 'package:tutor_flutter_app/core/utils/datetime_utils.dart';
 import 'package:tutor_flutter_app/domain/entities/history/schedule_detail_info_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/history/tutor_info_entity.dart';
 
@@ -51,5 +52,6 @@ class HistoryEntity {
 
   TutorInfoEntity get tutorInfo => scheduleDetailInfo.scheduleInfo.tutorInfo;
 
-  DateTime get date => DateTime.parse(scheduleDetailInfo.scheduleInfo.date);
+  DateTime get date =>
+      DateTimeUtils.getDateTime(scheduleDetailInfo.scheduleInfo.startTimestamp);
 }

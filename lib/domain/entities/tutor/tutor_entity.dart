@@ -57,13 +57,15 @@ class TutorEntity {
   late final String specialties;
   late final String? resume;
   late final double? rating;
-  late final int? price;
+  late int? price;
   late final bool? isOnline;
-  late final List<FeedbackEntity> feedbacks;
+  late List<FeedbackEntity> feedbacks;
   bool isFavorite = false;
 
   Image getAvatar() {
-    return avatar != null
+    return avatar != null &&
+            avatar !=
+                'https://www.alliancerehabmed.com/wp-content/uploads/icon-avatar-default.png'
         ? Image.network(
             avatar!,
             errorBuilder: (BuildContext context, Object exception,

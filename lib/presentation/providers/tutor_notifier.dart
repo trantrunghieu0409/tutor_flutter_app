@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:tutor_flutter_app/core/injection/injector.dart';
+import 'package:tutor_flutter_app/data/models/request/search_tutor_req.dart';
+import 'package:tutor_flutter_app/domain/entities/tutor/feedback_entity.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:tutor_flutter_app/domain/usecases/tutor_usecase.dart';
@@ -20,30 +22,21 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
   int get total => _total;
 
   Future<void> getAll() async {
+    // call get all to get favorite tutors only
     var resp = await _tutorUsecase.getAll();
 
-    state = resp.fold((l) {
+    resp.fold((l) {
       log(l.error);
       return state;
     }, (r) {
-      _total = r.total;
       _favoriteIds = r.favoriteIds!;
-
-      for (var element in r.tutors) {
-        if (_favoriteIds.contains(element.userId)) {
-          element.isFavorite = true;
-        }
-      }
-
-      return _sortByFavoriteAndRating(r.tutors);
     });
   }
 
-  Future<void> search(
-      List<String> specialities, String name, bool? isVietnamese) async {
-    var resp = await _tutorUsecase.search(specialities, name, isVietnamese);
+  Future<void> search(SearchTutorReq searchTutorReq) async {
+    var resp = await _tutorUsecase.search(searchTutorReq);
 
-    state = resp.fold((l) {
+    var res = resp.fold((l) {
       log(l.error);
       return state;
     }, (r) {
@@ -54,8 +47,40 @@ class TutorNotifier extends StateNotifier<List<TutorEntity>> {
           element.isFavorite = true;
         }
       }
+
       return _sortByFavoriteAndRating(r.tutors);
     });
+
+    state = (searchTutorReq.page == 1) ? res : [...state, ...res];
+  }
+
+  Future<bool> toggleFavorite(String tutorId) async {
+    var resp = await _tutorUsecase.toggleFavorite(tutorId);
+    state = resp.fold((l) {
+      log(l.error);
+      return state;
+    }, (r) {
+      if (_favoriteIds.contains(tutorId)) {
+        _favoriteIds.remove(tutorId);
+      } else {
+        _favoriteIds.add(tutorId);
+      }
+      return _sortByFavoriteAndRating(state.map((e) {
+        if (_favoriteIds.contains(e.userId)) {
+          e.isFavorite = true;
+        }
+        return e;
+      }).toList());
+    });
+    return resp.isRight();
+  }
+
+  Future<List<FeedbackEntity>> getReviews(String tutorId) async {
+    var resp = await _tutorUsecase.getReviews(tutorId);
+    return resp.fold((l) {
+      log(l.error);
+      return [];
+    }, (r) => r);
   }
 }
 

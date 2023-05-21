@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
+import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/button_column.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/feedback_row.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ButtonSection extends StatefulWidget {
+class ButtonSection extends ConsumerStatefulWidget {
   const ButtonSection({super.key, required this.tutor});
 
   final TutorEntity tutor;
 
   @override
-  State<ButtonSection> createState() => _ButtonSectionState();
+  ConsumerState<ButtonSection> createState() => _ButtonSectionState();
 }
 
-class _ButtonSectionState extends State<ButtonSection> {
+class _ButtonSectionState extends ConsumerState<ButtonSection> {
   @override
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
@@ -26,16 +29,19 @@ class _ButtonSectionState extends State<ButtonSection> {
             icon: widget.tutor.isFavorite
                 ? Icons.favorite
                 : Icons.favorite_outline,
-            label: 'Favorite',
+            label: AppLocalizations.of(context)!.favor,
             callback: () {
               setState(() {
                 widget.tutor.toggleFavorite();
+                ref
+                    .read(tutorsProvider.notifier)
+                    .toggleFavorite(widget.tutor.userId);
               });
             }),
         ButtonColumn(
           color: color,
           icon: Icons.list_alt_outlined,
-          label: 'Reviews',
+          label: AppLocalizations.of(context)!.reviews,
           callback: () {
             _showReviews();
           },
@@ -43,7 +49,7 @@ class _ButtonSectionState extends State<ButtonSection> {
         ButtonColumn(
           color: color,
           icon: Icons.report_outlined,
-          label: 'Report',
+          label: AppLocalizations.of(context)!.report,
           callback: () {
             _showReportConfirmDialog();
           },
@@ -60,8 +66,8 @@ class _ButtonSectionState extends State<ButtonSection> {
         return GestureDetector(
           child: AlertDialog(
             title: Text(
-              'Reviews about ${widget.tutor.name}',
-              style: CommonTextStyle.h2Black,
+              '${AppLocalizations.of(context)!.review_about} ${widget.tutor.name}',
+              style: CommonTextStyle.h2Second,
             ),
             content: SingleChildScrollView(
               child: ListBody(
@@ -79,7 +85,7 @@ class _ButtonSectionState extends State<ButtonSection> {
             ),
             actions: <Widget>[
               ElevatedButton(
-                child: const Text('Close'),
+                child: Text(AppLocalizations.of(context)!.close),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -98,15 +104,16 @@ class _ButtonSectionState extends State<ButtonSection> {
       builder: (BuildContext context) {
         return GestureDetector(
           child: AlertDialog(
-            title: Text('Report - ${widget.tutor.name}'),
+            title: Text(
+                '${AppLocalizations.of(context)!.report} - ${widget.tutor.name}'),
             content: SingleChildScrollView(
               child: ListBody(
-                children: const <Widget>[
-                  Text('What do you want to report?'),
-                  SizedBox(
+                children: <Widget>[
+                  Text(AppLocalizations.of(context)!.report_ques),
+                  const SizedBox(
                     height: 12,
                   ),
-                  TextField(
+                  const TextField(
                     keyboardType: TextInputType.text,
                     maxLines: 5,
                     decoration: InputDecoration(
@@ -124,9 +131,9 @@ class _ButtonSectionState extends State<ButtonSection> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text("Cancel")),
+                  child: Text(AppLocalizations.of(context)!.cancel)),
               ElevatedButton(
-                child: const Text('Submit'),
+                child: Text(AppLocalizations.of(context)!.submit),
                 onPressed: () {
                   Navigator.of(context).pop();
                   _showReportResultDialog();
@@ -145,18 +152,17 @@ class _ButtonSectionState extends State<ButtonSection> {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Report successfully'),
+          title: Text(AppLocalizations.of(context)!.report_success),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text(
-                    'We\'ve received your report and will take care of this case carefully.'),
+              children: <Widget>[
+                Text(AppLocalizations.of(context)!.report_success_desc),
               ],
             ),
           ),
           actions: <Widget>[
             OutlinedButton(
-              child: const Text('Close'),
+              child: Text(AppLocalizations.of(context)!.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

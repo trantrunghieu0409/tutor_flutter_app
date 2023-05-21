@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:tutor_flutter_app/core/config/lettutor_config.dart';
+import 'package:tutor_flutter_app/core/config/env.dart';
 import 'package:tutor_flutter_app/core/constants/http_constants.dart';
 import 'package:tutor_flutter_app/core/utils/dio_http_utils.dart';
 
@@ -18,7 +18,7 @@ class DioClient {
   }
 
   factory DioClient.setLetTutorHost() =>
-      DioClient(host: LettutorConfig.endpoint);
+      DioClient(host: Environment().config!.baseUrl);
 
   Map<String, String> _generateAuthorizationHeader(token) => {
         HttpConstants.authorization: "Bearer $token",

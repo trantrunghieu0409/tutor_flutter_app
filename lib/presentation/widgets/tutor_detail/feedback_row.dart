@@ -29,7 +29,7 @@ class FeedbackRow extends StatelessWidget {
             children: [
               Text(
                 firstInfo.name,
-                style: CommonTextStyle.h3Black,
+                style: CommonTextStyle.h3Second,
                 softWrap: true,
               ),
               StarsRating(nStars: feedback.rating.round()),
@@ -37,7 +37,7 @@ class FeedbackRow extends StatelessWidget {
                 feedback.content.isNotEmpty
                     ? feedback.content
                     : "No comment yet!",
-                style: CommonTextStyle.bodyItalicBlack,
+                style: CommonTextStyle.bodyItalicSecond,
                 overflow: TextOverflow.clip,
                 softWrap: true,
               ),

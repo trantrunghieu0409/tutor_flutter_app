@@ -1,13 +1,37 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tutor_flutter_app/core/constants/common_text_style.dart';
 import 'package:tutor_flutter_app/domain/entities/tutor/tutor_entity.dart';
+import 'package:tutor_flutter_app/presentation/providers/tutor_notifier.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/nation_with_flag.dart';
 import 'package:tutor_flutter_app/presentation/widgets/common/stars_rating.dart';
 import 'package:tutor_flutter_app/presentation/widgets/tutor_detail/buttons_section.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TutorDetailCard extends StatelessWidget {
+class TutorDetailCard extends ConsumerStatefulWidget {
   const TutorDetailCard({super.key, required this.tutor});
   final TutorEntity tutor;
+
+  @override
+  ConsumerState<TutorDetailCard> createState() => _TutorDetailCardState();
+}
+
+class _TutorDetailCardState extends ConsumerState<TutorDetailCard> {
+  @override
+  void initState() {
+    _fetchReview();
+    super.initState();
+  }
+
+  _fetchReview() async {
+    widget.tutor.feedbacks =
+        await ref.read(tutorsProvider.notifier).getReviews(widget.tutor.userId);
+    setState(() {
+      log("${widget.tutor.feedbacks.length}");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +45,7 @@ class TutorDetailCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 44,
-                backgroundImage: tutor.getAvatar().image,
+                backgroundImage: widget.tutor.getAvatar().image,
               ),
               const SizedBox(
                 width: 16,
@@ -30,15 +54,15 @@ class TutorDetailCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    tutor.name,
-                    style: CommonTextStyle.h2Black,
+                    widget.tutor.name,
+                    style: CommonTextStyle.h2Second,
                   ),
                   Row(
                     children: [
-                      StarsRating(nStars: tutor.stars),
+                      StarsRating(nStars: widget.tutor.stars),
                       Text(
-                        "(${tutor.feedbacks.length} reviews)",
-                        style: CommonTextStyle.bodyItalicBlack,
+                        "(${widget.tutor.feedbacks.length} reviews)",
+                        style: CommonTextStyle.bodyItalicSecond,
                       )
                     ],
                   ),
@@ -46,7 +70,7 @@ class TutorDetailCard extends StatelessWidget {
                     height: 8,
                   ),
                   NationWithFlag(
-                    nation: tutor.getCountry(),
+                    nation: widget.tutor.getCountry(),
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ],
@@ -56,28 +80,28 @@ class TutorDetailCard extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Text(tutor.bio),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
+          Text(widget.tutor.bio),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              "Interests",
-              style: CommonTextStyle.bodyItalicBlack,
+              AppLocalizations.of(context)!.interests,
+              style: CommonTextStyle.bodyItalicSecond,
             ),
           ),
-          Text(tutor.interests),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
+          Text(widget.tutor.interests),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              "Teaching experience",
-              style: CommonTextStyle.bodyItalicBlack,
+              AppLocalizations.of(context)!.teaching_exp,
+              style: CommonTextStyle.bodyItalicSecond,
             ),
           ),
-          Text(tutor.experience),
+          Text(widget.tutor.experience),
           const SizedBox(
             height: 16,
           ),
           ButtonSection(
-            tutor: tutor,
+            tutor: widget.tutor,
           ),
         ]),
       ),

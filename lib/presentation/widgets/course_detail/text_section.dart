@@ -20,7 +20,7 @@ class TextSection extends StatelessWidget {
             ),
             Text(
               title,
-              style: CommonTextStyle.h3Black,
+              style: CommonTextStyle.h3Second,
             ),
           ],
         ),

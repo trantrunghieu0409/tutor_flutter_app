@@ -27,7 +27,7 @@ class PageIntroduction extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: CommonTextStyle.h1Black,
+                style: CommonTextStyle.h1Second,
               ),
               Text(description),
             ],

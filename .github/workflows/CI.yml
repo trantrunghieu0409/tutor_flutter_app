@@ -1,0 +1,24 @@
+name: CI
+on:
+  push:
+    branches: ['feature/**', 'chores/**', 'basic-online-app', 'milestone-1-mockup-ui', 'advance-online-app', 'release']
+  pull_request:
+    branches: ["develop", 'basic-online-app', 'milestone-1-mockup-ui', 'advance-online-app', 'release']
+
+jobs:
+  continous_integration:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.ref }}
+    - run: |
+          ls ${{ github.workspace }}
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: "stable"
+        cache: true
+    - run: |
+          flutter pub get
+          flutter test
