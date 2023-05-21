@@ -14,4 +14,11 @@ Link widget tree: https://drive.google.com/file/d/1B9Z71oOnxjO421dA04yYitdY9OT4S
 ## Milestone 02
 ### Video Demo: 
 Link drive: https://drive.google.com/file/d/1Mhx0eJe5nI_TQIhi7qJvRmlzez2KxcEH/view?usp=sharing
+<br>
+***(Video có giải thích bằng lời nói)***
+
+## Milestone 023
+### Video Demo: 
+Link drive: https://drive.google.com/drive/folders/1DeJWeHHZigRK2aIQ8ni1ULDGfozQDTfa?usp=sharing
+<br>
 ***(Video có giải thích bằng lời nói)***
